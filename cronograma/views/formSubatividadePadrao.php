@@ -14,26 +14,27 @@ and open the template in the editor.
     </head>
     <body >
 
-        <form method="post" action="<?php echo BASE_URL; ?>/atividadePadrao/add">
+        <form method="post" action="<?php echo BASE_URL; ?>/subatividadePadrao/add">
             <div class="div_form ">
                 <div>
-                    <label class="control-label">Nome da Atividade:</label><br />
-                    <input class="form-control" name="nome_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <label class="control-label">Nome da subatividade:</label><br />
+                    <input class="form-control" name="nome_subatividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>  
                 <div>
-                    <label class="control-label">Descrição da Atividade:</label><br />
-                    <input class="form-control" name="desc_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <label class="control-label">Descrição da subatividade:</label><br />
+                    <input class="form-control" name="desc_subatividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>
                 <div>
-                    <label class="control-label">Versão do PMBOK:</label><br />
-                    <select  class="form-control" name="id_pmbok_versao">
+                    <label class="control-label">Atividade principal:</label><br />
+                    <select  class="form-control" name="id_atividade">
                         <option>Selecione</option>    
-                        <?php foreach ($pmboks as $pmbok): ?>
-                            <?php echo "<option value=" . $pmbok['id_pmbok_versao'] . " >" . $pmbok['descricao_pmbok_versao'] . "</option>"; ?>
+                        <?php foreach ($atividadesPadroes as $atividadePadrao): ?>
+                            <?php echo "<option value=" . $atividadePadrao['id_atividades_padroes'] . " >" . $atividadePadrao['nome_atividades_padroes'] . "</option>"; ?>
                         <?php endforeach; ?>
                     </select>
+                    <br />
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />
