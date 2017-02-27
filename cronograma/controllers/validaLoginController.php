@@ -9,7 +9,7 @@
 /**
  * Description of validaLogin
  *
- * @author Gustavo Martins
+ * @author Vanessa Marques
  */
 class validaLoginController extends controller {
     public function index() {
