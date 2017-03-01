@@ -16,7 +16,7 @@ and open the template in the editor.
         <?php foreach ($atividades as $atividade):?> 
         
         <form method="post" action="<?php echo BASE_URL."/atividade/alterar/".$atividade['id_atividade']; ?>">
-            <div class="div_form ">
+            <div class="div_form">
                 <div>
                     <label class="control-label">Nome da Atividade:</label><br />
                     <input class="form-control" required value="<?php echo $atividade['nome_atividade'] ?>" name="nome_atividade" placeholder="Nome da Atividade" type="text"><br />
