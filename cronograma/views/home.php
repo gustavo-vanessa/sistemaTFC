@@ -11,13 +11,13 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        
+         <h1 class="label">Cadastros</h1>
+         
         <div class="div_form">
+         <br />
+         <br />
         <table  >
-            <thead>
-                <tr>
-                    <th class="label">Cadastros</th>
-                </tr>
-            </thead>
             <tbody>
                 <tr>
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/projeto">Projetos</a></td> 

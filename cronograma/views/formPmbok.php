@@ -16,7 +16,7 @@ and open the template in the editor.
         <form method="post" action="<?php echo BASE_URL; ?>/pmbok/add">
         <div class="div_form">
             <label class="control-label">Descrição do PMBOK:</label><br />
-            <input class="form-control" name="descricao_pmbok" placeholder="Descrição do PMBOK" type="text"><br />
+            <input class="form-control" name="descricao_pmbok" required placeholder="Descrição do PMBOK" type="text"><br />
             <br />
             <table><tr>
                     <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>

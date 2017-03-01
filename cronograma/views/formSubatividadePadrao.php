@@ -18,17 +18,17 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da subatividade:</label><br />
-                    <input class="form-control" name="nome_subatividade_padrao" placeholder="Nome da subatividade" type="text"><br />
+                    <input class="form-control" name="nome_subatividade_padrao" required placeholder="Nome da subatividade" type="text"><br />
                     <br />
                 </div>  
                 <div>
                     <label class="control-label">Descrição da subatividade:</label><br />
-                    <input class="form-control" name="desc_subatividade_padrao" placeholder="Descrição da subatividade" type="text"><br />
+                    <input class="form-control" name="desc_subatividade_padrao" required placeholder="Descrição da subatividade" type="text"><br />
                     <br />
                 </div>
                 <div>
                     <label class="control-label">Atividade principal:</label><br />
-                    <select  class="form-control" name="id_atividade">
+                    <select  class="form-control" required  name="id_atividade">
                         <option>Selecione</option>    
                         <?php foreach ($atividadesPadroes as $atividadePadrao): ?>
                             <?php echo "<option value=" . $atividadePadrao['id_atividades_padroes'] . " >" . $atividadePadrao['nome_atividades_padroes'] . "</option>"; ?>
@@ -38,7 +38,7 @@ and open the template in the editor.
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />
-                    <select  class="form-control" name="ie_obrigatorio">
+                    <select  class="form-control" required name="ie_obrigatorio">
                         <option>Selecione</option>    
                         <option value="S">Sim</option>
                         <option value="N">Não</option>

@@ -19,12 +19,12 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $atividade['nome_atividade'] ?>" name="nome_atividade" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" required value="<?php echo $atividade['nome_atividade'] ?>" name="nome_atividade" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>  
                <div>
                     <label class="control-label">Status Atividade:</label><br />
-                    <select  class="form-control" name="status_atividade">
+                    <select  class="form-control" required name="status_atividade">
                         <option>Selecione</option>    
                         <option value="S">Sim</option>
                         <option value="N">Não</option>
@@ -34,7 +34,7 @@ and open the template in the editor.
                 </div>
                 <div>
                     <label class="control-label">Projeto:</label><br />
-                    <select  class="form-control" name="id_projeto">
+                    <select  class="form-control" required name="id_projeto">
                         <option>Selecione</option>    
                         <?php foreach ($projetos as $projeto): ?>
                             <?php 
@@ -52,12 +52,12 @@ and open the template in the editor.
                 </div> 
                  <div>
                     <label class="control-label">Data de Inicio da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $atividade['data_inicio_atividade']?>" name="data_inicio_atividade" placeholder="Nome da Atividade" type="date"><br />
+                    <input class="form-control" required value="<?php echo $atividade['data_inicio_atividade']?>" name="data_inicio_atividade" placeholder="Nome da Atividade" type="date"><br />
                     <br />
                 </div>
                  <div>
                     <label class="control-label">Data de Fim da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $atividade['data_fim_atividade']?>" name="data_fim_atividade" placeholder="Nome da Atividade" type="date"><br />
+                    <input class="form-control" required value="<?php echo $atividade['data_fim_atividade']?>" name="data_fim_atividade" placeholder="Nome da Atividade" type="date"><br />
                     <br />
                 </div>
                  <div>

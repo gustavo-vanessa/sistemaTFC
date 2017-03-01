@@ -21,12 +21,12 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $subatividade['nome_sub_atividade'] ?>" name="nome_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" required value="<?php echo $subatividade['nome_sub_atividade'] ?>" name="nome_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>  
                <div>
                     <label class="control-label">Status Atividade:</label><br />
-                    <select  class="form-control" name="status_sub_atividade">
+                    <select  class="form-control" required name="status_sub_atividade">
                         <option>Selecione</option>    
                         <option value="S">Sim</option>
                         <option value="N">Não</option>
@@ -36,7 +36,7 @@ and open the template in the editor.
                 </div>
                 <div>
                     <label class="control-label">Atividade:</label><br />
-                    <select  class="form-control" name="id_atividade">
+                    <select  class="form-control" required name="id_atividade">
                         <option>Selecione</option>    
                         <?php foreach ($atividades as $atividade): ?>
                             <?php 
@@ -54,12 +54,12 @@ and open the template in the editor.
                 </div> 
                  <div>
                     <label class="control-label">Data de Inicio da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $subatividade['data_inicio_sub_atividade']?>" name="data_inicio_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
+                    <input class="form-control" required value="<?php echo $subatividade['data_inicio_sub_atividade']?>" name="data_inicio_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
                     <br />
                 </div>
                  <div>
                     <label class="control-label">Data de Fim da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $subatividade['data_fim_sub_atividade']?>" name="data_fim_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
+                    <input class="form-control" required value="<?php echo $subatividade['data_fim_sub_atividade']?>" name="data_fim_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
                     <br />
                 </div>
                  <div>

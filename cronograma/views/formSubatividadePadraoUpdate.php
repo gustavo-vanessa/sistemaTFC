@@ -19,17 +19,17 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $atividadePadrao['nome_atividades_padroes'] ?>" name="nome_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" required value="<?php echo $atividadePadrao['nome_atividades_padroes'] ?>" name="nome_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>  
                 <div>
                     <label class="control-label">Descrição da Atividade:</label><br />
-                    <input class="form-control" value="<?php echo $atividadePadrao['descricao_atividades_padroes']?>" name="desc_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" required value="<?php echo $atividadePadrao['descricao_atividades_padroes']?>" name="desc_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                     <br />
                 </div>
                 <div>
                     <label class="control-label">Versão do PMBOK:</label><br />
-                    <select  class="form-control" name="id_pmbok_versao">
+                    <select  class="form-control" required name="id_pmbok_versao">
                         <option>Selecione</option>    
                         <?php foreach ($pmboks as $pmbok): ?>
                             <?php 
@@ -45,7 +45,7 @@ and open the template in the editor.
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />
-                    <select  class="form-control" name="ie_obrigatorio">
+                    <select  class="form-control" required name="ie_obrigatorio">
                         <option>Selecione</option>    
                         <option value="S" >Sim</option>
                         <option value="N">Não</option>
