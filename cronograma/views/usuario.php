@@ -27,7 +27,7 @@ and open the template in the editor.
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($atividadesPadroes as $atividadePadrao) {
+                    foreach ($usuarios as $usuario) {
                         echo "<tr>";
                         echo "<td>" . $usuario['id_usuario'] . "</td>";
                         echo "<td>" . $usuario['nome_usuario'] . "</td>";

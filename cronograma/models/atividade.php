@@ -16,12 +16,15 @@ class atividade extends model {
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("select id_atividade, 
-                                      nome_atividade,
-                                      descricao_atividade,
-                                      ie_obrigatorio_atividade,
-                                      id_pmbok_versao,
-                                      obter_desc_pmbok(id_pmbok_versao) as desc_pmbok
-                               from atividade");
+                                          nome_atividade, 
+                                          status_atividade, 
+                                          id_projeto, 
+                                          obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
+                                          data_inicio_atividade, 
+                                          data_fim_atividade, 
+                                          data_validacao_atividade, 
+                                          observacoes_atividade 
+                                   from atividade");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -30,16 +33,22 @@ class atividade extends model {
     }
 
     public function add_atividades($array_dados = array()) {
-        if (count($array_dados) > 1) {            
+        if (count($array_dados) > 1) { 
             $sql = $this->db->prepare("INSERT INTO `atividade`"
                                     . "(`nome_atividade`, "
-                                    . "`descricao_atividade`, "
-                                    . "`ie_obrigatorio_atividade`, "
-                                    . "`id_pmbok_versao`) "
-                                    . "VALUES ('" . $array_dados['nome_atividade_padrao'] . "',"
-                                    . "'" . $array_dados['desc_atividade_padrao'] . "',"
-                                    . "'" . $array_dados['ie_obrigatorio'] . "',"
-                                    . "'" . $array_dados['id_pmbok_versao'] . "')");
+                                    . "`status_atividade`, "
+                                    . "`id_projeto`, "
+                                    . "`data_inicio_atividade`, "
+                                    . "`data_fim_atividade`, "
+                                    . "`data_validacao_atividade`, "
+                                    . "`observacoes_atividade`) "
+                                    . "VALUES ('" . $array_dados['nome_atividade'] . "',"
+                                    . "'" . $array_dados['status_atividade'] . "',"
+                                    . "'" . $array_dados['id_projeto'] . "',"
+                                    . "'" . $array_dados['data_inicio_atividade'] . "',"
+                                    . "'" . $array_dados['data_fim_atividade'] . "',"
+                                    . "'" . $array_dados['data_validacao_atividade'] . "',"
+                                    . "'" . $array_dados['observacoes_atividade'] . "')");
             $sql->execute();
             return;
         }
@@ -50,10 +59,13 @@ class atividade extends model {
         if (count($array_dados) > 1) {
             
             $sql = $this->db->prepare("update `atividade` "
-                    . "set `nome_atividade` = '" . $array_dados['nome_atividade_padrao'] . "', "
-                    . "`descricao_atividade` = '" . $array_dados['desc_atividade_padrao'] . "', "
-                    . "`ie_obrigatorio_atividade` = '" . $array_dados['ie_obrigatorio'] . "', "
-                    . "`id_pmbok_versao` = '" . $array_dados['id_pmbok_versao'] . "' "
+                    . "set `nome_atividade` = '" . $array_dados['nome_atividade'] . "', "
+                    . "`status_atividade` = '" . $array_dados['status_atividade'] . "', "
+                    . "`id_projeto` = '" . $array_dados['id_projeto'] . "', "
+                     . "`data_inicio_atividade` = '" . $array_dados['data_inicio_atividade'] . "', "
+                     . "`data_fim_atividade` = '" . $array_dados['data_fim_atividade'] . "', "
+                     . "`data_validacao_atividade` = '" . $array_dados['data_validacao_atividade'] . "', "
+                    . "`observacoes_atividade` = '" . $array_dados['observacoes_atividade'] . "' "
                     . "where id_atividade = " . $id);
             $sql->execute();
             return;
@@ -78,9 +90,9 @@ class atividade extends model {
         return $array;
     }
 
-    public function getPmbok() {
+    public function getProjeto() {
         $array = array();
-        $sql = $this->db->prepare("select * from pmbok_versao");
+        $sql = $this->db->prepare("select * from projeto");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

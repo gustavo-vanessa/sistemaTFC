@@ -16,12 +16,15 @@ class subatividade extends model {
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("select id_sub_atividade, 
-                                         nome_sub_atividade,
-                                         descricao_sub_atividade,
-                                         ie_obrigatorio_sub_atividade,
-                                         id_atividade,
-                                         obter_nome_atividade (id_atividade, id_sub_atividade)      
-                                  from sub_atividade");
+                                          nome_sub_atividade, 
+                                          status_sub_atividade, 
+                                          id_atividade, 
+                                          obter_nome_atividade(id_atividade, id_sub_atividade) as nome_atividade, 
+                                          data_inicio_sub_atividade, 
+                                          data_fim_sub_atividade, 
+                                          data_validacao_sub_atividade, 
+                                          observacoes_sub_atividade 
+                                   from sub_atividade");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -33,28 +36,36 @@ class subatividade extends model {
         if (count($array_dados) > 1) { 
             $sql = $this->db->prepare("INSERT INTO `sub_atividade`"
                                     . "(`nome_sub_atividade`, "
-                                    . "`descricao_sub_atividade`, "
-                                    . "`ie_obrigatorio_sub_atividade`, "
-                                    . "`id_atividade`) "
-                                    . "VALUES ('" . $array_dados['nome_subatividade'] . "',"
-                                    . "'" . $array_dados['desc_subatividade'] . "',"
-                                    . "'" . $array_dados['ie_obrigatorio'] . "',"
-                                    . "'" . $array_dados['id_atividade'] . "')");
+                                    . "`status_sub_atividade`, "
+                                    . "`id_atividade`, "
+                                    . "`data_inicio_sub_atividade`, "
+                                    . "`data_fim_sub_atividade`, "
+                                    . "`data_validacao_sub_atividade`, "
+                                    . "`observacoes_sub_atividade`) "
+                                    . "VALUES ('" . $array_dados['nome_sub_atividade'] . "',"
+                                    . "'" . $array_dados['status_sub_atividade'] . "',"
+                                    . "'" . $array_dados['id_atividade'] . "',"
+                                    . "'" . $array_dados['data_inicio_sub_atividade'] . "',"
+                                    . "'" . $array_dados['data_fim_sub_atividade'] . "',"
+                                    . "'" . $array_dados['data_validacao_sub_atividade'] . "',"
+                                    . "'" . $array_dados['observacoes_sub_atividade'] . "')");
             $sql->execute();
             return;
         }
     }
 
-    public function alterar_atividades($array_dados = array(), $id) {
+    public function alterar_subatividades($array_dados = array(), $id) {
   
         if (count($array_dados) > 1) {
-            
-            $sql = $this->db->prepare("update `atividade` "
-                    . "set `nome_atividade` = '" . $array_dados['nome_atividade'] . "', "
-                    . "`descricao_atividade` = '" . $array_dados['desc_atividade'] . "', "
-                    . "`ie_obrigatorio_atividade` = '" . $array_dados['ie_obrigatorio'] . "', "
-                    . "`id_pmbok_versao` = '" . $array_dados['id_pmbok_versao'] . "' "
-                    . "where id_atividade = " . $id);
+          $sql = $this->db->prepare("update `sub_atividade` "
+                    . "set `nome_sub_atividade` = '" . $array_dados['nome_sub_atividade'] . "', "
+                    . "`status_sub_atividade` = '" . $array_dados['status_sub_atividade'] . "', "
+                    . "`id_atividade` = '" . $array_dados['id_atividade'] . "', "
+                     . "`data_inicio_sub_atividade` = '" . $array_dados['data_inicio_sub_atividade'] . "', "
+                     . "`data_fim_sub_atividade` = '" . $array_dados['data_fim_sub_atividade'] . "', "
+                     . "`data_validacao_sub_atividade` = '" . $array_dados['data_validacao_sub_atividade'] . "', "
+                    . "`observacoes_sub_atividade` = '" . $array_dados['observacoes_sub_atividade'] . "' "
+                    . "where id_sub_atividade = " . $id);
             $sql->execute();
             return;
         }
@@ -70,7 +81,7 @@ class subatividade extends model {
 
     public function getUnico($id) {
         $array = array();
-        $sql = $this->db->prepare("select * from atividade WHERE id_atividade = " . $id);
+        $sql = $this->db->prepare("select * from sub_atividade WHERE id_sub_atividade = " . $id);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -80,7 +91,7 @@ class subatividade extends model {
 
     public function getAtividade() {
         $array = array();
-        $sql = $this->db->prepare("select * from atividade");
+        $sql = $this->db->prepare("select id_atividade, nome_atividade from atividade");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

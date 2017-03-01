@@ -18,8 +18,10 @@ and open the template in the editor.
             <label class="control-label">Descrição do PMBOK:</label><br />
             <input class="form-control" name="descricao_pmbok" placeholder="Descrição do PMBOK" type="text"><br />
             <br />
-             <input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/><br><br>
-            <a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/perfil">Voltar</a><br />
+            <table><tr>
+                    <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
+                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/pmbok">Voltar</a></td>
+            </tr></table>
         </div>
         </form> 
         

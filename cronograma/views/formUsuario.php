@@ -26,9 +26,10 @@ and open the template in the editor.
                     <label class="label" for="exampleInputEmail1">E-mail:</label><br />
                     <input class="form-control" name="Email_usuario" placeholder="Enter e-mail" type="email"><br />
                     
-                    <input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/><br><br>
-                    <a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/usuarios">Voltar</a><br />
-                    <br />
+                    <table><tr>
+                            <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
+                            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/usuarios">Voltar</a></td>
+                    </tr></table>
                 </div>    
         </form>
     </body>

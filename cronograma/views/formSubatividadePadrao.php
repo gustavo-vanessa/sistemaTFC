@@ -18,12 +18,12 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da subatividade:</label><br />
-                    <input class="form-control" name="nome_subatividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" name="nome_subatividade_padrao" placeholder="Nome da subatividade" type="text"><br />
                     <br />
                 </div>  
                 <div>
                     <label class="control-label">Descrição da subatividade:</label><br />
-                    <input class="form-control" name="desc_subatividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" name="desc_subatividade_padrao" placeholder="Descrição da subatividade" type="text"><br />
                     <br />
                 </div>
                 <div>
@@ -34,7 +34,7 @@ and open the template in the editor.
                             <?php echo "<option value=" . $atividadePadrao['id_atividades_padroes'] . " >" . $atividadePadrao['nome_atividades_padroes'] . "</option>"; ?>
                         <?php endforeach; ?>
                     </select>
-                    <br />
+                    <br /><br />
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />

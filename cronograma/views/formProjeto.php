@@ -18,7 +18,7 @@ and open the template in the editor.
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome do Projeto:</label><br />
-                    <input class="form-control" name="nome_projeto" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" name="nome_projeto" placeholder="Nome do Projeto" type="text"><br />
                     <br />
                 </div>    
                 <div>
@@ -73,7 +73,7 @@ and open the template in the editor.
                     <table>
                         <tr>
                             <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/perfil">Voltar</a></td>
+                            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/projeto">Voltar</a></td>
                         </tr>
                     </table>
   

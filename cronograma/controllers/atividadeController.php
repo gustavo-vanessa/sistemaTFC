@@ -22,25 +22,25 @@ class atividadeController extends controller {
     public function formAlterar($id) {
         $atividades = new atividade();
         $dados['atividades'] = $atividades->getUnico($id);
-        $dados['pmboks'] = $atividades->getPmbok();
+        $dados['projetos'] = $atividades->getProjeto();
         $this->loadTemplate('formatividadeUpdate', $dados);
     }
 
     public function add() {
         $atividades = new atividade();
-        $atividades->add_atividades_padroes($_POST);
+        $atividades->add_atividades($_POST);
         $this->index();
     }
     
      public function form_add() {
          $atividades = new atividade();
-         $dados['pmboks'] = $atividades->getPmbok();
+         $dados['projetos'] = $atividades->getProjeto();
         $this->loadTemplate('formAtividade', $dados);
     }
     
     public function alterar($id) {
        $atividades = new atividade();
-        $atividades->alterar_atividades_padroes($_POST, $id);
+        $atividades->alterar_atividades($_POST, $id);
         $this->index(); 
         
     }

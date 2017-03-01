@@ -23,7 +23,7 @@ and open the template in the editor.
                 </div>  
                 <div>
                     <label class="control-label">Descrição da Atividade:</label><br />
-                    <input class="form-control" name="desc_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
+                    <input class="form-control" name="desc_atividade_padrao" placeholder="Descrição da Atividade" type="text"><br />
                     <br />
                 </div>
                 <div>
@@ -33,7 +33,7 @@ and open the template in the editor.
                         <?php foreach ($pmboks as $pmbok): ?>
                             <?php echo "<option value=" . $pmbok['id_pmbok_versao'] . " >" . $pmbok['descricao_pmbok_versao'] . "</option>"; ?>
                         <?php endforeach; ?>
-                    </select>
+                    </select><br /><br />
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />

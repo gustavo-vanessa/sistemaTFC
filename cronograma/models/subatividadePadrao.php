@@ -20,7 +20,7 @@ class subatividadePadrao extends model {
                                          descricao_sub_atividades_padroes,
                                          ie_obrigatorio_sub_atividades_padroes,
                                          id_atividade_padroes,
-                                         obter_nome_atividade (id_atividade_padroes, id_sub_atividades_padroes)      
+                                         obter_nome_atividade_padrao (id_atividade_padroes, id_sub_atividades_padroes)      
                                   from sub_atividades_padroes");
         $sql->execute();
         if ($sql->rowCount() > 0) {

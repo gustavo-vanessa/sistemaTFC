@@ -41,7 +41,7 @@ and open the template in the editor.
                                 }    
                             ?>
                         <?php endforeach; ?>
-                    </select>
+                    </select><br /><br />
                 </div> 
                 <div>
                     <label class="control-label">Atividade Obrigatória:</label><br />

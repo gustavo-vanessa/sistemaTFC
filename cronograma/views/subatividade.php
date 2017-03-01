@@ -31,18 +31,18 @@ and open the template in the editor.
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($atividades as $atividade) {
+                    foreach ($subatividades as $subatividade) {
                         echo "<tr>";
-                        echo "<td>" . $atividade['id_atividade'] . "</td>";
-                        echo "<td>" . $atividade['nome_atividade'] . "</td>";
-                        echo "<td>" . $atividade['status_atividade'] . "</td>";
-                        echo "<td>" . $atividade['nome_projeto'] . "</td>";
-                        echo "<td>" . $atividade['data_inicio_atividade'] . "</td>";
-                        echo "<td>" . $atividade['data_fim_atividade'] . "</td>";
-                        echo "<td>" . $atividade['data_validacao_atividade'] . "</td>";
-                        echo "<td>" . $atividade['observacoes_atividade'] . "</td>";
-                        echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividade/formAlterar/" . $atividade['id_atividade'] . ">Alterar</td>";
-                        echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividade/excluir/" . $atividade['id_atividade'] . ">Excluir</td>";
+                        echo "<td>" . $subatividade['id_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['nome_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['status_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['nome_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['data_inicio_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['data_fim_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['data_validacao_sub_atividade'] . "</td>";
+                        echo "<td>" . $subatividade['observacoes_sub_atividade'] . "</td>";
+                        echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . ">Alterar</td>";
+                        echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/subatividade/excluir/" . $subatividade['id_sub_atividade']  . ">Excluir</td>";
                         echo "</tr> ";
                     }
                     ?>
@@ -51,7 +51,7 @@ and open the template in the editor.
             <br />
             <table>
                 <tr>
-                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/atividade/form_add">Adicionar</a></td>
+                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/subatividade/form_add">Adicionar</a></td>
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
                 </tr></table>
         </div>
