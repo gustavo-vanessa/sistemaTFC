@@ -1,32 +1,28 @@
--- phpMyAdmin SQL Dump
--- version 4.1.14
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1
--- Generation Time: 02-Mar-2017 às 00:03
--- Versão do servidor: 5.6.17
--- PHP Version: 5.5.12
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: cronograma_tfc
+-- ------------------------------------------------------
+-- Server version	5.6.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `cronograma_tfc`
+-- Table structure for table `atividade`
 --
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `atividade`
---
-
-CREATE TABLE IF NOT EXISTS `atividade` (
+DROP TABLE IF EXISTS `atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atividade` (
   `id_atividade` int(11) NOT NULL AUTO_INCREMENT,
   `nome_atividade` varchar(450) NOT NULL,
   `status_atividade` varchar(450) NOT NULL,
@@ -36,49 +32,58 @@ CREATE TABLE IF NOT EXISTS `atividade` (
   `data_validacao_atividade` date DEFAULT NULL,
   `observacoes_atividade` longtext,
   PRIMARY KEY (`id_atividade`),
-  KEY `id_projeto_idx` (`id_projeto`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  KEY `id_projeto_idx` (`id_projeto`),
+  CONSTRAINT `id_projeto` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `atividade`
+-- Dumping data for table `atividade`
 --
 
-INSERT INTO `atividade` (`id_atividade`, `nome_atividade`, `status_atividade`, `id_projeto`, `data_inicio_atividade`, `data_fim_atividade`, `data_validacao_atividade`, `observacoes_atividade`) VALUES
-(1, 'asa', 'Selecione', 2, '2017-03-01', '2017-03-10', '0000-00-00', ''),
-(2, 'asa', 'Selecione', 2, '2017-03-01', '2017-03-10', '0000-00-00', ''),
-(3, 'teste', 'S', 2, '2017-12-31', '2018-01-30', '0000-00-00', ''),
-(4, 'adas', 'S', 2, '2017-03-01', '2017-03-03', '0000-00-00', '');
-
--- --------------------------------------------------------
+LOCK TABLES `atividade` WRITE;
+/*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
+INSERT INTO `atividade` VALUES (1,'asa','Selecione',2,'2017-03-01','2017-03-10','0000-00-00',''),(5,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(6,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste');
+/*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `atividades_padroes`
+-- Table structure for table `atividades_padroes`
 --
 
-CREATE TABLE IF NOT EXISTS `atividades_padroes` (
+DROP TABLE IF EXISTS `atividades_padroes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `atividades_padroes` (
   `id_atividades_padroes` int(11) NOT NULL AUTO_INCREMENT,
   `nome_atividades_padroes` varchar(450) NOT NULL,
   `descricao_atividades_padroes` varchar(450) NOT NULL,
   `ie_obrigatorio_atividades_padroes` tinytext NOT NULL,
   `id_pmbok_versao` int(11) NOT NULL,
   PRIMARY KEY (`id_atividades_padroes`),
-  KEY `fk_pmbok_versao_idx` (`id_pmbok_versao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  KEY `fk_pmbok_versao_idx` (`id_pmbok_versao`),
+  CONSTRAINT `fk_pmbok_versao` FOREIGN KEY (`id_pmbok_versao`) REFERENCES `pmbok_versao` (`id_pmbok_versao`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `atividades_padroes`
+-- Dumping data for table `atividades_padroes`
 --
 
-INSERT INTO `atividades_padroes` (`id_atividades_padroes`, `nome_atividades_padroes`, `descricao_atividades_padroes`, `ie_obrigatorio_atividades_padroes`, `id_pmbok_versao`) VALUES
-(2, 'adss', 'adasad', 'S', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `atividades_padroes` WRITE;
+/*!40000 ALTER TABLE `atividades_padroes` DISABLE KEYS */;
+INSERT INTO `atividades_padroes` VALUES (2,'adss','adasad','S',1);
+/*!40000 ALTER TABLE `atividades_padroes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `log`
+-- Table structure for table `log`
 --
 
-CREATE TABLE IF NOT EXISTS `log` (
+DROP TABLE IF EXISTS `log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `log` (
   `id_log` int(11) NOT NULL AUTO_INCREMENT,
   `data_log` datetime DEFAULT NULL,
   `valor_anterior_log` varchar(450) DEFAULT NULL,
@@ -87,62 +92,105 @@ CREATE TABLE IF NOT EXISTS `log` (
   `campo_alteracao_log` varchar(450) DEFAULT NULL,
   `tabela_alteracao_log` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`id_log`),
-  KEY `fk_log_usuario1_idx` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+  KEY `fk_log_usuario1_idx` (`id_usuario`),
+  CONSTRAINT `fk_log_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `perfil`
+-- Dumping data for table `log`
 --
 
-CREATE TABLE IF NOT EXISTS `perfil` (
+LOCK TABLES `log` WRITE;
+/*!40000 ALTER TABLE `log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `perfil`
+--
+
+DROP TABLE IF EXISTS `perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `perfil` (
   `id_perfil` int(11) NOT NULL AUTO_INCREMENT,
   `nome_perfil` varchar(450) DEFAULT NULL,
   `descricao_perfil` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`id_perfil`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `perfil_do_usuario`
+-- Dumping data for table `perfil`
 --
 
-CREATE TABLE IF NOT EXISTS `perfil_do_usuario` (
+LOCK TABLES `perfil` WRITE;
+/*!40000 ALTER TABLE `perfil` DISABLE KEYS */;
+INSERT INTO `perfil` VALUES (1,'Orientador','Acesso Total ao projetos que esta orientando'),(2,'Orientando','Acesso restrito aos seus projetos'),(3,'Coordenador','Acesso total ao sistema');
+/*!40000 ALTER TABLE `perfil` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `perfil_do_usuario`
+--
+
+DROP TABLE IF EXISTS `perfil_do_usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `perfil_do_usuario` (
   `perfil_id_perfil` int(11) NOT NULL,
   `usuario_id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`perfil_id_perfil`,`usuario_id_usuario`),
   KEY `fk_perfil_has_usuario_usuario1_idx` (`usuario_id_usuario`),
-  KEY `fk_perfil_has_usuario_perfil1_idx` (`perfil_id_perfil`)
+  KEY `fk_perfil_has_usuario_perfil1_idx` (`perfil_id_perfil`),
+  CONSTRAINT `fk_perfil_has_usuario_perfil1` FOREIGN KEY (`perfil_id_perfil`) REFERENCES `perfil` (`id_perfil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_perfil_has_usuario_usuario1` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `pmbok_versao`
+-- Dumping data for table `perfil_do_usuario`
 --
 
-CREATE TABLE IF NOT EXISTS `pmbok_versao` (
+LOCK TABLES `perfil_do_usuario` WRITE;
+/*!40000 ALTER TABLE `perfil_do_usuario` DISABLE KEYS */;
+INSERT INTO `perfil_do_usuario` VALUES (1,3),(2,10);
+/*!40000 ALTER TABLE `perfil_do_usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pmbok_versao`
+--
+
+DROP TABLE IF EXISTS `pmbok_versao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pmbok_versao` (
   `id_pmbok_versao` int(11) NOT NULL AUTO_INCREMENT,
   `descricao_pmbok_versao` varchar(450) NOT NULL,
   PRIMARY KEY (`id_pmbok_versao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `pmbok_versao`
+-- Dumping data for table `pmbok_versao`
 --
 
-INSERT INTO `pmbok_versao` (`id_pmbok_versao`, `descricao_pmbok_versao`) VALUES
-(1, 'versão 2017');
-
--- --------------------------------------------------------
+LOCK TABLES `pmbok_versao` WRITE;
+/*!40000 ALTER TABLE `pmbok_versao` DISABLE KEYS */;
+INSERT INTO `pmbok_versao` VALUES (1,'versão 2017');
+/*!40000 ALTER TABLE `pmbok_versao` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `projeto`
+-- Table structure for table `projeto`
 --
 
-CREATE TABLE IF NOT EXISTS `projeto` (
+DROP TABLE IF EXISTS `projeto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `projeto` (
   `id_projeto` int(11) NOT NULL AUTO_INCREMENT,
   `nome_projeto` varchar(450) NOT NULL,
   `status_projeto` varchar(45) NOT NULL,
@@ -153,23 +201,31 @@ CREATE TABLE IF NOT EXISTS `projeto` (
   PRIMARY KEY (`id_projeto`),
   KEY `fk_projeto_usuario1_idx` (`id_orientador`),
   KEY `fk_projeto_usuario2_idx` (`id_orientando`),
-  KEY `fk_pmbok_versap_idx` (`id_pmbok_versao`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  KEY `fk_pmbok_versap_idx` (`id_pmbok_versao`),
+  CONSTRAINT `fk_pmbok_versap` FOREIGN KEY (`id_pmbok_versao`) REFERENCES `pmbok_versao` (`id_pmbok_versao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_projeto_usuario1` FOREIGN KEY (`id_orientador`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_projeto_usuario2` FOREIGN KEY (`id_orientando`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `projeto`
+-- Dumping data for table `projeto`
 --
 
-INSERT INTO `projeto` (`id_projeto`, `nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES
-(2, 'teste', 'teste', '2017-02-22', 3, 10, 1);
-
--- --------------------------------------------------------
+LOCK TABLES `projeto` WRITE;
+/*!40000 ALTER TABLE `projeto` DISABLE KEYS */;
+INSERT INTO `projeto` VALUES (2,'teste','teste','2017-02-22',3,10,1);
+/*!40000 ALTER TABLE `projeto` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `sub_atividade`
+-- Table structure for table `sub_atividade`
 --
 
-CREATE TABLE IF NOT EXISTS `sub_atividade` (
+DROP TABLE IF EXISTS `sub_atividade`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sub_atividade` (
   `id_sub_atividade` int(11) NOT NULL AUTO_INCREMENT,
   `nome_sub_atividade` varchar(450) NOT NULL,
   `status_sub_atividade` varchar(450) NOT NULL,
@@ -179,32 +235,58 @@ CREATE TABLE IF NOT EXISTS `sub_atividade` (
   `data_validacao_sub_atividade` date DEFAULT NULL,
   `observacoes_sub_atividade` longtext,
   PRIMARY KEY (`id_sub_atividade`),
-  KEY `id_atividade_idx` (`id_atividade`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+  KEY `id_atividade_idx` (`id_atividade`),
+  CONSTRAINT `id_atividade` FOREIGN KEY (`id_atividade`) REFERENCES `atividade` (`id_atividade`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `sub_atividades_padroes`
+-- Dumping data for table `sub_atividade`
 --
 
-CREATE TABLE IF NOT EXISTS `sub_atividades_padroes` (
-  `id_sub_atividades_padroes` int(11) NOT NULL,
+LOCK TABLES `sub_atividade` WRITE;
+/*!40000 ALTER TABLE `sub_atividade` DISABLE KEYS */;
+INSERT INTO `sub_atividade` VALUES (1,'teste 3','N',1,'2017-12-31','2017-12-31','2017-12-31','teste');
+/*!40000 ALTER TABLE `sub_atividade` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sub_atividades_padroes`
+--
+
+DROP TABLE IF EXISTS `sub_atividades_padroes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sub_atividades_padroes` (
+  `id_sub_atividades_padroes` int(11) NOT NULL AUTO_INCREMENT,
   `nome_sub_atividade_padroes` varchar(450) NOT NULL,
   `descricao_sub_atividades_padroes` varchar(450) NOT NULL,
   `ie_obrigatorio_sub_atividades_padroes` tinytext NOT NULL,
   `id_atividade_padroes` int(11) NOT NULL,
   PRIMARY KEY (`id_sub_atividades_padroes`),
-  KEY `fk_sub_atividade_padroes_atividade_padroes1_idx` (`id_atividade_padroes`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+  KEY `fk_sub_atividade_padroes_atividade_padroes1_idx` (`id_atividade_padroes`),
+  CONSTRAINT `id_atividade_padroes` FOREIGN KEY (`id_atividade_padroes`) REFERENCES `atividades_padroes` (`id_atividades_padroes`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `usuario`
+-- Dumping data for table `sub_atividades_padroes`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
+LOCK TABLES `sub_atividades_padroes` WRITE;
+/*!40000 ALTER TABLE `sub_atividades_padroes` DISABLE KEYS */;
+INSERT INTO `sub_atividades_padroes` VALUES (1,'teste','teste','S',2);
+/*!40000 ALTER TABLE `sub_atividades_padroes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario`
+--
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nome_usuario` varchar(450) NOT NULL,
   `login_usuario` varchar(450) NOT NULL,
@@ -212,66 +294,203 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `email_usuario` varchar(450) DEFAULT NULL,
   `tfc_usuario` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nome_usuario`, `login_usuario`, `senha_usuario`, `email_usuario`, `tfc_usuario`) VALUES
-(3, 'gustavo', 'gustavo', 'gustav', 'gustavo@gustavo.com', NULL),
-(10, 'teste', 'teste', 'teste', 'teste@teste.com', NULL),
-(12, 'teste', 'teste', 'teste', 'teste@teste.com', NULL);
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (3,'gustavo','gustavo','gustav','gustavo@gustavo.com',NULL),(10,'teste','teste','teste','teste@teste.com',NULL),(12,'teste','teste','teste','teste@teste.com',NULL);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Constraints for dumped tables
+-- Dumping routines for database 'cronograma_tfc'
 --
+/*!50003 DROP FUNCTION IF EXISTS `obter_desc_pmbok` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_desc_pmbok`(id_pmbok_versao integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
 
---
--- Limitadores para a tabela `atividade`
---
-ALTER TABLE `atividade`
-  ADD CONSTRAINT `id_projeto` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+declare desc_pmbok varchar (400);
 
---
--- Limitadores para a tabela `atividades_padroes`
---
-ALTER TABLE `atividades_padroes`
-  ADD CONSTRAINT `fk_pmbok_versao` FOREIGN KEY (`id_pmbok_versao`) REFERENCES `pmbok_versao` (`id_pmbok_versao`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+select pv.descricao_pmbok_versao 
+into desc_pmbok
+from pmbok_versao pv
+where pv.id_pmbok_versao = id_pmbok_versao;
 
---
--- Limitadores para a tabela `log`
---
-ALTER TABLE `log`
-  ADD CONSTRAINT `fk_log_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Limitadores para a tabela `perfil_do_usuario`
---
-ALTER TABLE `perfil_do_usuario`
-  ADD CONSTRAINT `fk_perfil_has_usuario_perfil1` FOREIGN KEY (`perfil_id_perfil`) REFERENCES `perfil` (`id_perfil`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_perfil_has_usuario_usuario1` FOREIGN KEY (`usuario_id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+RETURN desc_pmbok;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `obter_nome_atividade` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_nome_atividade`(id_atividade integer, id_sub_atividade integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
 
---
--- Limitadores para a tabela `projeto`
---
-ALTER TABLE `projeto`
-  ADD CONSTRAINT `fk_pmbok_versap` FOREIGN KEY (`id_pmbok_versao`) REFERENCES `pmbok_versao` (`id_pmbok_versao`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_projeto_usuario1` FOREIGN KEY (`id_orientador`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_projeto_usuario2` FOREIGN KEY (`id_orientando`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+declare desc_atividade varchar (400);
 
---
--- Limitadores para a tabela `sub_atividade`
---
-ALTER TABLE `sub_atividade`
-  ADD CONSTRAINT `id_atividade` FOREIGN KEY (`id_atividade`) REFERENCES `atividade` (`id_atividade`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+select nome_atividade
+into desc_atividade
+from atividade a, sub_atividade sa
+where a.id_atividade = sa.id_atividade
+and a.id_atividade = id_atividade
+and sa.id_sub_atividade = id_sub_atividade;
 
---
--- Limitadores para a tabela `sub_atividades_padroes`
---
-ALTER TABLE `sub_atividades_padroes`
-  ADD CONSTRAINT `id_atividade_padroes` FOREIGN KEY (`id_atividade_padroes`) REFERENCES `atividades_padroes` (`id_atividades_padroes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
+RETURN desc_atividade;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `obter_nome_atividade_padrao` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_nome_atividade_padrao`(id_atividade_padroes integer, id_sub_atividades_padroes integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
+declare desc_atividade varchar (400);
+
+select nome_atividades_padroes 
+into desc_atividade
+from atividades_padroes ap, sub_atividades_padroes sap
+where ap.id_atividades_padroes = sap.id_atividade_padroes
+and ap.id_atividades_padroes = id_atividade_padroes
+and sap.id_sub_atividades_padroes = id_sub_atividades_padroes;
+
+RETURN desc_atividade;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `obter_nome_orientador` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_nome_orientador`(id_orientador integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
+
+declare nome_orientador varchar (400);
+
+select u.nome_usuario
+into nome_orientador
+from usuario u, perfil_do_usuario pu
+where u.id_usuario = id_orientador
+and u.id_usuario = pu.usuario_id_usuario
+and pu.perfil_id_perfil = 1;
+
+RETURN nome_orientador;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `obter_nome_orientando` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_nome_orientando`(id_orientando integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
+
+declare nome_orientando varchar (400);
+
+select u.nome_usuario
+into nome_orientando
+from usuario u, perfil_do_usuario pu
+where u.id_usuario = id_orientando
+and u.id_usuario = pu.usuario_id_usuario
+and pu.perfil_id_perfil = 2;
+
+RETURN nome_orientando;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `obter_nome_projeto` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `obter_nome_projeto`(id_projeto integer, id_atividade integer) RETURNS varchar(400) CHARSET latin1
+BEGIN
+
+declare nome_projeto varchar (400);
+
+select p.nome_projeto
+into nome_projeto
+from projeto p, atividade a
+where p.id_projeto = a.id_projeto
+and a.id_atividade = id_atividade
+and p.id_projeto = id_projeto;
+
+RETURN nome_projeto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-03-02 19:49:12

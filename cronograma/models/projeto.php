@@ -84,8 +84,8 @@ class projeto extends model {
 
         $sql = $this->db->prepare("select u.id_usuario, u.nome_usuario 
                                    from usuario u, perfil_do_usuario pu 
-                                   where u.id_usuario = pu.id_usuario 
-                                   and pu.id_perfil = 1");
+                                   where u.id_usuario = pu.usuario_id_usuario
+                                   and pu.perfil_id_perfil = 1");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -98,8 +98,8 @@ class projeto extends model {
 
         $sql = $this->db->prepare("select u.id_usuario, u.nome_usuario 
                                    from usuario u, perfil_do_usuario pu 
-                                   where u.id_usuario = pu.id_usuario 
-                                   and pu.id_perfil = 2");
+                                   where u.id_usuario = pu.usuario_id_usuario 
+                                   and pu.perfil_id_perfil = 2");
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

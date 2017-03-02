@@ -21,7 +21,7 @@ and open the template in the editor.
                         <th>Cód</th>
                         <th>Nome</th>
                         <th>Status</th>
-                        <th>Projeto</th>
+                        <th>Atividade</th>
                         <th>Data Inicio</th>
                         <th>Data Fim</th>
                         <th>Data Validação</th>

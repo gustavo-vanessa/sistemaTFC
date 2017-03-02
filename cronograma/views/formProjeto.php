@@ -13,7 +13,10 @@ and open the template in the editor.
         <title>Projeto</title>
     </head>
     <body >
-
+        <?php
+            print_r($orientadores);
+                        exit;
+        ?>
         <form method="post" action="<?php echo BASE_URL; ?>/projeto/add">
             <div class="div_form ">
                 <div>
@@ -35,7 +38,7 @@ and open the template in the editor.
                     <label class="control-label">Orientador:</label><br />
                     <select  class="form-control" required name="id_orientador">
                         <option>Selecione</option>    
-                        <?php foreach ($orientadores as $orientador): ?>
+                        <?php  foreach ($orientadores as $orientador): ?>
                             <?php echo "<option value=" . $orientador['id_usuario'] . " >" . $orientador['nome_usuario'] . "</option>"; ?>
                         <?php endforeach; ?>
                     </select>

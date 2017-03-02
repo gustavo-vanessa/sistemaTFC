@@ -26,7 +26,8 @@ class atividade extends model {
                                           observacoes_atividade 
                                    from atividade");
         $sql->execute();
-        if ($sql->rowCount() > 0) {
+  
+        if ($sql) {
             $array = $sql->fetchAll();
         }
         return $array;
@@ -34,7 +35,7 @@ class atividade extends model {
 
     public function add_atividades($array_dados = array()) {
         if (count($array_dados) > 1) { 
-            $sql = $this->db->prepare("INSERT INTO `atividade`"
+            $string = "INSERT INTO `atividade`"
                                     . "(`nome_atividade`, "
                                     . "`status_atividade`, "
                                     . "`id_projeto`, "
@@ -48,10 +49,24 @@ class atividade extends model {
                                     . "'" . $array_dados['data_inicio_atividade'] . "',"
                                     . "'" . $array_dados['data_fim_atividade'] . "',"
                                     . "'" . $array_dados['data_validacao_atividade'] . "',"
-                                    . "'" . $array_dados['observacoes_atividade'] . "')");
+                                    . "'" . $array_dados['observacoes_atividade'] . "')";
+            $sql = $this->db->prepare($string);
             $sql->execute();
-            return;
+            if ($sql){
+                echo 'Executei o seguinte sql no banco: <br> <br> <br>'. $string ;
+                echo '<br> <br> <br> tive o seguinte retorno: <br> <br> <br>';
+                print_r($sql->errorInfo());
+                exit;
+                return;
+            }
+             else {
+                 $erro = $sql->errorInfo();
+                 print_r($erro);
+                 exit;
+     
+ }
         }
+   
     }
 
     public function alterar_atividades($array_dados = array(), $id) {
