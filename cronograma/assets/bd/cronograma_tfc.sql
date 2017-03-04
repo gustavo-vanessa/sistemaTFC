@@ -34,7 +34,7 @@ CREATE TABLE `atividade` (
   PRIMARY KEY (`id_atividade`),
   KEY `id_projeto_idx` (`id_projeto`),
   CONSTRAINT `id_projeto` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1,'asa','Selecione',2,'2017-03-01','2017-03-10','0000-00-00',''),(5,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(6,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste');
+INSERT INTO `atividade` VALUES (1,'asa','Selecione',2,'2017-03-01','2017-03-10','0000-00-00',''),(5,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(6,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(7,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(8,'teste 654321','S',2,'2017-12-31','2017-12-31','0000-00-00','');
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,4 +493,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-02 19:49:12
+-- Dump completed on 2017-03-03 21:23:23
