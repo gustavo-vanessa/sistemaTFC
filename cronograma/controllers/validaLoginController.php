@@ -14,6 +14,6 @@
 class validaLoginController extends controller {
     public function index() {
      $dados = array();
-     $this->loadTemplate('home', $dados);   
+     $this->loadTemplate('home/home', $dados);   
     }
 }

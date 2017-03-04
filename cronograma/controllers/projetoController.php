@@ -16,7 +16,7 @@ class projetoController extends controller{
     public function index() {
         $projeto = new projeto();
         $dados['projetos'] = $projeto->getLista();      
-        $this->loadTemplate('projeto', $dados);
+        $this->loadTemplate('projeto/projeto', $dados);
     }
 
     public function excluir($id) {
@@ -31,7 +31,7 @@ class projetoController extends controller{
         $dados['orientandos'] = $projeto->getOrientando();
         $dados['pmboks'] = $projeto->getPmbok();
         $dados['projetos'] = $projeto->getUnico($id);
-        $this->loadTemplate('formProjetoUpdate', $dados);
+        $this->loadTemplate('projeto/formProjetoUpdate', $dados);
     }
 
     public function form_add() {
@@ -40,7 +40,7 @@ class projetoController extends controller{
         $dados['orientadores'] = $projeto->getOrientador(); 
         $dados['orientandos'] = $projeto->getOrientando();
         $dados['pmboks'] = $projeto->getPmbok();
-        $this->loadTemplate('formProjeto', $dados);
+        $this->loadTemplate('projeto/formProjeto', $dados);
     }
 
     public function add() {

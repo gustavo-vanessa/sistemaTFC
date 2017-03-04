@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+$tabela = "atividade";
 /**
  * Description of usuario
  *
@@ -13,9 +13,10 @@
  */
 class atividade extends model {
 
-    public function getLista() {
-        $array = array();
-        $sql = $this->db->prepare("select id_atividade, 
+
+public function getLista() {
+$array = array();
+$sql = $this->db->prepare("select id_atividade, 
                                           nome_atividade, 
                                           status_atividade, 
                                           id_projeto, 
@@ -25,38 +26,47 @@ class atividade extends model {
                                           data_validacao_atividade, 
                                           observacoes_atividade 
                                    from atividade");
-        $sql->execute();
-  
-        if ($sql) {
-            $array = $sql->fetchAll();
-        }
-        return $array;
-    }
+$sql->execute();
 
-    public function add_atividades($array_dados = array()) {
-        if (count($array_dados) > 1) { 
+if ($sql) {
+$array = $sql->fetchAll();
+}
+return $array;
+}
+
+public function add_atividades($array_dados = array()) {
+if (count($array_dados) > 1) {
             $string = "INSERT INTO `atividade`"
-                                    . "(`nome_atividade`, "
-                                    . "`status_atividade`, "
-                                    . "`id_projeto`, "
-                                    . "`data_inicio_atividade`, "
-                                    . "`data_fim_atividade`, "
-                                    . "`data_validacao_atividade`, "
-                                    . "`observacoes_atividade`) "
-                                    . "VALUES ('" . $array_dados['nome_atividade'] . "',"
-                                    . "'" . $array_dados['status_atividade'] . "',"
-                                    . "'" . $array_dados['id_projeto'] . "',"
-                                    . "'" . $array_dados['data_inicio_atividade'] . "',"
-                                    . "'" . $array_dados['data_fim_atividade'] . "',"
-                                    . "'" . $array_dados['data_validacao_atividade'] . "',"
-                                    . "'" . $array_dados['observacoes_atividade'] . "')";
-            $sql = $this->db->prepare($string);
-            $sql->execute();
-            if ($sql){
-                echo 'Executei o seguinte sql no banco: <br> <br> <br>'. $string ;
-                echo '<br> <br> <br> tive o seguinte retorno: <br> <br> <br>';
-                print_r($sql->errorInfo());
+                     . "(`nome_atividade`, "
+                     . "`status_atividade`, "
+                     . "`id_projeto`, "
+                     . "`data_inicio_atividade`, "
+                     . "`data_fim_atividade`, "
+                     . "`data_validacao_atividade`, "
+                     . "`observacoes_atividade`) "
+                     . "VALUES ('" . $array_dados['nome_atividade'] . "',"
+                     . "'" . $array_dados['status_atividade'] . "',"
+                     . "'" . $array_dados['id_projeto'] . "',"
+                     . "'" . $array_dados['data_inicio_atividade'] . "',"
+                     . "'" . $array_dados['data_fim_atividade'] . "',"
+                     . "'" . $array_dados['data_validacao_atividade'] . "',"
+                     . "'" . $array_dados['observacoes_atividade'] . "')";
+$sql = $this->db->prepare($string);
+$sql->execute();
+    if ($sql){
+        $erroCod = 'Codigo Retornado: '.$sql->errorInfo()[0];
+                IF($sql->errorInfo()[0] = 00000){
+                        $erroMsg = 'Mensagem retornada: Sucesso';
+                }
+                else {
+                    $erroMsg = 'Mensagem retornada: '.$sql->errorInfo()[2];
+                }
+                $erro = $erroCod.' '. $erroMsg;
+                $log = "INSERT INTO `log` (`data_log`, `id_usuario`, `comando_realizado_log`, `tabela_alteracao_log`, `erro_log`) VALUES (LOCALTIME(), '3',". $string.",". $tabela.","." $erro".")";
+                echo '<br><br><br>'.$log.'<br><br><br>';
                 exit;
+                $sqlLog = $this->db->prepare($log);
+                $sqlLog->execute();
                 return;
             }
              else {

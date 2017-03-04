@@ -10,7 +10,7 @@ class perfilController extends controller {
 
         $perfis = new perfil();
         $dados['perfis'] = $perfis->getLista();
-        $this->loadTemplate('perfil', $dados);
+        $this->loadTemplate('perfil/perfil', $dados);
     }
 
     public function excluir($id) {
@@ -22,7 +22,7 @@ class perfilController extends controller {
     public function formAlterar($id) {
         $perfis = new perfil();
         $dados['perfis'] = $perfis->getUnico($id);
-        $this->loadTemplate('formperfilUpdate', $dados);
+        $this->loadTemplate('perfil/formperfilUpdate', $dados);
     }
 
     public function add() {
@@ -33,7 +33,7 @@ class perfilController extends controller {
     
      public function form_add() {
         $dados = array();
-        $this->loadTemplate('formPerfil', $dados);
+        $this->loadTemplate('perfil/formPerfil', $dados);
     }
     
     public function alterar($id) {

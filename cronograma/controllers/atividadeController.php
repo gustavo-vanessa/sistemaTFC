@@ -10,7 +10,7 @@ class atividadeController extends controller {
 
         $atividades = new atividade();
         $dados['atividades'] = $atividades->getLista();
-        $this->loadTemplate('atividade', $dados);
+        $this->loadTemplate('atividade/atividade', $dados);
     }
 
     public function excluir($id) {
@@ -23,7 +23,7 @@ class atividadeController extends controller {
         $atividades = new atividade();
         $dados['atividades'] = $atividades->getUnico($id);
         $dados['projetos'] = $atividades->getProjeto();
-        $this->loadTemplate('formatividadeUpdate', $dados);
+        $this->loadTemplate('atividade/formatividadeUpdate', $dados);
     }
 
     public function add() {
@@ -35,7 +35,7 @@ class atividadeController extends controller {
      public function form_add() {
          $atividades = new atividade();
          $dados['projetos'] = $atividades->getProjeto();
-        $this->loadTemplate('formAtividade', $dados);
+        $this->loadTemplate('atividade/formAtividade', $dados);
     }
     
     public function alterar($id) {

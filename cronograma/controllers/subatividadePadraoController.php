@@ -9,7 +9,7 @@ class subatividadePadraoController extends controller {
     public function index() {
         $subatividadesPadroes = new subatividadePadrao();
         $dados['subatividadesPadroes'] = $subatividadesPadroes->getLista();
-        $this->loadTemplate('subatividadePadrao', $dados);
+        $this->loadTemplate('subatividadePadrao/subatividadePadrao', $dados);
     }
 
     public function excluir($id) {
@@ -22,7 +22,7 @@ class subatividadePadraoController extends controller {
         $subatividadesPadroes = new subatividadePadrao();
         $dados['subatividadesPadroes'] = $subatividadesPadroes->getUnico($id);
         $dados['atividadePadrao'] = $subatividadesPadroes->getAtividadePadrao();
-        $this->loadTemplate('formSubatividadePadraoUpdate', $dados);
+        $this->loadTemplate('subatividadePadrao/formSubatividadePadraoUpdate', $dados);
     }
 
     public function add() {
@@ -34,7 +34,7 @@ class subatividadePadraoController extends controller {
      public function form_add() {
         $subatividadesPadroes = new subatividadePadrao();
         $dados ['atividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
-        $this->loadTemplate('formSubatividadePadrao', $dados);
+        $this->loadTemplate('subatividadePadrao/formSubatividadePadrao', $dados);
     }
     
     public function alterar($id) {

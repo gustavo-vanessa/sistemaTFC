@@ -11,7 +11,7 @@ class usuariosController extends controller {
 
         $usuarios = new usuario();
         $dados['usuarios'] = $usuarios->getLista();
-        $this->loadTemplate('usuario', $dados);
+        $this->loadTemplate('usuario/usuario', $dados);
     }
 
     public function excluir($id) {
@@ -23,12 +23,12 @@ class usuariosController extends controller {
     public function formAlterar($id) {
         $usuarios = new usuario();
         $dados['usuarios'] = $usuarios->getUnico($id);
-        $this->loadTemplate('formUsuarioUpdate', $dados);
+        $this->loadTemplate('usuario/formUsuarioUpdate', $dados);
     }
 
     public function form_add() {
         $dados = array();
-        $this->loadTemplate('formUsuario', $dados);
+        $this->loadTemplate('usuario/formUsuario', $dados);
     }
 
     public function add() {
@@ -43,5 +43,4 @@ class usuariosController extends controller {
         $this->index(); 
         
     }
-
 }

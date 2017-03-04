@@ -10,7 +10,7 @@ class pmbokController extends controller {
 
         $pmboks = new pmbok();
         $dados['pmboks'] = $pmboks->getLista();
-        $this->loadTemplate('pmbok', $dados);
+        $this->loadTemplate('pmbok/pmbok', $dados);
     }
 
     public function excluir($id) {
@@ -22,7 +22,7 @@ class pmbokController extends controller {
     public function formAlterar($id) {
         $pmboks = new pmbok();
         $dados['pmboks'] = $pmboks->getUnico($id);
-        $this->loadTemplate('formPmbokUpdate', $dados);
+        $this->loadTemplate('pmbok/formPmbokUpdate', $dados);
     }
 
     public function add() {
@@ -33,7 +33,7 @@ class pmbokController extends controller {
     
      public function form_add() {
         $dados = array();
-        $this->loadTemplate('formPmbok', $dados);
+        $this->loadTemplate('pmbok/formPmbok', $dados);
     }
     
     public function alterar($id) {

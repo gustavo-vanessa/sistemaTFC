@@ -22,7 +22,7 @@ class controller {
     }
     
     public function loadViewInTemplate($viewName, $viewData = array()) {
-        extract($viewData);
+       extract($viewData);
         include 'views/'.$viewName.'.php';
     }
     public function validaLogin($param) {

@@ -10,7 +10,7 @@ class atividadePadraoController extends controller {
 
         $atividadesPadroes = new atividadePadrao();
         $dados['atividadesPadroes'] = $atividadesPadroes->getLista();
-        $this->loadTemplate('atividadePadrao', $dados);
+        $this->loadTemplate('atividadePadrao/atividadePadrao', $dados);
     }
 
     public function excluir($id) {
@@ -23,7 +23,7 @@ class atividadePadraoController extends controller {
         $atividadesPadroes = new atividadePadrao();
         $dados['atividadesPadroes'] = $atividadesPadroes->getUnico($id);
         $dados['pmboks'] = $atividadesPadroes->getPmbok();
-        $this->loadTemplate('formatividadePadraoUpdate', $dados);
+        $this->loadTemplate('atividadePadrao/formatividadePadraoUpdate', $dados);
     }
 
     public function add() {
@@ -35,7 +35,7 @@ class atividadePadraoController extends controller {
      public function form_add() {
          $atividadesPadroes = new atividadePadrao();
          $dados['pmboks'] = $atividadesPadroes->getPmbok();
-        $this->loadTemplate('formAtividadePadrao', $dados);
+        $this->loadTemplate('atividadePadrao/formAtividadePadrao', $dados);
     }
     
     public function alterar($id) {

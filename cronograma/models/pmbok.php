@@ -26,6 +26,7 @@ public function getLista() {
         
         $array = $sql->fetchAll();
     }
+    
     return $array;
 }
 
