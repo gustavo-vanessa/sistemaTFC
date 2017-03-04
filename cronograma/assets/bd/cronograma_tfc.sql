@@ -34,7 +34,7 @@ CREATE TABLE `atividade` (
   PRIMARY KEY (`id_atividade`),
   KEY `id_projeto_idx` (`id_projeto`),
   CONSTRAINT `id_projeto` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id_projeto`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
-INSERT INTO `atividade` VALUES (1,'asa','Selecione',2,'2017-03-01','2017-03-10','0000-00-00',''),(5,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(6,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(7,'teste 654321','N',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste'),(8,'teste 654321','S',2,'2017-12-31','2017-12-31','0000-00-00','');
+INSERT INTO `atividade` VALUES (1,'asa','Selecione',2,'2017-03-01','2017-03-10','0000-00-00',''),(11,'teste 654321','S',2,'2017-12-31','2017-12-31','2017-12-31','teste teste teste');
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,8 +89,9 @@ CREATE TABLE `log` (
   `valor_anterior_log` varchar(450) DEFAULT NULL,
   `valor_atual_log` varchar(450) DEFAULT NULL,
   `id_usuario` int(11) NOT NULL,
-  `campo_alteracao_log` varchar(450) DEFAULT NULL,
+  `comando_realizado_log` varchar(450) DEFAULT NULL,
   `tabela_alteracao_log` varchar(450) DEFAULT NULL,
+  `erro_log` varchar(450) DEFAULT NULL,
   PRIMARY KEY (`id_log`),
   KEY `fk_log_usuario1_idx` (`id_usuario`),
   CONSTRAINT `fk_log_usuario1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -493,4 +494,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-03 21:23:23
+-- Dump completed on 2017-03-04 18:56:57
