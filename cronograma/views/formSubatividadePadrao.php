@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-
-        <link href="../../assets/css/style_nomeprojeto.css" rel="stylesheet" />
-
-        <title>Projeto</title>
-    </head>
-    <body >
-
-        <form method="post" action="<?php echo BASE_URL; ?>/subatividadePadrao/add">
+<form method="post" action="<?php echo BASE_URL; ?>/subatividadePadrao/add">
             <div class="div_form ">
                 <div>
                     <label class="control-label">Nome da subatividade:</label><br />
@@ -56,5 +40,3 @@ and open the template in the editor.
   
             </div>
         </form>
-    </body>
-</html>

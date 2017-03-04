@@ -38,6 +38,8 @@ class perfilController extends controller {
     
     public function alterar($id) {
        $perfis = new perfil();
+       print_r($_POST);
+       exit;
         $perfis->alterar_perfil($_POST, $id);
         $this->index(); 
         

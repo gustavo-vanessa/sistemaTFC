@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="<?php echo BASE_URL; ?>assets/css/style_atividadespadroes.css" rel="stylesheet" />
-
-        <title>Atividades</title>
-    </head>
-    <body>
-
-
-        <div class="div_form">
+<div class="div_form">
             <table class="table th td" >
                 <thead>
                     <tr>
@@ -34,7 +18,14 @@ and open the template in the editor.
                         echo "<td>" . $atividadePadrao['nome_atividades_padroes'] . "</td>";
                         echo "<td>" . $atividadePadrao['descricao_atividades_padroes'] . "</td>";
                         echo "<td>" . $atividadePadrao['desc_pmbok'] . "</td>";
-                        echo "<td>" . $atividadePadrao['ie_obrigatorio_atividades_padroes'] . "</td>";
+                        echo "<td>" ;
+                                if ($atividadePadrao['ie_obrigatorio_atividades_padroes'] == 'S'){ 
+                                echo "<label class='switch'>  <input type='checkbox' checked disabled> <div class='slider round'></div> </label>";
+                                }
+                                else {
+                                echo "<label class='switch'>  <input type='checkbox' disabled> <div class='slider round'></div> </label>";
+                                }
+                               echo "</td>";
                         echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividadePadrao/formAlterar/" .  $atividadePadrao['id_atividades_padroes'] . ">Alterar</td>";
                         echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividadePadrao/excluir/" .  $atividadePadrao['id_atividades_padroes'] . ">Excluir</td>";
                         echo "</tr> ";
@@ -49,8 +40,3 @@ and open the template in the editor.
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
                 </tr></table>
         </div>
-
-
-
-    </body>
-</html>

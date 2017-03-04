@@ -1,20 +1,4 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="<?php echo BASE_URL; ?>assets/css/style_atividadespadroes.css" rel="stylesheet" />
-
-        <title>Atividades</title>
-    </head>
-    <body>
-
-
-        <div class="div_form">
+<div class="div_form">
             <table class="table th td" >
                 <thead>
                     <tr>
@@ -35,7 +19,14 @@ and open the template in the editor.
                         echo "<td>" . $subatividadePadrao['nome_sub_atividade_padroes'] . "</td>";
                         echo "<td>" . $subatividadePadrao['descricao_sub_atividades_padroes'] . "</td>";
                         echo "<td>" . $subatividadePadrao['nome_atividade'] . "</td>";
-                        echo "<td>" . $subatividadePadrao['ie_obrigatorio_sub_atividades_padroes'] . "</td>";
+                        echo "<td>" ;
+                                if ($subatividadePadrao['ie_obrigatorio_sub_atividades_padroes'] == 'S'){ 
+                                echo "<label class='switch'>  <input type='checkbox' checked disabled> <div class='slider round'></div> </label>";
+                                }
+                                else {
+                                echo "<label class='switch'>  <input type='checkbox' disabled> <div class='slider round'></div> </label>";
+                                }
+                               echo "</td>";
                         echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/subatividadePadrao/formAlterar/" .  $subatividadePadrao['id_sub_atividades_padroes'] . ">Alterar</td>";
                         echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/subatividadePadrao/excluir/" .  $subatividadePadrao['id_sub_atividades_padroes'] . ">Excluir</td>";
                         echo "</tr> ";
@@ -50,5 +41,3 @@ and open the template in the editor.
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
                 </tr></table>
         </div>
-    </body>
-</html>
