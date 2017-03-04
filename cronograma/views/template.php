@@ -8,11 +8,9 @@
         <div class="div_cabecalho"> 
             <div class="imagem" ></div>      
         </div>
-        
         <div class="div_conteudo">
             <?php $this->loadViewInTemplate($viewName, $viewData) ?>
         </div>
-        
         <div class="div_rodape"></div>
     </body>
 </html>
