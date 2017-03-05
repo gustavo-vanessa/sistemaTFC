@@ -21,7 +21,7 @@ class subatividadePadraoController extends controller {
     public function formAlterar($id) {
         $subatividadesPadroes = new subatividadePadrao();
         $dados['subatividadesPadroes'] = $subatividadesPadroes->getUnico($id);
-        $dados['atividadePadrao'] = $subatividadesPadroes->getAtividadePadrao();
+        $dados['atividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
         $this->loadTemplate('subatividadePadrao/formSubatividadePadraoUpdate', $dados);
     }
 
@@ -39,7 +39,7 @@ class subatividadePadraoController extends controller {
     
     public function alterar($id) {
        $subatividadesPadroes = new subatividadePadrao();
-       $subatividadesPadroes->alterar_atividades_padroes($_POST, $id);
+       $subatividadesPadroes->alterar_subatividades_padroes($_POST, $id);
        $this->index(); 
         
     }

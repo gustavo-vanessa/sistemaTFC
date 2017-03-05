@@ -49,19 +49,21 @@ class subatividadePadrao extends model {
         }
     }
 
-    public function alterar_atividades_padroes($array_dados = array(), $id) {
+    public function alterar_subatividades_padroes($array_dados = array(), $id) {
         $valor_anterior = $this->getStringLog($id);
         if (count($array_dados) > 1) {
-            $string = "update `atividades_padroes` "
-                    . "set `nome_atividades_padroes` = '" . $array_dados['nome_atividade_padrao'] . "', "
-                    . "`descricao_atividades_padroes` = '" . $array_dados['desc_atividade_padrao'] . "', "
-                    . "`ie_obrigatorio_atividades_padroes` = '" . $array_dados['ie_obrigatorio'] . "', "
-                    . "`id_pmbok_versao` = '" . $array_dados['id_pmbok_versao'] . "' "
-                    . "where id_atividades_padroes = " . $id;
+            $string = "update `sub_atividades_padroes` "
+                    . "set `nome_sub_atividade_padroes` = '" . $array_dados['nome_subatividade_padrao'] . "', "
+                    . "`descricao_sub_atividades_padroes` = '" . $array_dados['desc_subatividade_padrao'] . "', "
+                    . "`ie_obrigatorio_sub_atividades_padroes` = '" . $array_dados['ie_obrigatorio'] . "', "
+                    . "`id_atividade_padroes` = '" . $array_dados['id_atividade'] . "' "
+                    . "where id_sub_atividades_padroes = " . $id;
             $sql = $this->db->prepare($string);
+            
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     
-            $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
+            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+          
             return;
         }
     }
@@ -99,17 +101,12 @@ class subatividadePadrao extends model {
     
     public function getStringLog($id) {
         $resultado = $this->getUnico($id);
-        print_r($resultado);
-        exit;
         extract($resultado['0']);
-        return $valor = 'id = '.$id_atividade.
-                          ' nome = '.$nome_atividade.
-                          ' status = '.$status_atividade.
-                          ' id projeto = '.$id_projeto.
-                          ' data inicio = '.$data_inicio_atividade.
-                          ' data fim = '.$data_fim_atividade.
-                          ' data validacao = '.$data_validacao_atividade.
-                          ' observacoes = '.$observacoes_atividade;
+        return $valor = 'id = '.$id_sub_atividades_padroes.
+                          ' nome = '.$nome_sub_atividade_padroes.
+                          ' descricao = '.$descricao_sub_atividades_padroes.
+                          ' id atividade principaç = '.$id_atividade_padroes.
+                          ' obrigatorio = '.$ie_obrigatorio_sub_atividades_padroes;
     }
 
 }

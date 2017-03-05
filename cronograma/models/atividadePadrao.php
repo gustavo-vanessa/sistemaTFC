@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+define("TABELA","AtividadePadrao");
 /**
  * Description of usuario
  *
@@ -60,7 +60,8 @@ class atividadePadrao extends model {
             $sql = $this->db->prepare($string);
             $sql->execute();
         $valor_atual = $this->getStringLog($id);
-        $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
+        $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+        
             return;
         }
     }
@@ -97,8 +98,6 @@ class atividadePadrao extends model {
     
     public function getStringLog($id) {
          $resultado = $this->getUnico($id);
-         print_r($resultado);
-        exit;
         extract($resultado['0']);
         return $valor_atenrior = 'id = '.$id_atividades_padroes.
                           ' nome = '.$nome_atividades_padroes.

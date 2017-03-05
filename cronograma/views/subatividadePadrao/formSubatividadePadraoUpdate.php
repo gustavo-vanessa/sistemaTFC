@@ -15,15 +15,15 @@
                 <br />
             </div>
             <div>
-                <label class="control-label">Versão do PMBOK: *</label><br />
-                <select  class="form-control" required name="id_pmbok_versao">
+                <label class="control-label">Atividade Principal: *</label><br />
+                <select  class="form-control" required name="id_atividade">
                     <option>Selecione</option>    
-                    <?php foreach ($pmboks as $pmbok): ?>
+                    <?php foreach ($atividadesPadroes as $atividadePadrao): ?>
                         <?php
-                        if ($pmbok['id_pmbok_versao'] == $subatividadePadrao['id_pmbok_versao']) {
-                            echo '<option value=' . $pmbok['id_pmbok_versao'] . ' selected>' . $pmbok['descricao_pmbok_versao'] . '</option>"';
+                        if ($atividadePadrao['id_atividades_padroes'] == $subatividadePadrao['id_atividades_padroes']) {
+                            echo '<option value=' . $atividadePadrao['id_atividades_padroes'] . ' selected>' . $atividadePadrao['nome_atividades_padroes'] . '</option>"';
                         } else {
-                            echo "<option value=" . $pmbok['id_pmbok_versao'] . " >" . $pmbok['descricao_pmbok_versao'] . "</option>";
+                            echo "<option value=" . $atividadePadrao['id_atividades_padroes'] . " >" . $atividadePadrao['nome_atividades_padroes'] . "</option>";
                         }
                         ?>
                     <?php endforeach; ?>

@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             <?php
-            foreach ($subatividadesPadroes as $subatividadePadrao) {
+                foreach ($subatividadesPadroes as $subatividadePadrao) {
                 echo "<tr>";
                 echo "<td>" . $subatividadePadrao['id_sub_atividades_padroes'] . "</td>";
                 echo "<td>" . $subatividadePadrao['nome_sub_atividade_padroes'] . "</td>";
