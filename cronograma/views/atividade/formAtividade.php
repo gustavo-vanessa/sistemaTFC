@@ -1,7 +1,7 @@
 <form method="post" action="<?php echo BASE_URL ?>/atividade/add">
 
 
-    <div class="div_form">
+    <div class="div_form" id="scroll">
         <label class="titulo">Atividades</label>
 
         <div>

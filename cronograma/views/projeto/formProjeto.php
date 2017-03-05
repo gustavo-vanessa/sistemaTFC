@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo BASE_URL; ?>/projeto/add">
-    <div class="div_form ">
+    <div class="div_form" id="scroll">
         <label class="titulo">Projetos</label>
         <div>
             <label class="control-label">Nome do Projeto: *</label><br />

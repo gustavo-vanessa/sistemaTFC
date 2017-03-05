@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo BASE_URL; ?>/atividadePadrao/add">
-    <div class="div_form scroll">
+    <div class="div_form" id="scroll">
         <label class="titulo">Atividades Padrões</label>
         <div>
             <label class="control-label">Nome da Atividade Padrão: *</label><br />

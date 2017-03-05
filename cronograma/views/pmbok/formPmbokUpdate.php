@@ -2,7 +2,7 @@
 
 foreach ($pmboks as $pmbok) {
     echo'<form method="post" action="' . BASE_URL . '/pmbok/alterar/' . $pmbok['id_pmbok_versao'] . '">';
-    echo'<div class="div_form">';
+    echo'<div class="div_form" id="scroll">';
     echo '<label class="titulo">PMBOK</label>';
     echo '<div>';
     echo'<label class="control-label">Descrição do PMBOK: *</label><br />';

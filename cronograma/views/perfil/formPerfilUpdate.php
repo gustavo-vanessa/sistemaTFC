@@ -2,7 +2,7 @@
 
 foreach ($perfis as $perfil) {
     echo'<form method="post" action="' . BASE_URL . '/perfil/alterar/' . $perfil['id_perfil'] . '">';
-    echo'<div class="div_form">';
+    echo'<div class="div_form" id="scroll">';
     echo '<label class="titulo">Perfis</label>';
     echo '<div>';
     echo '<label class="control-label">Nome do Perfil:</label><br />';

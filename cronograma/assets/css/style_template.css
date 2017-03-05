@@ -41,7 +41,9 @@ and open the template in the editor.
     position: fixed;
     text-align: initial;   
     font-family: Arial;
-    overflow-x:scroll;
+    overflow-x:auto;
+    overflow-style: scrollbar;
+    
 }
 .opcoes {
     top: 40%;
@@ -88,7 +90,7 @@ and open the template in the editor.
 }
 
 .textorodape {
-    margin-left: 700px;
+    margin-left: 50%;
     align:center;
     display: inline-block;
     max-width: 100%;
@@ -435,4 +437,23 @@ input:checked + .slider:before {
 
 body{
     margin: 0;
+}
+
+
+#scroll {
+  width:85%;
+  height:70%;
+  background-color:#ffffff;
+  overflow:auto;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 12px;
+    background: #cccccc;
+}
+::-webkit-scrollbar-thumb {
+    background: #cccccc;
 }

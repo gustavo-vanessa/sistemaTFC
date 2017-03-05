@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo BASE_URL; ?>/pmbok/add">
-    <div class="div_form">
+    <div class="div_form" id="scroll">
         <label class="titulo">PMBOK</label>
         <div>
             <label class="control-label">Descrição do PMBOK: *</label><br />
