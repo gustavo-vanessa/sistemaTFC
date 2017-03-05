@@ -2,13 +2,14 @@
 
     <form method="post" action="<?php echo BASE_URL . "/atividade/alterar/" . $atividade['id_atividade']; ?>">
         <div class="div_form">
+            <label class="titulo">Atividades</label>
             <div>
                 <label class="control-label">Nome da Atividade:</label><br />
                 <input class="form-control" required value="<?php echo $atividade['nome_atividade'] ?>" name="nome_atividade" placeholder="Nome da Atividade" type="text"><br />
                 <br />
             </div>  
             <div>
-                <label class="control-label">Status Atividade:</label><br />
+                <label class="control-label">Status Atividade: *</label><br />
                 <select  class="form-control" required name="status_atividade">
                     <option>Selecione</option>    
                     <option value="S">Sim</option>
@@ -18,7 +19,7 @@
                 <br />
             </div>
             <div>
-                <label class="control-label">Projeto:</label><br />
+                <label class="control-label">Projeto: *</label><br />
                 <select  class="form-control" required name="id_projeto">
                     <option>Selecione</option>    
                     <?php foreach ($projetos as $projeto): ?>
@@ -35,12 +36,12 @@
                 <br />
             </div> 
             <div>
-                <label class="control-label">Data de Inicio da Atividade:</label><br />
+                <label class="control-label">Data de Inicio da Atividade: *</label><br />
                 <input class="form-control" required value="<?php echo $atividade['data_inicio_atividade'] ?>" name="data_inicio_atividade" placeholder="Nome da Atividade" type="date"><br />
                 <br />
             </div>
             <div>
-                <label class="control-label">Data de Fim da Atividade:</label><br />
+                <label class="control-label">Data de Fim da Atividade: *</label><br />
                 <input class="form-control" required value="<?php echo $atividade['data_fim_atividade'] ?>" name="data_fim_atividade" placeholder="Nome da Atividade" type="date"><br />
                 <br />
             </div>
@@ -61,6 +62,6 @@
                 <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/atividade">Voltar</a></td>
             </tr>
         </table>
-
+        <label class="textorodape">* Campo Obrigatório</label>
     </div>
 </form>

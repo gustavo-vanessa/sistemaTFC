@@ -1,4 +1,6 @@
+
 <div class="div_form scroll">
+    <label class="titulo">Projetos</label>
     <table class="table th td" >
         <thead>
             <tr>
@@ -15,6 +17,7 @@
         </thead>
         <tbody>
             <?php
+            
             foreach ($projetos as $projeto) {
                 echo "<tr>";
                 echo "<td>" . $projeto['id_projeto'] . "</td>";

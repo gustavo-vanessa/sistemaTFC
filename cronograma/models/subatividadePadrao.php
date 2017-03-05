@@ -70,7 +70,8 @@ class subatividadePadrao extends model {
 
     public function getUnico($id) {
         $array = array();
-        $sql = $this->db->prepare("select * from atividades_padroes WHERE id_atividades_padroes = " . $id);
+        $string = "select * from sub_atividades_padroes WHERE id_sub_atividades_padroes = " . $id;
+        $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

@@ -1,12 +1,16 @@
 <form method="post" action="<?php echo BASE_URL ?>/atividade/add">
-    <div class="div_form ">
+
+
+    <div class="div_form">
+        <label class="titulo">Atividades</label>
+
         <div>
-            <label class="control-label">Nome da Atividade:</label><br />
+            <label class="control-label">Nome da Atividade: *</label><br />
             <input class="form-control" name="nome_atividade" required placeholder="Nome da Atividade" type="text"><br />
             <br />
         </div>  
         <div>
-            <label class="control-label">Status Atividade:</label><br />
+            <label class="control-label">Status Atividade: *</label><br />
             <select  class="form-control" required name="status_atividade">
                 <option>Selecione</option>    
                 <option value="S">Sim</option>
@@ -16,7 +20,7 @@
             <br />
         </div>
         <div>
-            <label class="control-label">Projeto:</label><br />
+            <label class="control-label">Projeto: *</label><br />
             <select  class="form-control" required name="id_projeto">
                 <option>Selecione</option>    
                 <?php
@@ -29,12 +33,12 @@
             <br />
         </div> 
         <div>
-            <label class="control-label">Data de Inicio da Atividade:</label><br />
+            <label class="control-label">Data de Inicio da Atividade: *</label><br />
             <input class="form-control" name="data_inicio_atividade" required  type="date"><br />
             <br />
         </div>
         <div>
-            <label class="control-label">Data de Fim da Atividade:</label><br />
+            <label class="control-label">Data de Fim da Atividade: *</label><br />
             <input class="form-control" name="data_fim_atividade" required type="date"><br />
             <br />
         </div>
@@ -54,5 +58,6 @@
                 <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/atividade">Voltar</a></td>
             </tr>
         </table>
+        <label class="textorodape">* Campo Obrigatório</label>
     </div>
 </form>

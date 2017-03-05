@@ -2,18 +2,19 @@
 
     <form method="post" action="<?php echo BASE_URL . "/atividadePadrao/alterar/" . $atividadePadrao['id_atividades_padroes']; ?>">
         <div class="div_form ">
+            <label class="titulo">Atividades Padrões</label>
             <div>
-                <label class="control-label">Nome da Atividade:</label><br />
+                <label class="control-label">Nome da Atividade Padrão: *</label><br />
                 <input class="form-control" required value="<?php echo $atividadePadrao['nome_atividades_padroes'] ?>" name="nome_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                 <br />
             </div>  
             <div>
-                <label class="control-label">Descrição da Atividade:</label><br />
+                <label class="control-label">Descrição da Atividade Padrão: *</label><br />
                 <input class="form-control" required value="<?php echo $atividadePadrao['descricao_atividades_padroes'] ?>" name="desc_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
                 <br />
             </div>
             <div>
-                <label class="control-label">Versão do PMBOK:</label><br />
+                <label class="control-label">Versão do PMBOK: *</label><br />
                 <select  class="form-control" required name="id_pmbok_versao">
                     <option>Selecione</option>    
                     <?php foreach ($pmboks as $pmbok): ?>
@@ -28,7 +29,7 @@
                 </select><br /><br />
             </div> 
             <div>
-                <label class="control-label">Atividade Obrigatória:</label><br />
+                <label class="control-label">Atividade Padrão Obrigatória: *</label><br />
                 <select  class="form-control" required name="ie_obrigatorio">
                     <option>Selecione</option>    
                     <option value="S" >Sim</option>
@@ -44,6 +45,6 @@
                 <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/atividadePadrao">Voltar</a></td>
             </tr>
         </table>
-
+        <label class="textorodape">* Campo Obrigatório</label>
     </div>
 </form>

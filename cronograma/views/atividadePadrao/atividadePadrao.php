@@ -1,4 +1,7 @@
+
 <div class="div_form">
+     <label class="titulo">Atividades Padrões</label>
+     
     <table class="table th td" >
         <thead>
             <tr>

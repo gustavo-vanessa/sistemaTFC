@@ -33,7 +33,7 @@ class subatividadePadraoController extends controller {
     
      public function form_add() {
         $subatividadesPadroes = new subatividadePadrao();
-        $dados ['atividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
+        $dados ['subatividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
         $this->loadTemplate('subatividadePadrao/formSubatividadePadrao', $dados);
     }
     

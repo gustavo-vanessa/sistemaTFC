@@ -1,5 +1,6 @@
 <form method="post" action="<?php echo BASE_URL; ?>/perfil/add">
     <div class="div_form">
+        
         <label class="control-label">Nome do Perfil:</label><br />
         <input class="form-control" name="nome_perfil" placeholder="Nome do Perfil" type="text"><br />
         <br />

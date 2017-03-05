@@ -8,6 +8,7 @@ and open the template in the editor.
     Author     : Gustavo Martins
 */
 
+
 .div_cabecalho{
     width: 100%;
     height: 180px;
@@ -60,58 +61,44 @@ and open the template in the editor.
     text-decoration: none;
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     border: 0px;
     width: 200px;
     text-align: center;
 }
 
-iframe{
-    text-align: center; 
-    height: 100%;
-    width: 100%;
-    border: 0;
-}
 
-.img_template{
-    top: 5%;
-    width: 30%;
-    height: 30%;
-    margin-left: 42%;
-    border-radius: 50%;
-    position: fixed;
-}
-
-body{
-    margin: 0;
-
-
-}
-
-@media only screen and (max-width:600px){
-    .img_template{
-        border-radius: 10%;
-        width: 30%;
-        height: 30%;
-    }
-
-
-
-}
-.form-group {
-    margin-bottom: 15px;
-
-}
-
-label {
+.label {
     display: inline-block;
     max-width: 100%;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.imagem {
+.titulo {
+    margin-left: 350px;
+    margin-right: 350px;
+    align:center;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 35px;
+    position:relative;
+}
 
+.textorodape {
+    margin-left: 700px;
+    align:center;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 10px;
+    position:relative;
+}
+
+.imagem {
     position: relative;
     padding: 1%;
     background-image: url("../imagens/logo.png");
@@ -132,7 +119,7 @@ label {
     text-decoration: none;
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     border: 0px;
 }
 
@@ -155,7 +142,7 @@ label {
     align-items: center;
     height: 34px;
     padding: 6px 12px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.42857143;
     color: #555555;
     background-color: #ffffff;
@@ -164,27 +151,29 @@ label {
     border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-
-
 }
 
 table {
     background-color: transparent;
 }
+
 caption {
     padding-top: 8px;
     padding-bottom: 8px;
     color: #777777;
     text-align: left;
 }
+
 th {
     text-align: left;
 }
+
 .table {
     width: 75%;
     max-width: 100%;
     margin-bottom: 15px;
 }
+
 .table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
@@ -196,10 +185,12 @@ th {
     vertical-align: top;
     border-top: 1px solid #dddddd;
 }
+
 .table > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 2px solid #dddddd;
 }
+
 .table > caption + thead > tr:first-child > th,
 .table > colgroup + thead > tr:first-child > th,
 .table > thead:first-child > tr:first-child > th,
@@ -208,12 +199,15 @@ th {
 .table > thead:first-child > tr:first-child > td {
     border-top: 0;
 }
+
 .table > tbody + tbody {
     border-top: 2px solid #dddddd;
 }
+
 .table .table {
     background-color: #ffffff;
 }
+
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
 .table-condensed > tfoot > tr > th,
@@ -222,9 +216,11 @@ th {
 .table-condensed > tfoot > tr > td {
     padding: 5px;
 }
+
 .table-bordered {
     border: 1px solid #dddddd;
 }
+
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
@@ -233,27 +229,33 @@ th {
 .table-bordered > tfoot > tr > td {
     border: 1px solid #dddddd;
 }
+
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
     border-bottom-width: 2px;
 }
+
 .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #f9f9f9;
 }
+
 .table-hover > tbody > tr:hover {
     background-color: #f5f5f5;
 }
+
 table col[class*="col-"] {
     position: static;
     float: none;
     display: table-column;
 }
+
 table td[class*="col-"],
 table th[class*="col-"] {
     position: static;
     float: none;
     display: table-cell;
 }
+
 .table > thead > tr > td.active,
 .table > tbody > tr > td.active,
 .table > tfoot > tr > td.active,
@@ -268,6 +270,7 @@ table th[class*="col-"] {
 .table > tfoot > tr.active > th {
     background-color: #f5f5f5;
 }
+
 .table-hover > tbody > tr > td.active:hover,
 .table-hover > tbody > tr > th.active:hover,
 .table-hover > tbody > tr.active:hover > td,
@@ -275,6 +278,7 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.active:hover > th {
     background-color: #e8e8e8;
 }
+
 .table > thead > tr > td.success,
 .table > tbody > tr > td.success,
 .table > tfoot > tr > td.success,
@@ -289,6 +293,7 @@ table th[class*="col-"] {
 .table > tfoot > tr.success > th {
     background-color: #a3d7a3;
 }
+
 .table-hover > tbody > tr > td.success:hover,
 .table-hover > tbody > tr > th.success:hover,
 .table-hover > tbody > tr.success:hover > td,
@@ -296,6 +301,7 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.success:hover > th {
     background-color: #91cf91;
 }
+
 .table > thead > tr > td.info,
 .table > tbody > tr > td.info,
 .table > tfoot > tr > td.info,
@@ -310,6 +316,7 @@ table th[class*="col-"] {
 .table > tfoot > tr.info > th {
     background-color: #b0e1ef;
 }
+
 .table-hover > tbody > tr > td.info:hover,
 .table-hover > tbody > tr > th.info:hover,
 .table-hover > tbody > tr.info:hover > td,
@@ -317,6 +324,7 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.info:hover > th {
     background-color: #9bd8eb;
 }
+
 .table > thead > tr > td.warning,
 .table > tbody > tr > td.warning,
 .table > tfoot > tr > td.warning,
@@ -331,6 +339,7 @@ table th[class*="col-"] {
 .table > tfoot > tr.warning > th {
     background-color: #f8d9ac;
 }
+
 .table-hover > tbody > tr > td.warning:hover,
 .table-hover > tbody > tr > th.warning:hover,
 .table-hover > tbody > tr.warning:hover > td,
@@ -338,6 +347,7 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.warning:hover > th {
     background-color: #f6ce95;
 }
+
 .table > thead > tr > td.danger,
 .table > tbody > tr > td.danger,
 .table > tfoot > tr > td.danger,
@@ -352,6 +362,7 @@ table th[class*="col-"] {
 .table > tfoot > tr.danger > th {
     background-color: #eba5a3;
 }
+
 .table-hover > tbody > tr > td.danger:hover,
 .table-hover > tbody > tr > th.danger:hover,
 .table-hover > tbody > tr.danger:hover > td,
@@ -359,18 +370,19 @@ table th[class*="col-"] {
 .table-hover > tbody > tr.danger:hover > th {
     background-color: #e7908e;
 }
+
 .table-responsive {
     overflow-x: auto;
     min-height: 0.01%;
 }
 
-
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
-    height: 34px;
+    height: 27px;
 }
+
 
 .switch input {display:none;}
 
@@ -389,8 +401,8 @@ table th[class*="col-"] {
 .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 20px;
+    width: 20px;
     left: 4px;
     bottom: 4px;
     background-color: white;
@@ -407,9 +419,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
 }
 
 /* Rounded sliders */
@@ -421,3 +433,6 @@ input:checked + .slider:before {
     border-radius: 60%;   /* Rounded sliders */
 }
 
+body{
+    margin: 0;
+}

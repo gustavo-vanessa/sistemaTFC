@@ -1,4 +1,6 @@
+
 <div class="div_form">
+    <label class="titulo">Atividades</label>
     <table class="table th td" >
         <thead>
             <tr>
@@ -38,4 +40,6 @@
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/atividade/form_add">Adicionar</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
         </tr></table>
+    <br />
+   
 </div>

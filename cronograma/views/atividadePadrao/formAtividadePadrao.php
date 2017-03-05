@@ -1,17 +1,18 @@
 <form method="post" action="<?php echo BASE_URL; ?>/atividadePadrao/add">
     <div class="div_form scroll">
+        <label class="titulo">Atividades Padrões</label>
         <div>
-            <label class="control-label">Nome da Atividade:</label><br />
-            <input class="form-control" name="nome_atividade_padrao" required placeholder="Nome da Atividade" type="text"><br />
+            <label class="control-label">Nome da Atividade Padrão: *</label><br />
+            <input class="form-control" name="nome_atividade_padrao" required placeholder="Nome da Atividade Padrão" type="text"><br />
             <br />
         </div>  
         <div>
-            <label class="control-label">Descrição da Atividade:</label><br />
-            <input class="form-control" name="desc_atividade_padrao" required placeholder="Descrição da Atividade" type="text"><br />
+            <label class="control-label">Descrição da Atividade Padrão: *</label><br />
+            <input class="form-control" name="desc_atividade_padrao" required placeholder="Descrição da Atividade Padrão" type="text"><br />
             <br />
         </div>
         <div>
-            <label class="control-label">Versão do PMBOK:</label><br />
+            <label class="control-label">Versão do PMBOK: *</label><br />
             <select  class="form-control" required name="id_pmbok_versao">
                 <option>Selecione</option>    
                 <?php foreach ($pmboks as $pmbok): ?>
@@ -20,7 +21,7 @@
             </select><br /><br />
         </div> 
         <div>
-            <label class="control-label">Atividade Obrigatória:</label><br />
+            <label class="control-label">Atividade Padrão Obrigatória: *</label><br />
             <select  class="form-control" required name="ie_obrigatorio">
                 <option>Selecione</option>    
                 <option value="S">Sim</option>
@@ -36,6 +37,6 @@
                 <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/atividadePadrao">Voltar</a></td>
             </tr>
         </table>
-
+        <label class="textorodape">* Campo Obrigatório</label>
     </div>
 </form>

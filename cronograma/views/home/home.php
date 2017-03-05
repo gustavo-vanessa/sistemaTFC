@@ -9,12 +9,12 @@
             <tr>
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>projeto">Projetos</a></td> 
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>atividade">Atividades</a></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>subatividade">SubAtividade</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>subatividade">Subatividades</a></td>
             </tr>
             <tr>
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>atividadePadrao">Atividade Padrao</a></td> 
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>SubatividadePadrao">Subatividade Padrao</a></td> 
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>perfil">Perfil</a></td> 
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>atividadePadrao">Atividades Padrões</a></td> 
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>SubatividadePadrao">Subatividades Padrões</a></td> 
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>perfil">Perfis</a></td> 
             </tr>
             <tr>
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>usuarios">Usuários</a></td>
