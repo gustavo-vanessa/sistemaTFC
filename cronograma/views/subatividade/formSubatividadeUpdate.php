@@ -1,7 +1,7 @@
 <?php foreach ($subatividades as $subatividade): ?> 
 
     <form method="post" action="<?php echo BASE_URL . "/subatividade/alterar/" . $subatividade['id_sub_atividade']; ?>">
-        <div class="div_form ">
+        <div class="div_form " id="scroll">
             <label class="titulo">Subatividades</label>
             <div>
                 <label class="control-label">Nome da Atividade: *</label><br />

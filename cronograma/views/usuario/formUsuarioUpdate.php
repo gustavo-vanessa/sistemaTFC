@@ -2,7 +2,7 @@
 
 foreach ($usuarios as $usuario) {
     echo'<form method="post" action="' . BASE_URL . '/usuarios/alterar/' . $usuario['id_usuario'] . '">';
-    echo'<div class="div_form">';
+    echo'<div class="div_form" id="scroll">';
     echo '<label class="titulo">Usuários</label>';
     echo '<div>';
     echo'<label class="control-label">Nome: *</label><br />';

@@ -1,5 +1,5 @@
 <form method="post" action="<?php echo BASE_URL ?>/subatividade/add">
-    <div class="div_form ">
+    <div class="div_form " id="scroll">
         <label class="titulo">Subatividades</label>
         <div>
             <label class="control-label">Nome da Subatividade: *</label><br />
