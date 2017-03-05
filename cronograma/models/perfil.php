@@ -12,7 +12,8 @@
  * @author Gustavo Martins
  */
 class perfil extends model {
-   
+    public $valor_atenrior = null;
+    public $valor_atual = null;
 public function getLista() {
     
    

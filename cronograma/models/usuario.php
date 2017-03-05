@@ -12,6 +12,8 @@
  * @author Gustavo Martins
  */
 class usuario extends model {
+     public $valor_atenrior = null;
+    public $valor_atual = null;
    
 public function getLista() {
     
@@ -30,19 +32,24 @@ public function getLista() {
 }
 
 public function add_usuario ($array_dados = array()){
-    if(count($array_dados)>1){  
-        $sql = $this->db->prepare("INSERT INTO `usuario`(`nome_usuario`, `login_usuario`, `senha_usuario`, `email_usuario`) VALUES ('".$array_dados['nome_usuario']."','".$array_dados['login_usuario']."','".$array_dados['Password_usuario']."','".$array_dados['Email_usuario']."')");
+    if(count($array_dados)>1){ 
+        $string = "INSERT INTO `usuario`(`nome_usuario`, `login_usuario`, `senha_usuario`, `email_usuario`) VALUES ('".$array_dados['nome_usuario']."','".$array_dados['login_usuario']."','".$array_dados['Password_usuario']."','".$array_dados['Email_usuario']."')";
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
         return;
     }
   
 }
 
 public function alterar_usuario ($array_dados = array(), $id){
-    echo 'entrei no model<br><br>';
+    $valor_anterior = $this->getStringLog($id);
     if(count($array_dados)>1){  
-        $sql = $this->db->prepare("update `usuario` set `nome_usuario` = '".$array_dados['nome_usuario']."', `login_usuario` = '".$array_dados['login_usuario']."', `senha_usuario` = '".$array_dados['Password_usuario']."', `email_usuario` = '".$array_dados['Email_usuario']."' where id_usuario = ".$id);
+        $string = "update `usuario` set `nome_usuario` = '".$array_dados['nome_usuario']."', `login_usuario` = '".$array_dados['login_usuario']."', `senha_usuario` = '".$array_dados['Password_usuario']."', `email_usuario` = '".$array_dados['Email_usuario']."' where id_usuario = ".$id;
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $valor_atual = $this->getStringLog($id);     
+            $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
         return;
     }
   
@@ -50,8 +57,10 @@ public function alterar_usuario ($array_dados = array(), $id){
 
 public function excluir($id) {
     if(isset($id)){
-        $sql = $this->db->prepare("DELETE FROM `usuario` WHERE id_usuario = ".$id);
+        $string = "DELETE FROM `usuario` WHERE id_usuario = ".$id;
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
         return;
     }
 }
@@ -71,6 +80,21 @@ public function getUnico($id) {
     }
     return $array;
 }
+
+public function getStringLog($id) {
+        $resultado = $this->getUnico($id);
+        print_r($resultado);
+        exit;
+        extract($resultado['0']);
+        return $valor = 'id = '.$id_atividade.
+                          ' nome = '.$nome_atividade.
+                          ' status = '.$status_atividade.
+                          ' id projeto = '.$id_projeto.
+                          ' data inicio = '.$data_inicio_atividade.
+                          ' data fim = '.$data_fim_atividade.
+                          ' data validacao = '.$data_validacao_atividade.
+                          ' observacoes = '.$observacoes_atividade;
+    }
 
 }
 

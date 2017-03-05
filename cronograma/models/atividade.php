@@ -5,18 +5,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-$tabela = "atividade";
+define("TABELA", "Atividade");
 /**
  * Description of usuario
  *
  * @author Gustavo Martins
  */
 class atividade extends model {
-
-
-public function getLista() {
-$array = array();
-$sql = $this->db->prepare("select id_atividade, 
+    public $valor_atenrior = null;
+    public $valor_atual = null;
+    /**
+ * 
+ * @name Get Lista
+ * @Funcionalidade Executa uma consulta no banco de dados e retorna um array com os dados obtidos
+ * @return Array
+ */
+    public function getLista() {
+        $array = array();
+        $sql = $this->db->prepare("select id_atividade, 
                                           nome_atividade, 
                                           status_atividade, 
                                           id_projeto, 
@@ -26,85 +32,88 @@ $sql = $this->db->prepare("select id_atividade,
                                           data_validacao_atividade, 
                                           observacoes_atividade 
                                    from atividade");
-$sql->execute();
+        $sql->execute();
 
-if ($sql) {
-$array = $sql->fetchAll();
-}
-return $array;
-}
-
-public function add_atividades($array_dados = array()) {
-if (count($array_dados) > 1) {
-            $string = "INSERT INTO `atividade`"
-                     . "(`nome_atividade`, "
-                     . "`status_atividade`, "
-                     . "`id_projeto`, "
-                     . "`data_inicio_atividade`, "
-                     . "`data_fim_atividade`, "
-                     . "`data_validacao_atividade`, "
-                     . "`observacoes_atividade`) "
-                     . "VALUES ('" . $array_dados['nome_atividade'] . "',"
-                     . "'" . $array_dados['status_atividade'] . "',"
-                     . "'" . $array_dados['id_projeto'] . "',"
-                     . "'" . $array_dados['data_inicio_atividade'] . "',"
-                     . "'" . $array_dados['data_fim_atividade'] . "',"
-                     . "'" . $array_dados['data_validacao_atividade'] . "',"
-                     . "'" . $array_dados['observacoes_atividade'] . "')";
-$sql = $this->db->prepare($string);
-$sql->execute();
-    if ($sql){
-        $erroCod = 'Codigo Retornado: '.$sql->errorInfo()[0];
-                IF($sql->errorInfo()[0] = 00000){
-                        $erroMsg = 'Mensagem retornada: Sucesso';
-                }
-                else {
-                    $erroMsg = 'Mensagem retornada: '.$sql->errorInfo()[2];
-                }
-                $erro = $erroCod.' '. $erroMsg;
-                $log = "INSERT INTO `log` (`data_log`, `id_usuario`, `comando_realizado_log`, `tabela_alteracao_log`, `erro_log`) VALUES (LOCALTIME(), '3',". $string.",". $tabela.","." $erro".")";
-                echo '<br><br><br>'.$log.'<br><br><br>';
-                exit;
-                $sqlLog = $this->db->prepare($log);
-                $sqlLog->execute();
-                return;
-            }
-             else {
-                 $erro = $sql->errorInfo();
-                 print_r($erro);
-                 exit;
-     
- }
+        if ($sql) {
+            $array = $sql->fetchAll();
         }
-   
+        return $array;
     }
-
-    public function alterar_atividades($array_dados = array(), $id) {
-  
+    /**
+     * @name Adicionar Atividades
+     * @param Array $array_dados
+     * @funcionalidade Recebe um array de dados do controller e atribui os dados a string que será executada no banco da dados, após isso chama a função para inserção na tabela de log
+     * @return type null
+     */
+    public function add_atividades($array_dados = array()) {
         if (count($array_dados) > 1) {
-            
-            $sql = $this->db->prepare("update `atividade` "
+            $string = "INSERT INTO `atividade`"
+                    . "(`nome_atividade`, "
+                    . "`status_atividade`, "
+                    . "`id_projeto`, "
+                    . "`data_inicio_atividade`, "
+                    . "`data_fim_atividade`, "
+                    . "`data_validacao_atividade`, "
+                    . "`observacoes_atividade`) "
+                    . "VALUES ('" . $array_dados['nome_atividade'] . "',"
+                    . "'" . $array_dados['status_atividade'] . "',"
+                    . "'" . $array_dados['id_projeto'] . "',"
+                    . "'" . $array_dados['data_inicio_atividade'] . "',"
+                    . "'" . $array_dados['data_fim_atividade'] . "',"
+                    . "'" . $array_dados['data_validacao_atividade'] . "',"
+                    . "'" . $array_dados['observacoes_atividade'] . "')";
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+             $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+           }
+    }
+/**
+ * @name Aterar Atividade
+ * @Funcionalidade Recebe um array com o dados que serão alterados no banco juntamente com o id da informação que será alterada e após chama a função para inserção na tabela de log
+ * @param Array $array_dados
+ * @param inteiro $id
+ * @return null
+ */
+    public function alterar_atividades($array_dados = array(), $id) {
+        $valor_atenrior = $this->getStringLog($id);                 
+        if (count($array_dados) > 1) {
+            $string = "update `atividade` "
                     . "set `nome_atividade` = '" . $array_dados['nome_atividade'] . "', "
                     . "`status_atividade` = '" . $array_dados['status_atividade'] . "', "
                     . "`id_projeto` = '" . $array_dados['id_projeto'] . "', "
-                     . "`data_inicio_atividade` = '" . $array_dados['data_inicio_atividade'] . "', "
-                     . "`data_fim_atividade` = '" . $array_dados['data_fim_atividade'] . "', "
-                     . "`data_validacao_atividade` = '" . $array_dados['data_validacao_atividade'] . "', "
+                    . "`data_inicio_atividade` = '" . $array_dados['data_inicio_atividade'] . "', "
+                    . "`data_fim_atividade` = '" . $array_dados['data_fim_atividade'] . "', "
+                    . "`data_validacao_atividade` = '" . $array_dados['data_validacao_atividade'] . "', "
                     . "`observacoes_atividade` = '" . $array_dados['observacoes_atividade'] . "' "
-                    . "where id_atividade = " . $id);
+                    . "where id_atividade = " . $id;
+            $sql = $this->db->prepare($string);
             $sql->execute();
+            $valor_atual = $this->getStringLog($id);     
+            $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
             return;
         }
     }
-
+/**
+ * @name Excluir atividade
+ * @Funcionalidade Recebe o id da informação que será excluida do banco
+ * @param inteiro $id
+ * @return null
+ */
     public function excluir($id) {
         if (isset($id)) {
-            $sql = $this->db->prepare("DELETE FROM `atividade` WHERE id_atividade = " . $id);
-            $sql->execute();
+            $string = "DELETE FROM `atividade` WHERE id_atividade = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();          
+            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
-
+/**
+ * @name Get Unico
+ * @Funcionalidade Obtem os dados de um único cadastro e retorna um array para o controller
+ * @param inteiro $id
+ * @return Array
+ */
     public function getUnico($id) {
         $array = array();
         $sql = $this->db->prepare("select * from atividade WHERE id_atividade = " . $id);
@@ -115,6 +124,11 @@ $sql->execute();
         return $array;
     }
 
+    /**
+     * @name Get Projeto
+     * @Funcionalidade obtem todos projetos cadastrados no sistema
+     * @return array
+     */
     public function getProjeto() {
         $array = array();
         $sql = $this->db->prepare("select * from projeto");
@@ -123,6 +137,19 @@ $sql->execute();
             $array = $sql->fetchAll();
         }
         return $array;
+    }
+    
+    public function getStringLog($id) {
+        $resultado = $this->getUnico($id);
+        extract($resultado['0']);
+        return $valor = 'id = '.$id_atividade.
+                          ' nome = '.$nome_atividade.
+                          ' status = '.$status_atividade.
+                          ' id projeto = '.$id_projeto.
+                          ' data inicio = '.$data_inicio_atividade.
+                          ' data fim = '.$data_fim_atividade.
+                          ' data validacao = '.$data_validacao_atividade.
+                          ' observacoes = '.$observacoes_atividade;
     }
 
 }

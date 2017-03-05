@@ -5,13 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+define("TABELA", "Pmbok");
 /**
  * Description of usuario
  *
  * @author Gustavo Martins
  */
 class pmbok extends model {
+     public $valor_atenrior = null;
+    public $valor_atual = null;
    
 public function getLista() {
     
@@ -32,18 +34,25 @@ public function getLista() {
 
 public function add_pmbok ($array_dados = array()){
     if(count($array_dados)>1){ 
-        
-        $sql = $this->db->prepare("INSERT INTO `pmbok_versao`(`descricao_pmbok_versao`) VALUES ('".$array_dados['descricao_pmbok']."')");
+        $string = "INSERT INTO `pmbok_versao`(`descricao_pmbok_versao`) VALUES ('".$array_dados['descricao_pmbok']."')";
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
         return;
     }
   
 }
 
 public function alterar_pmbok ($array_dados = array(), $id){
+        $valor_atenrior = $this->getStringLog($id);
     if(count($array_dados)>1){  
-        $sql = $this->db->prepare("update `pmbok_versao` set `descricao_pmbok_versao` = '".$array_dados['descricao_pmbok']."' where id_pmbok_versao = ".$id);
+        $string = "update `pmbok_versao` set `descricao_pmbok_versao` = '".$array_dados['descricao_pmbok']."' where id_pmbok_versao = ".$id;
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $valor_atual = $this->getStringLog($id);
+        echo '<br><br>'.$valor_atenrior.'<br><br>';
+        echo '<br><br>'.$valor_atual.'<br><br>';
+        $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
         return;
     }
   
@@ -51,8 +60,10 @@ public function alterar_pmbok ($array_dados = array(), $id){
 
 public function excluir($id) {
     if(isset($id)){
-        $sql = $this->db->prepare("DELETE FROM `pmbok_versao` WHERE id_pmbok_versao = ".$id);
+        $string = "DELETE FROM `pmbok_versao` WHERE id_pmbok_versao = ".$id;
+        $sql = $this->db->prepare($string);
         $sql->execute();
+        $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
         return;
     }
 }
@@ -72,6 +83,13 @@ public function getUnico($id) {
     }
     return $array;
 }
-
+public function getStringLog($id) {
+    $resultado = $this->getUnico($id);
+       extract($resultado['0']);
+         $valor = 'id = '.$id_pmbok_versao.
+                          ' nome = '.$descricao_pmbok_versao;
+               return $valor;
+               
+}
 }
 

@@ -12,7 +12,8 @@
  * @author Gustavo Martins
  */
 class projeto extends model {
-
+ public $valor_atenrior = null;
+    public $valor_atual = null;
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("SELECT p.id_projeto,
@@ -35,25 +36,32 @@ class projeto extends model {
 
     public function add_projeto($array_dados = array()) {
         if (count($array_dados) > 1) {
-            $sql = $this->db->prepare("INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')");
+            $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
+            $sql = $this->db->prepare($string);
             $sql->execute();
+            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
 
     public function alterar_projeto($array_dados = array(), $id) {
-      
+        $valor_anterior = $this->getStringLog($id);
         if (count($array_dados) > 1) {
-            $sql = $this->db->prepare("update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id);
+            $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
+            $sql = $this->db->prepare($string);
             $sql->execute();
+            $valor_atual = $this->getStringLog($id);     
+            $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
             return;
         }
     }
 
     public function excluir($id) {
         if (isset($id)) {
-            $sql = $this->db->prepare("DELETE FROM `projeto` WHERE id_projeto = " . $id);
+            $string = "DELETE FROM `projeto` WHERE id_projeto = " . $id;
+            $sql = $this->db->prepare($string);
             $sql->execute();
+            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
@@ -115,6 +123,21 @@ class projeto extends model {
             $array = $sql->fetchAll();
         }
         return $array;
+    }
+    
+    public function getStringLog($id) {
+        $resultado = $this->getUnico($id);
+        print_r($resultado);
+        exit;
+        extract($resultado['0']);
+        return $valor = 'id = '.$id_atividade.
+                          ' nome = '.$nome_atividade.
+                          ' status = '.$status_atividade.
+                          ' id projeto = '.$id_projeto.
+                          ' data inicio = '.$data_inicio_atividade.
+                          ' data fim = '.$data_fim_atividade.
+                          ' data validacao = '.$data_validacao_atividade.
+                          ' observacoes = '.$observacoes_atividade;
     }
 
     
