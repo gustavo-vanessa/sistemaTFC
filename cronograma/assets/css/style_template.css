@@ -450,10 +450,12 @@ body{
 ::-webkit-scrollbar-track {
     background-color: #F4F4F4;
 }
+
 ::-webkit-scrollbar {
     width: 12px;
     background: #cccccc;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #cccccc;
 }
