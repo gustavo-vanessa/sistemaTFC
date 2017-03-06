@@ -18,7 +18,7 @@ class atividade extends model {
  * 
  * @name Get Lista
  * @Funcionalidade Executa uma consulta no banco de dados e retorna um array com os dados obtidos
- * @return Array
+ * @return Array 
  */
     public function getLista() {
         $array = array();
