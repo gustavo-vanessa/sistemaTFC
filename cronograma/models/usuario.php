@@ -92,5 +92,20 @@ public function getStringLog($id) {
                           ' TFC = '.$tfc_usuario;
     }
 
+    public function ultimoId() {
+    
+   
+    $array = array();
+
+    $sql = $this->db->prepare("select max(id_usuario) id_usuario from usuario");
+    $sql->execute();
+    
+            
+    if($sql->rowCount()>0) {
+        
+        $array = $sql->fetchAll();
+    }
+    return $array;
+}
 }
 

@@ -17,6 +17,13 @@
             <label class="control-label" for="exampleInputEmail1">E-mail: *</label><br />
             <input class="form-control" name="Email_usuario" required placeholder="Enter e-mail" type="email"><br />
             <br />
+             <label class="control-label" for="exampleInputEmail1">Perfis: *</label><br />
+             
+            <?php 
+            foreach ($perfis as $perfil) {
+                echo "<input class='form-control' name='".$perfil['nome_perfil']."' type='checkbox'>".$perfil['nome_perfil'];
+            echo"<br /><br />";
+            }?>
 
             <table><tr>
                     <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>

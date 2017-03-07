@@ -27,13 +27,33 @@ class usuariosController extends controller {
     }
 
     public function form_add() {
-        $dados = array();
+        $perfil = new perfil();
+        $dados['perfis'] = $perfil->getLista();
         $this->loadTemplate('usuario/formUsuario', $dados);
     }
 
     public function add() {
         $usuarios = new usuario();
-        $usuarios->add_usuario($_POST);
+        $usuario['nome_usuario'] = $_POST['nome_usuario'];
+        $usuario['login_usuario'] = $_POST['login_usuario'];
+        $usuario['Password_usuario'] = $_POST['Password_usuario'];
+        $usuario['Email_usuario'] = $_POST['Email_usuario'];
+        $perfil['Orientador'] = $_POST['Orientador'];
+        $perfil['Orientando'] = $_POST['Orientando'];
+        $perfil['Coordenador'] = $_POST['Coordenador'];
+       
+        $usuarios->add_usuario($usuario);
+        $perfilUsuario = new perfilUsuario();
+        $id = $usuarios->ultimoId();
+        extract($id[0]);
+        if($perfil['Orientando'] = 'on'){
+        $dados['id_usuario'] = $id_usuario;
+        $dados['id_perfil'] = '2';
+        $perfilUsuario->add_perfil_usuario($dados);
+
+        }
+        
+        
         $this->index();
     }
     
