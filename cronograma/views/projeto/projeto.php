@@ -36,7 +36,7 @@
     </table>
     <br />
     <table><tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/projeto/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>projeto/form_add">Adicionar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

@@ -11,50 +11,81 @@
  *
  * @author Gustavo Martins
  */
-class projetoController extends controller{
+class projetoController extends controller {
+
     //put your code here public function index() {
     public function index() {
-        $projeto = new projeto();
-        $dados['projetos'] = $projeto->getLista();      
-        $this->loadTemplate('projeto/projeto', $dados);
+        session_start();
+        
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $dados['projetos'] = $projeto->getLista();
+            $this->loadTemplate('projeto/projeto', $dados);
+        }
     }
 
     public function excluir($id) {
-        $projeto = new projeto();
-        $projeto->excluir($id);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $projeto->excluir($id);
+            header('Location: /cronograma/projeto');
+        }
     }
 
     public function formAlterar($id) {
-        $projeto = new projeto();
-        $dados['orientadores'] = $projeto->getOrientador(); 
-        $dados['orientandos'] = $projeto->getOrientando();
-        $dados['pmboks'] = $projeto->getPmbok();
-        $dados['projetos'] = $projeto->getUnico($id);
-        $this->loadTemplate('projeto/formProjetoUpdate', $dados);
+        session_start();
+        
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $dados['orientadores'] = $projeto->getOrientador();
+            $dados['orientandos'] = $projeto->getOrientando();
+            $dados['pmboks'] = $projeto->getPmbok();
+            $dados['projetos'] = $projeto->getUnico($id);
+            $this->loadTemplate('projeto/formProjetoUpdate', $dados);
+        }
     }
 
     public function form_add() {
-        $dados = array();
-        $projeto = new projeto();
-        $dados['orientadores'] = $projeto->getOrientador(); 
-        $dados['orientandos'] = $projeto->getOrientando();
-        $dados['pmboks'] = $projeto->getPmbok();
-        $this->loadTemplate('projeto/formProjeto', $dados);
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $dados = array();
+            $projeto = new projeto();
+            $dados['orientadores'] = $projeto->getOrientador();
+            $dados['orientandos'] = $projeto->getOrientando();
+            $dados['pmboks'] = $projeto->getPmbok();
+            $this->loadTemplate('projeto/formProjeto', $dados);
+        }
     }
 
     public function add() {
-        $projeto = new projeto();
-        $projeto->add_projeto($_POST);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $projeto->add_projeto($_POST);
+            header('Location: /cronograma/projeto');
+        }
     }
-    
+
     public function alterar($id) {
-       $projeto = new projeto();
-        $projeto->alterar_projeto($_POST, $id);
-        $this->index(); 
-        
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $projeto->alterar_projeto($_POST, $id);
+            header('Location: /cronograma/projeto');
+        }
     }
-    
-   
+
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of atividadeController
  *
@@ -7,42 +8,70 @@
 class subatividadeController extends controller {
 
     public function index() {
-
-        $subatividades = new subatividade();
-        $dados['subatividades'] = $subatividades->getLista();
-        $this->loadTemplate('subatividade/subatividade', $dados);
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $dados['subatividades'] = $subatividades->getLista();
+            $this->loadTemplate('subatividade/subatividade', $dados);
+        }
     }
 
     public function excluir($id) {
-        $subatividades = new subatividade();
-        $subatividades->excluir($id);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $subatividades->excluir($id);
+            header('Location: /cronograma/subatividade');
+        }
     }
 
     public function formAlterar($id) {
-        $subatividades = new subatividade();
-        $dados['subatividades'] = $subatividades->getUnico($id);
-        $dados['atividades'] = $subatividades->getAtividade();
-        $this->loadTemplate('subatividade/formSubatividadeUpdate', $dados);
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $dados['subatividades'] = $subatividades->getUnico($id);
+            $dados['atividades'] = $subatividades->getAtividade();
+            $this->loadTemplate('subatividade/formSubatividadeUpdate', $dados);
+        }
     }
 
     public function add() {
-        $subatividades = new subatividade();
-        $subatividades->add_subatividades($_POST);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $subatividades->add_subatividades($_POST);
+            header('Location: /cronograma/subatividade');
+        }
     }
-    
-     public function form_add() {
-         $subatividades = new subatividade();
-         $dados['atividades'] = $subatividades->getAtividade();
-        $this->loadTemplate('subatividade/formSubatividade', $dados);
+
+    public function form_add() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $dados['atividades'] = $subatividades->getAtividade();
+            $this->loadTemplate('subatividade/formSubatividade', $dados);
+        }
     }
-    
+
     public function alterar($id) {
-        $subatividades = new subatividade();
-        $subatividades->alterar_subatividades($_POST, $id);
-        $this->index(); 
-        
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $subatividades->alterar_subatividades($_POST, $id);
+            header('Location: /cronograma/subatividade');
+        }
     }
 
 }

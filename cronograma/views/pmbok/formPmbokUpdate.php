@@ -1,7 +1,7 @@
 <?php
 
 foreach ($pmboks as $pmbok) {
-    echo'<form method="post" action="' . BASE_URL . '/pmbok/alterar/' . $pmbok['id_pmbok_versao'] . '">';
+    echo'<form method="post" action="' . BASE_URL . 'pmbok/alterar/' . $pmbok['id_pmbok_versao'] . '">';
     echo'<div class="div_form" id="scroll">';
     echo '<label class="titulo">PMBOK</label>';
     echo '<div>';
@@ -10,7 +10,7 @@ foreach ($pmboks as $pmbok) {
     echo'<br />';
     echo '<table><tr>';
     echo'<td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>';
-    echo'<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . '/pmbok">Voltar</a></td>';
+    echo'<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . 'pmbok">Voltar</a></td>';
     echo '</tr></table>';
     echo'</div>';
     echo '<label class="textorodape">* Campo Obrigatório</label>';

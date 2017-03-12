@@ -27,8 +27,8 @@
                 echo "<td>" . $atividade['data_fim_atividade'] . "</td>";
                 echo "<td>" . $atividade['data_validacao_atividade'] . "</td>";
                 echo "<td>" . $atividade['observacoes_atividade'] . "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividade/formAlterar/" . $atividade['id_atividade'] . ">Alterar</td>";
-                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/atividade/excluir/" . $atividade['id_atividade'] . ">Excluir</td>";
+                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/formAlterar/" . $atividade['id_atividade'] . ">Alterar</td>";
+                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/excluir/" . $atividade['id_atividade'] . ">Excluir</td>";
                 echo "</tr> ";
             }
             ?>
@@ -37,8 +37,8 @@
     <br />
     <table>
         <tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/atividade/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividade/form_add">Adicionar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
     <br />
    

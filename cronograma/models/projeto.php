@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define("TABELA", "Projeto");
+define("LOG_PROJETO", "Projeto");
 /**
  * Description of projeto
  *
@@ -39,7 +39,7 @@ class projeto extends model {
             $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
@@ -51,7 +51,7 @@ class projeto extends model {
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     
-            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            $log = $this->insere_log($sql,$string,LOG_PROJETO,$valor_anterior,$valor_atual);
             return;
         }
     }
@@ -61,7 +61,7 @@ class projeto extends model {
             $string = "DELETE FROM `projeto` WHERE id_projeto = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
@@ -135,6 +135,22 @@ class projeto extends model {
                           ' id orientador = '.$id_orientador.
                           ' id orientando = '.$id_orientando.
                           ' id pmbok = '.$id_pmbok_versao;
+    }
+    
+    public function getProjetosUsuario($id_usuario) {
+        $array = array();
+        $string = "select * from projeto where id_orientando = ".$id_usuario. " or id_orientador = ".$id_usuario;
+        $sql = $this->db->prepare($string);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        if (count($array)>0){
+            return 1; 
+        }
+        else {
+            return 0;
+        }
     }
 
     

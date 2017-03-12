@@ -12,6 +12,7 @@
         </thead>
         <tbody>
             <?php
+            //session_start();
             foreach ($perfis as $perfil) {
                 echo "<tr>";
                 echo "<td>" . $perfil['id_perfil'] . "</td>";
@@ -25,6 +26,6 @@
     </table>
     <br />
     <table><tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of usuariosController
  *
@@ -7,40 +8,68 @@
 class pmbokController extends controller {
 
     public function index() {
-
-        $pmboks = new pmbok();
-        $dados['pmboks'] = $pmboks->getLista();
-        $this->loadTemplate('pmbok/pmbok', $dados);
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $pmboks = new pmbok();
+            $dados['pmboks'] = $pmboks->getLista();
+            $this->loadTemplate('pmbok/pmbok', $dados);
+        }
     }
 
     public function excluir($id) {
-        $pmboks = new pmbok();
-        $pmboks->excluir($id);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $pmboks = new pmbok();
+            $pmboks->excluir($id);
+            header('Location: /cronograma/pmbok');
+        }
     }
 
     public function formAlterar($id) {
-        $pmboks = new pmbok();
-        $dados['pmboks'] = $pmboks->getUnico($id);
-        $this->loadTemplate('pmbok/formPmbokUpdate', $dados);
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $pmboks = new pmbok();
+            $dados['pmboks'] = $pmboks->getUnico($id);
+            $this->loadTemplate('pmbok/formPmbokUpdate', $dados);
+        }
     }
 
     public function add() {
-        $pmboks = new pmbok();
-        $pmboks->add_pmbok($_POST);
-        $this->index();
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $pmboks = new pmbok();
+            $pmboks->add_pmbok($_POST);
+            header('Location: /cronograma/pmbok');
+        }
     }
-    
-     public function form_add() {
-        $dados = array();
-        $this->loadTemplate('pmbok/formPmbok', $dados);
+
+    public function form_add() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $dados = array();
+            $this->loadTemplate('pmbok/formPmbok', $dados);
+        }
     }
-    
+
     public function alterar($id) {
-       $pmboks = new pmbok();
-        $pmboks->alterar_pmbok($_POST, $id);
-        $this->index(); 
-        
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $pmboks = new pmbok();
+            $pmboks->alterar_pmbok($_POST, $id);
+            header('Location: /cronograma/pmbok');
+        }
     }
 
 }

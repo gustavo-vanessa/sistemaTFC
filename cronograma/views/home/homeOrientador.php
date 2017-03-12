@@ -1,5 +1,5 @@
 <div>
-    <h1 class="label">Cadastros</h1>
+    <h1 class="label">Eba estou no perfil de Orientador \o/</h1>
 </div>
 <div class="opcoes">
     <br />

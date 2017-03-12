@@ -1,6 +1,6 @@
 <?php foreach ($atividadesPadroes as $atividadePadrao): ?> 
 
-    <form method="post" action="<?php echo BASE_URL . "/atividadePadrao/alterar/" . $atividadePadrao['id_atividades_padroes']; ?>">
+    <form method="post" action="<?php echo BASE_URL . "atividadePadrao/alterar/" . $atividadePadrao['id_atividades_padroes']; ?>">
         <div class="div_form " id="scroll">
             <label class="titulo">Atividades Padrões</label>
             <div>
@@ -42,7 +42,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/atividadePadrao">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>atividadePadrao">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

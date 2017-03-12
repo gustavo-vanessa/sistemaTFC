@@ -20,8 +20,8 @@
                         echo "<td>" . $usuario['nome_usuario'] . "</td>";
                         echo "<td>" . $usuario['login_usuario'] . "</td>";
                         echo "<td>" . $usuario['email_usuario'] . "</td>";
-                        echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/usuarios/formAlterar/" . $usuario['id_usuario'] . ">Alterar</td>";
-                        echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/usuarios/excluir/" . $usuario['id_usuario'] . ">Excluir</td>";
+                        echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "usuarios/formAlterar/" . $usuario['id_usuario'] . ">Alterar</td>";
+                        echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "usuarios/excluir/" . $usuario['id_usuario'] . ">Excluir</td>";
                         echo "</tr> ";
                     }
                     ?>
@@ -30,7 +30,7 @@
             <br />
             <table>
                 <tr>
-                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/usuarios/form_add">Adicionar</a></td>
-                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
+                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>usuarios/form_add">Adicionar</a></td>
+                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
                 </tr></table>
         </div>

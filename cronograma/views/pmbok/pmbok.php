@@ -15,8 +15,8 @@
                 echo "<tr>";
                 echo "<td>" . $pmbok['id_pmbok_versao'] . "</td>";
                 echo "<td>" . $pmbok['descricao_pmbok_versao'] . "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/pmbok/formAlterar/" . $pmbok['id_pmbok_versao'] . ">Alterar</td>";
-                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/pmbok/excluir/" . $pmbok['id_pmbok_versao'] . ">Excluir</td>";
+                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "pmbok/formAlterar/" . $pmbok['id_pmbok_versao'] . ">Alterar</td>";
+                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "pmbok/excluir/" . $pmbok['id_pmbok_versao'] . ">Excluir</td>";
                 echo "</tr> ";
             }
             ?>
@@ -26,7 +26,7 @@
     <br />
     <br />
     <table><tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>/pmbok/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/validaLogin">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>pmbok/form_add">Adicionar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

@@ -1,7 +1,7 @@
 <?php
 
 foreach ($logs as $log) {
-    echo'<form method="post" action="' . BASE_URL . '/perfil/alterar/' . $log['id_log'] . '">';
+    echo'<form method="post" action="' . BASE_URL . 'perfil/alterar/' . $log['id_log'] . '">';
     echo'<div class="div_form" id="scroll">';
     echo '<label class="titulo">Log</label>';
     echo '<div>';
@@ -27,7 +27,7 @@ foreach ($logs as $log) {
     echo '<input class="form-control" name="descricao_perfil" placeholder="Descrição Perfil" disabled type="text" value ="' . $log['erro_log'] . '"><br />';
     echo '<br />';
     echo '<table><tr>';
-    echo '<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . '/log">Voltar</a></td>';
+    echo '<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . 'log">Voltar</a></td>';
     echo '</tr></table>';
     echo '</div>';
     echo '</div>';

@@ -17,12 +17,6 @@ class perfilUsuario extends model {
     public $valor_atenrior = null;
     public $valor_atual = null;
 
-    /**
-     * @name Adicionar Atividades
-     * @param Array $array_dados
-     * @funcionalidade Recebe um array de dados do controller e atribui os dados a string que será executada no banco da dados, após isso chama a função para inserção na tabela de log
-     * @return type null
-     */
     public function add_perfil_usuario($array_dados = array()) {
         if (count($array_dados) > 1) {
             $string = "INSERT INTO `perfil_do_usuario`"
@@ -36,12 +30,6 @@ class perfilUsuario extends model {
         }
     }
 
-    /**
-     * @name Excluir atividade
-     * @Funcionalidade Recebe o id da informação que será excluida do banco
-     * @param inteiro $id
-     * @return null
-     */
     public function excluir($id) {
         if (isset($id)) {
             $string = "DELETE FROM `perfil_do_usuario` WHERE usuario_id_usuario = " . $id;
@@ -49,6 +37,23 @@ class perfilUsuario extends model {
             $sql->execute();
             $log = $this->insere_log($sql, $string, TABELA_LOG, $this->valor_atenrior, $this->valor_atual);
             return;
+        }
+    }
+
+    public function getUnico($id) {
+        if (isset($id)) {
+            $array = array();
+            $string = "SELECT *
+                        FROM perfil p
+                        left join perfil_do_usuario pu
+                        on p.id_perfil = pu.perfil_id_perfil
+                        and pu.usuario_id_usuario = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            if ($sql->rowCount() > 0) {
+                $array = $sql->fetchAll();
+            }
+            return $array;
         }
     }
 

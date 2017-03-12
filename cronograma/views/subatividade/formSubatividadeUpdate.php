@@ -1,6 +1,6 @@
 <?php foreach ($subatividades as $subatividade): ?> 
 
-    <form method="post" action="<?php echo BASE_URL . "/subatividade/alterar/" . $subatividade['id_sub_atividade']; ?>">
+    <form method="post" action="<?php echo BASE_URL . "subatividade/alterar/" . $subatividade['id_sub_atividade']; ?>">
         <div class="div_form " id="scroll">
             <label class="titulo">Subatividades</label>
             <div>
@@ -59,7 +59,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>/subatividade">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>subatividade">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>
