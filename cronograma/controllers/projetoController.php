@@ -16,13 +16,21 @@ class projetoController extends controller {
     //put your code here public function index() {
     public function index() {
         session_start();
-        
+
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $projeto = new projeto();
-            $dados['projetos'] = $projeto->getLista();
-            $this->loadTemplate('projeto/projeto', $dados);
+            if ($_SESSION['nome_perfil'] === 'Coordenador') {
+                $dados['projetos'] = $projeto->getLista();
+                $this->loadTemplate('projeto/projeto', $dados);
+            } else if ($_SESSION['nome_perfil'] === 'Orientador') {
+                $dados['projetos'] = $projeto->getListaOrientador();
+                $this->loadTemplate('projeto/projeto', $dados);
+            } else {
+                $dados['projetos'] = $projeto->getListaOrientando();
+                $this->loadTemplate('projeto/projeto', $dados);
+            }
         }
     }
 
@@ -39,7 +47,7 @@ class projetoController extends controller {
 
     public function formAlterar($id) {
         session_start();
-        
+
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {

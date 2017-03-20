@@ -10,7 +10,6 @@ and open the template in the editor.
         <link href="<?php echo BASE_URL; ?>assets/css/style_homeAluno.css" rel="stylesheet" />
         <title></title>
     </head>
-     
     <body>
 
     </body>

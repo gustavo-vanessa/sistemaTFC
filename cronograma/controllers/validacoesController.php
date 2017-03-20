@@ -11,6 +11,11 @@
  *
  * @author Vanessa Marques
  */
+
+/**
+ * Nosso Controlador de validações tem como sua principal atividade realizar a validação dos usuarios e levando em consideração
+ * o perfil de cada usuario redireciona-lo para o seu perfil determinado.
+ */
 class validacoesController extends controller {
 
     public function index() {
@@ -28,9 +33,7 @@ class validacoesController extends controller {
                 $sessao['nome_perfil'] = $dados['usuarios'][0]['nome_perfil'];
                 $sessao['id_usuario'] =  $dados['usuarios'][0]['id_usuario'];
                 $this->verificaPerfil($sessao['nome_perfil'],$sessao);
-            } elseif (count($dados['usuarios']) > 1) {
-                print_r($dados);
-                exit;
+            } else if (count($dados['usuarios']) > 1) {
                 $this->loadTemplate('home/homeControlador', $dados);
             } else {
                 $dados['mensagem'] = "Usuario ou senha invalida";

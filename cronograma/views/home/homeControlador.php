@@ -7,8 +7,16 @@
     <table  >
         <tbody>
             <tr>
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>home/orientador">Orientador</a></td> 
-                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>home/coordenador">Coordenador</a></td>
+                <?php 
+                 session_start();
+                foreach ($usuarios as $usuario) {
+                    echo '<td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="'.BASE_URL.'home/'.$usuario['nome_perfil'].'">Orientador</a></td>';
+                    $_SESSION["id_usuario"] = $usuario['id_usuario'];
+                    $_SESSION["nome_usuario"] = $usuario['nome_usuario'];
+                    $_SESSION["nome_perfil"] = $usuario['nome_perfil'];
+                }?>
+               
+               
             </tr>
         </tbody>
     </table>

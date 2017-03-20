@@ -13,7 +13,7 @@
  */
 class Core {
     /**
-     * O core te somente um função a RUN que executa assim que o arquivo é chamado
+     * O core tem somente um função a RUN que executa assim que o arquivo é chamado
      */
     public function run() {
         //primeiramente realizamos a busca dos parametros 
@@ -30,13 +30,15 @@ class Core {
             $url = explode('/', $url);
             // com o função array_shift retiramos a primeira opção do nosso array url
             array_shift($url);
-            // pelo esquema implantado temos sempre na primeira opção nosso controler dessa forma atribuimos a variavel o nosso primeiro parametro o controller
+            // pelo esquema implantado temos sempre na primeira opção nosso controler dessa forma atribuimos a variavel
+            // o nosso primeiro parametro o controller
             $currentController = $url[0] . 'Controller';
             // depois de buscar  o controller retiramos o mesmo do nosso array novamente com a função array shift
             array_shift($url);
             //testamos novamente se temos mais parametros 
             if (isset($url[0])) {
-                // caso sim pelo esquema implantado sabemos q nosso proximo parametro é nossa action (função a ser executada)
+                // caso sim pelo esquema implantado sabemos q nosso proximo parametro é nossa action
+                //  (função a ser executada)
                 $currentAction = $url[0];
                 // depois de armazenar retiramos novamente a primeira opção
                 array_shift($url);
@@ -44,7 +46,8 @@ class Core {
                 // se não temos uma action sabemos que esta opção será a index
                 $currentAction = 'index';
             }
-            // retirando tudo sobra apenas os parametros que esta função pode ter, testamos para saber se ainda algum parametro
+            // retirando tudo sobra apenas os parametros que esta função pode ter,
+            //  testamos para saber se ainda algum parametro
             if (count($url) > 0) {
                 // se sim incluimos estas informações aos parametros
                 $params = $url;
@@ -56,7 +59,8 @@ class Core {
         }
         
         require_once 'core/controller.php';
-        //após termos já definido que iremos executar, fazemos a chamada da função com o nome do controler a função a ser executada e seus possiveis parametros.
+        //após termos já definido que iremos executar, fazemos a chamada da função com o nome do controler
+        // a função a ser executada e seus possiveis parametros.
         $c = new $currentController();
         call_user_func_array(array($c,$currentAction), $params);
     }

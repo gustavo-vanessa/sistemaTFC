@@ -14,6 +14,12 @@ define("LOG_PROJETO", "Projeto");
 class projeto extends model {
  public $valor_atenrior = null;
     public $valor_atual = null;
+    
+    
+    /**
+     * 
+     * Consultas SQL
+     */
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("SELECT p.id_projeto,
@@ -33,39 +39,48 @@ class projeto extends model {
         }
         return $array;
     }
-
-    public function add_projeto($array_dados = array()) {
-        if (count($array_dados) > 1) {
-            $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
-            $sql = $this->db->prepare($string);
-            $sql->execute();
-            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
-            return;
+    
+        public function getListaOrientador() {
+        $array = array();
+        $sql = $this->db->prepare("SELECT p.id_projeto,
+                                          p.nome_projeto,
+                                          p.status_projeto,
+                                          p.data_validacao,
+                                          p.id_orientador,
+                                          obter_nome_orientador (p.id_orientador) as nome_orientador,
+                                          p.id_orientando,
+                                          obter_nome_orientando (p.id_orientando) as nome_orientando,
+                                          id_pmbok_versao,
+                                          obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
+                                   FROM projeto p");
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
         }
+        return $array;
     }
-
-    public function alterar_projeto($array_dados = array(), $id) {
-        $valor_anterior = $this->getStringLog($id);
-        if (count($array_dados) > 1) {
-            $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
-            $sql = $this->db->prepare($string);
-            $sql->execute();
-            $valor_atual = $this->getStringLog($id);     
-            $log = $this->insere_log($sql,$string,LOG_PROJETO,$valor_anterior,$valor_atual);
-            return;
+    
+            public function getListaOrientando() {
+        $array = array();
+        $sql = $this->db->prepare("SELECT p.id_projeto,
+                                          p.nome_projeto,
+                                          p.status_projeto,
+                                          p.data_validacao,
+                                          p.id_orientador,
+                                          obter_nome_orientador (p.id_orientador) as nome_orientador,
+                                          p.id_orientando,
+                                          obter_nome_orientando (p.id_orientando) as nome_orientando,
+                                          id_pmbok_versao,
+                                          obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
+                                   FROM projeto p");
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
         }
+        return $array;
     }
-
-    public function excluir($id) {
-        if (isset($id)) {
-            $string = "DELETE FROM `projeto` WHERE id_projeto = " . $id;
-            $sql = $this->db->prepare($string);
-            $sql->execute();
-            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
-            return;
-        }
-    }
-
+    
+    
     public function getUnico($id) {
         $array = array();
         $sql = $this->db->prepare("SELECT p.id_projeto,
@@ -152,6 +167,57 @@ class projeto extends model {
             return 0;
         }
     }
+
+    /**
+     * 
+     * inclusao de projetos no banco
+     * 
+     */
+    public function add_projeto($array_dados = array()) {
+        if (count($array_dados) > 1) {
+            $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
+            return;
+        }
+    }
+
+    /**
+     * 
+     * alteração de projetos no banco
+     * 
+     */
+    
+    public function alterar_projeto($array_dados = array(), $id) {
+        $valor_anterior = $this->getStringLog($id);
+        if (count($array_dados) > 1) {
+            $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);     
+            $log = $this->insere_log($sql,$string,LOG_PROJETO,$valor_anterior,$valor_atual);
+            return;
+        }
+    }
+    
+    /**
+     * 
+     * exclusao de projetos no banco
+     * 
+     */
+    
+
+    public function excluir($id) {
+        if (isset($id)) {
+            $string = "DELETE FROM `projeto` WHERE id_projeto = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
+            return;
+        }
+    }
+
 
     
     
