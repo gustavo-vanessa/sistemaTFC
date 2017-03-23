@@ -1,16 +1,15 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link href="<?php echo BASE_URL; ?>assets/css/style_homeAluno.css" rel="stylesheet" />
-        <title></title>
-    </head>
-    <body>
-
-    </body>
-</html>
+<div>
+    <h1 class="label">Eba estou no perfil de Coordenandor \o/</h1>
+</div>
+<div class="opcoes">
+    <br />
+    <br />
+    <table  >
+        <tbody>
+            <tr>
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>projeto">Projetos</a></td> 
+                <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>">Sair</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

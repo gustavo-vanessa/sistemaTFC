@@ -29,6 +29,7 @@
                 echo "<td>" . $projeto['desc_pmbok'] . "</td>";
                 echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
                 echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
+                echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                 echo "</tr> ";
             }
             ?>

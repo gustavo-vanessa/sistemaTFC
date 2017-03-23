@@ -32,6 +32,27 @@ class subatividade extends model {
         }
         return $array;
     }
+    
+    public function listaAtividade($id_atividade) {
+        $array = array();
+        $sql = $this->db->prepare("select id_sub_atividade, 
+                                          nome_sub_atividade, 
+                                          status_sub_atividade, 
+                                          id_atividade, 
+                                          obter_nome_atividade(id_atividade, id_sub_atividade) as nome_atividade, 
+                                          data_inicio_sub_atividade, 
+                                          data_fim_sub_atividade, 
+                                          data_validacao_sub_atividade, 
+                                          observacoes_sub_atividade 
+                                   from sub_atividade
+                                   where id_atividade = ".$id_atividade);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
 
     public function add_subatividades($array_dados = array()) {
         if (count($array_dados) > 1) { 

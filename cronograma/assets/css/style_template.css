@@ -8,7 +8,10 @@ and open the template in the editor.
     Author     : Gustavo Martins
 */
 
-
+.table_input{
+    border: 0;
+    width: auto;
+}
 .div_cabecalho{
     width: 100%;
     height: 180px;

@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define("TABELA", "Atividade");
+define("tabela", "Atividade");
 /**
  * Description of usuario
  *
@@ -39,6 +39,28 @@ class atividade extends model {
         }
         return $array;
     }
+    
+    public function listaAtividadesProjeto($id_projeto) {
+        $array = array();
+        $sql = $this->db->prepare("select id_atividade, 
+                                          nome_atividade, 
+                                          status_atividade, 
+                                          id_projeto, 
+                                          obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
+                                          data_inicio_atividade, 
+                                          data_fim_atividade, 
+                                          data_validacao_atividade, 
+                                          observacoes_atividade 
+                                   from atividade
+                                   where id_projeto = ".$id_projeto);
+        $sql->execute();
+
+        if ($sql) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
     /**
      * @name Adicionar Atividades
      * @param Array $array_dados
@@ -64,7 +86,7 @@ class atividade extends model {
                     . "'" . $array_dados['observacoes_atividade'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
-             $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+             $log = $this->insere_log($sql,$string,tabela, $this->valor_atenrior, $this->valor_atual);
            }
     }
 /**
@@ -89,7 +111,7 @@ class atividade extends model {
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     
-            $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
+            $log = $this->insere_log($sql,$string,tabela,$valor_atenrior,$valor_atual);
             return;
         }
     }
@@ -104,7 +126,7 @@ class atividade extends model {
             $string = "DELETE FROM `atividade` WHERE id_atividade = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();          
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql,$string,tabela, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }

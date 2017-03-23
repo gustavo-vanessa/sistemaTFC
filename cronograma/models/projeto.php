@@ -22,7 +22,7 @@ class projeto extends model {
      */
     public function getLista() {
         $array = array();
-        $sql = $this->db->prepare("SELECT p.id_projeto,
+        $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
                                           p.data_validacao,
@@ -32,7 +32,8 @@ class projeto extends model {
                                           obter_nome_orientando (p.id_orientando) as nome_orientando,
                                           id_pmbok_versao,
                                           obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
-                                   FROM projeto p");
+                                   FROM projeto p";
+        $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -42,7 +43,7 @@ class projeto extends model {
     
         public function getListaOrientador() {
         $array = array();
-        $sql = $this->db->prepare("SELECT p.id_projeto,
+        $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
                                           p.data_validacao,
@@ -52,7 +53,9 @@ class projeto extends model {
                                           obter_nome_orientando (p.id_orientando) as nome_orientando,
                                           id_pmbok_versao,
                                           obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
-                                   FROM projeto p");
+                                   FROM projeto p
+                                   WHERE p.id_orientador = ".$_SESSION['id_usuario'];
+        $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -62,7 +65,7 @@ class projeto extends model {
     
             public function getListaOrientando() {
         $array = array();
-        $sql = $this->db->prepare("SELECT p.id_projeto,
+        $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
                                           p.data_validacao,
@@ -72,7 +75,9 @@ class projeto extends model {
                                           obter_nome_orientando (p.id_orientando) as nome_orientando,
                                           id_pmbok_versao,
                                           obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
-                                   FROM projeto p");
+                                   FROM projeto p
+                                   WHERE p.id_orientando = ". $_SESSION['id_usuario'];        
+        $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

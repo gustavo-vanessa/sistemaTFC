@@ -14,6 +14,7 @@ define("TABELA","AtividadePadrao");
 class atividadePadrao extends model {
  public $valor_atenrior = null;
     public $valor_atual = null;
+    
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("select id_atividades_padroes, 
@@ -29,6 +30,7 @@ class atividadePadrao extends model {
         }
         return $array;
     }
+    
 
     public function add_atividades_padroes($array_dados = array()) {
         if (count($array_dados) > 1) {   

@@ -58,7 +58,7 @@ class subatividadePadraoController extends controller {
             header('Location: /cronograma');
         } else {
             $subatividadesPadroes = new subatividadePadrao();
-            $dados ['subatividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
+            $dados ['atividadesPadroes'] = $subatividadesPadroes->getAtividadePadrao();
             $this->loadTemplate('subatividadePadrao/formSubatividadePadrao', $dados);
         }
     }

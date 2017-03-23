@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-define("TABELA","Subatividade");
+define("tabela","Subatividade");
 /**
  * Description of usuario
  *
@@ -30,6 +30,23 @@ class subatividadePadrao extends model {
         }
         return $array;
     }
+    
+    public function listaAtividadePadrao($id_atividade) {
+        $array = array();
+       $sql = $this->db->prepare("select id_sub_atividades_padroes, 
+                                         nome_sub_atividade_padroes,
+                                         descricao_sub_atividades_padroes,
+                                         ie_obrigatorio_sub_atividades_padroes,
+                                         id_atividade_padroes,
+                                         obter_nome_atividade_padrao (id_atividade_padroes, id_sub_atividades_padroes) nome_atividade      
+                                  from sub_atividades_padroes
+                                  where id_atividade_padroes = ".$id_atividade);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }    
 
     public function add_subatividades_padroes($array_dados = array()) {
         if (count($array_dados) > 1) {
@@ -44,7 +61,7 @@ class subatividadePadrao extends model {
                                     . "'" . $array_dados['id_atividade'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql,$string,tabela, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
@@ -62,7 +79,7 @@ class subatividadePadrao extends model {
             
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     
-            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            $log = $this->insere_log($sql,$string,tabela,$valor_anterior,$valor_atual);
           
             return;
         }
@@ -73,7 +90,7 @@ class subatividadePadrao extends model {
             $string = "DELETE FROM `sub_atividades_padroes` WHERE id_sub_atividades_padroes = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql,$string,tabela, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }

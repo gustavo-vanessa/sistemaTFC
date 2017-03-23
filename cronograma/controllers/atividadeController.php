@@ -18,6 +18,21 @@ class atividadeController extends controller {
         }
     }
 
+    public function atividadesProjeto($id) {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $atividades = new atividade();
+            $subAtividade = new subatividade();
+            $dados['atividades'] = $atividades->listaAtividadesProjeto($id);
+            foreach ($dados['atividades'] as $atividade) {
+                 $dados['subatividades'] = $subAtividade->listaAtividade($atividade['id_atividade']);
+            }           
+            $this->loadTemplate('atividade/atividadeProjeto', $dados);
+        }
+    }
+    
     public function excluir($id) {
         session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
@@ -38,6 +53,20 @@ class atividadeController extends controller {
             $dados['atividades'] = $atividades->getUnico($id);
             $dados['projetos'] = $atividades->getProjeto();
             $this->loadTemplate('atividade/formatividadeUpdate', $dados);
+        }
+    }
+    
+    public function addPadrao() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {            
+            // tratando variavel post
+            
+            
+            $atividades = new atividade();
+            $atividades->add_atividades($_POST);
+            header('Location: /cronograma/atividade');
         }
     }
 

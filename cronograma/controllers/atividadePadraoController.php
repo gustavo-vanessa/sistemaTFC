@@ -17,6 +17,21 @@ class atividadePadraoController extends controller {
             $this->loadTemplate('atividadePadrao/atividadePadrao', $dados);
         }
     }
+    
+    public function atividadesPadraoProjeto() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $atividadesPadrao = new atividadePadrao();
+            $subAtividadePadrao = new subatividadePadrao();
+            $dados['atividades'] = $atividadesPadrao->getLista();
+            foreach ($dados['atividades'] as $atividade) {
+                 $dados['subatividades'] = $subAtividadePadrao->listaAtividadePadrao($atividade['id_atividades_padroes']);
+            } 
+            $this->loadTemplate('atividadePadrao/atividadePadraoProjeto', $dados);
+        }
+    }
 
     public function excluir($id) {
         session_start();
