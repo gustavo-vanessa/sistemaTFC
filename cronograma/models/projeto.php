@@ -25,7 +25,7 @@ class projeto extends model {
         $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
-                                          p.data_validacao,
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
                                           p.id_orientando,
@@ -46,7 +46,7 @@ class projeto extends model {
         $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
-                                          p.data_validacao,
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
                                           p.id_orientando,
@@ -68,7 +68,7 @@ class projeto extends model {
         $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
-                                          p.data_validacao,
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
                                           p.id_orientando,
@@ -91,7 +91,7 @@ class projeto extends model {
         $sql = $this->db->prepare("SELECT p.id_projeto,
                                           p.nome_projeto,
                                           p.status_projeto,
-                                          p.data_validacao,
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
                                           p.id_orientando,
@@ -180,7 +180,7 @@ class projeto extends model {
      */
     public function add_projeto($array_dados = array()) {
         if (count($array_dados) > 1) {
-            $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `data_validacao`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '" . $array_dados['data_validacao'] . "', '" . $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
+            $string = "INSERT INTO`projeto` (`nome_projeto`, `status_projeto`, `id_orientador`, `id_orientando`, `id_pmbok_versao`) VALUES ('". $array_dados['nome_projeto'] . "', '" . $array_dados['status_projeto'] . "', '". $array_dados['id_orientador'] . "', '" . $array_dados['id_orientando'] . "', '" . $array_dados['id_pmbok_versao'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
             $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
@@ -194,10 +194,23 @@ class projeto extends model {
      * 
      */
     
-    public function alterar_projeto($array_dados = array(), $id) {
+    public function alterar_projeto($id, $array_dados = array()) {
         $valor_anterior = $this->getStringLog($id);
-        if (count($array_dados) > 1) {
+        if (count($array_dados) > 0) {
             $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);     
+            $log = $this->insere_log($sql,$string,LOG_PROJETO,$valor_anterior,$valor_atual);
+            return;
+        }
+    }
+    
+    
+        public function validar_projeto($id) {
+        $valor_anterior = $this->getStringLog($id);
+        if (count($id) > 0) {
+            $string = "update `projeto` set  `data_validacao` = sysdate() where id_projeto = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     

@@ -1,6 +1,6 @@
 
 <div class="div_form" id="scroll">
-    <label class="titulo">Atividades</label>
+    <label class="titulo">Atividades e Subatividades</label>
     <table class="table th td" >
         <thead>
             <tr>
@@ -27,6 +27,10 @@
                 echo "<td>" . $atividade['data_fim_atividade'] . "</td>";
                 echo "<td>" . $atividade['data_validacao_atividade'] . "</td>";
                 echo "<td>" . $atividade['observacoes_atividade'] . "</td>";
+                echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/executar/".$atividade['id_atividade']."'>Executar</a></td>";
+                if ($_SESSION['nome_perfil'] != 'Orientando') {
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/validar/".$atividade['id_atividade']."'>Validar</a></td>";
+                }                
                 foreach ($subatividades as $subatividade) {
                     echo "<tr>";
                     echo "<td></td>";
@@ -37,6 +41,10 @@
                     echo "<td>" . $subatividade['data_fim_sub_atividade'] . "</td>";
                     echo "<td>" . $subatividade['data_validacao_sub_atividade'] . "</td>";
                     echo "<td>" . $subatividade['observacoes_sub_atividade'] . "</td>";
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/executar/".$subatividade['id_sub_atividade']."'>Executar</a></td>";
+                if ($_SESSION['nome_perfil'] != 'Orientando') {
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/validar/".$subatividade['id_sub_atividade']."'>Validar</a></td>";
+                }
                     echo "</tr> ";
                 }
                 echo "</tr> ";
@@ -47,9 +55,8 @@
     <br />
     <table>
         <tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividade/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/atividadesPadraoProjeto">Adicionar Atividades Padrões</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/atividadesPadraoProjeto">Adicionar Atividades e Subatividades</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto' ?>">Voltar</a></td>
         </tr></table>
     <br />
 

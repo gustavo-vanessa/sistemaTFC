@@ -20,14 +20,14 @@
             <?php
             foreach ($subatividades as $subatividade) {
                 echo "<tr>";
-                echo "<td>" . $subatividade['id_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['nome_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['status_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['nome_atividade'] . "</td>";
-                echo "<td>" . $subatividade['data_inicio_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['data_fim_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['data_validacao_sub_atividade'] . "</td>";
-                echo "<td>" . $subatividade['observacoes_sub_atividade'] . "</td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['id_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['nome_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['status_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['nome_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['data_inicio_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['data_fim_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['data_validacao_sub_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $subatividade['observacoes_sub_atividade'] . "'></td>";
                 echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . ">Alterar</td>";
                 echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . ">Excluir</td>";
                 echo "</tr> ";

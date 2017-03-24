@@ -51,6 +51,7 @@ class Core {
             if (count($url) > 0) {
                 // se sim incluimos estas informações aos parametros
                 $params = $url;
+                
             }
         } else {
             //caso não tenhamos parametros será sempre o controller homeController e sempre a função index

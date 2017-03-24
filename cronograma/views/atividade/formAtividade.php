@@ -10,16 +10,6 @@
             <br />
         </div>  
         <div>
-            <label class="control-label">Status Atividade: *</label><br />
-            <select  class="form-control" required name="status_atividade">
-                <option>Selecione</option>    
-                <option value="S">Sim</option>
-                <option value="N">Não</option>
-            </select>
-            <br />
-            <br />
-        </div>
-        <div>
             <label class="control-label">Projeto: *</label><br />
             <select  class="form-control" required name="id_projeto">
                 <option>Selecione</option>    
@@ -43,11 +33,6 @@
             <br />
         </div>
         <div>
-            <label class="control-label">Data de Validação da Atividade:</label><br />
-            <input class="form-control" name="data_validacao_atividade"  type="date"><br />
-            <br />
-        </div>
-        <div>
             <label class="control-label">Observação:</label><br />
             <input class="form-control" name="observacoes_atividade" placeholder="Observação" type="text"><br />
             <br />
@@ -55,7 +40,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>atividade">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

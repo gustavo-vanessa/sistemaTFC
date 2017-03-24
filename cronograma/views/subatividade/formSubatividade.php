@@ -7,16 +7,6 @@
             <br />
         </div>  
         <div>
-            <label class="control-label">Status Subatividade: *</label><br />
-            <select  class="form-control" required name="status_sub_atividade">
-                <option>Selecione</option>    
-                <option value="S">Sim</option>
-                <option value="N">Não</option>
-            </select>
-            <br />
-            <br />
-        </div>
-        <div>
             <label class="control-label">Atividade: *</label><br />
             <select  class="form-control" required name="id_atividade">
                 <option>Selecione</option>    
@@ -52,7 +42,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>subatividade">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

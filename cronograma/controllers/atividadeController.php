@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Description of atividadeController
  *
@@ -14,6 +15,7 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $dados['atividades'] = $atividades->getLista();
+    
             $this->loadTemplate('atividade/atividade', $dados);
         }
     }
@@ -77,7 +79,8 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $atividades->add_atividades($_POST);
-            header('Location: /cronograma/atividade');
+            $id = $atividades->getUltimo();
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id[0]['id_atividade']));
         }
     }
 
@@ -87,7 +90,15 @@ class atividadeController extends controller {
             header('Location: /cronograma');
         } else {
             $atividades = new atividade();
-            $dados['projetos'] = $atividades->getProjeto();
+            if($_SESSION['nome_perfil']=='Orientando'){
+            $dados['projetos'] = $atividades->getProjetoOrientando();
+            }
+            else if ($_SESSION['nome_perfil']=='Orientador') {
+                $dados['projetos'] = $atividades->getProjetoOrientador();
+            }
+            else{
+               $dados['projetos'] = $atividades->getProjeto();
+            }
             $this->loadTemplate('atividade/formAtividade', $dados);
         }
     }
@@ -102,5 +113,35 @@ class atividadeController extends controller {
             header('Location: /cronograma/atividade');
         }
     }
+    
+     public function executar($id) {
+         session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $atividades = new atividade();
+            $atividades->executar_atividades($id);
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+        }
+    }
+    
+         public function validar($id) {
+         session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $atividades = new atividade();
+            $atividades->validar_execucao($id);
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+        }
+    }
+    
+    
+    public function getProjeto($id) {
+             $atividades = new atividade();
+            $dados['atividades'] = $atividades->getProjetoAtividade($id);
+            $id_projeto = $dados['atividades'][0]['id_projeto'];
+            return $id_projeto;
+        }
 
 }

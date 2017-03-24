@@ -49,12 +49,6 @@
             <br />
             <br />
         </div> 
-        <div>
-            <label class="control-label">Data Validação:</label><br />
-            <input class="form-control" name="data_validacao"  type="date"><br />
-            <br />
-        </div>    
-
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>

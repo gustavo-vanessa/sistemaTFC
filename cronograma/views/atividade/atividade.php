@@ -19,14 +19,14 @@
             <?php
             foreach ($atividades as $atividade) {
                 echo "<tr>";
-                echo "<td>" . $atividade['id_atividade'] . "</td>";
-                echo "<td>" . $atividade['nome_atividade'] . "</td>";
-                echo "<td>" . $atividade['status_atividade'] . "</td>";
-                echo "<td>" . $atividade['nome_projeto'] . "</td>";
-                echo "<td>" . $atividade['data_inicio_atividade'] . "</td>";
-                echo "<td>" . $atividade['data_fim_atividade'] . "</td>";
-                echo "<td>" . $atividade['data_validacao_atividade'] . "</td>";
-                echo "<td>" . $atividade['observacoes_atividade'] . "</td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['id_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['nome_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['status_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['nome_projeto'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['data_inicio_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['data_fim_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['data_validacao_atividade'] . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" . $atividade['observacoes_atividade'] . "'></td>";
                 echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/formAlterar/" . $atividade['id_atividade'] . ">Alterar</td>";
                 echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/excluir/" . $atividade['id_atividade'] . ">Excluir</td>";
                 echo "</tr> ";

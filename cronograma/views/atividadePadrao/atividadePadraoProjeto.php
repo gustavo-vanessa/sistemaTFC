@@ -1,6 +1,6 @@
 <form method="POST" action="<?php BASE_URL; echo '../atividade/addPadrao';?>">
 <div class="div_form" id="scroll">
-    <label class="titulo">Atividades</label>
+    <label class="titulo">Atividades e Subatividades Padrões</label>
     <table class="table th td" >
         <tbody>
             <?php
@@ -34,6 +34,7 @@
                 }
                 echo "</tr> ";
             }
+            
             ?>   
         </tbody>
 
@@ -46,7 +47,7 @@
             <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividade/form_add">Adicionar Atividade</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>subatividade/form_add">Adicionar Sub Atividade</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto'?>">Voltar</a></td>
         </tr></table>
     <br />
 

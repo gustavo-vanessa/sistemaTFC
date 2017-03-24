@@ -24,12 +24,16 @@ class atividade extends model {
         $array = array();
         $sql = $this->db->prepare("select id_atividade, 
                                           nome_atividade, 
-                                          status_atividade, 
+                                          case 
+                                            when status_atividade = 'NE' then 'Não Executada'
+                                            when status_atividade = 'E' then 'Executada'
+                                            else ''
+					  end as status_atividade, 
                                           id_projeto, 
                                           obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
-                                          data_inicio_atividade, 
-                                          data_fim_atividade, 
-                                          data_validacao_atividade, 
+                                          DATE_FORMAT(data_inicio_atividade,'%d / %m / %Y')data_inicio_atividade, 
+                                          DATE_FORMAT(data_fim_atividade,'%d / %m / %Y')data_fim_atividade, 
+                                          DATE_FORMAT(data_validacao_atividade,'%d / %m / %Y')data_validacao_atividade, 
                                           observacoes_atividade 
                                    from atividade");
         $sql->execute();
@@ -44,12 +48,16 @@ class atividade extends model {
         $array = array();
         $sql = $this->db->prepare("select id_atividade, 
                                           nome_atividade, 
-                                          status_atividade, 
+                                          case 
+                                            when status_atividade = 'NE' then 'Não Executada'
+                                            when status_atividade = 'E' then 'Executada'
+                                            else ''
+					  end as status_atividade, 
                                           id_projeto, 
                                           obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
-                                          data_inicio_atividade, 
-                                          data_fim_atividade, 
-                                          data_validacao_atividade, 
+                                          DATE_FORMAT(data_inicio_atividade,'%d / %m / %Y')data_inicio_atividade, 
+                                          DATE_FORMAT(data_fim_atividade,'%d / %m / %Y')data_fim_atividade, 
+                                          DATE_FORMAT(data_validacao_atividade,'%d / %m / %Y')data_validacao_atividade, 
                                           observacoes_atividade 
                                    from atividade
                                    where id_projeto = ".$id_projeto);
@@ -75,14 +83,12 @@ class atividade extends model {
                     . "`id_projeto`, "
                     . "`data_inicio_atividade`, "
                     . "`data_fim_atividade`, "
-                    . "`data_validacao_atividade`, "
                     . "`observacoes_atividade`) "
                     . "VALUES ('" . $array_dados['nome_atividade'] . "',"
-                    . "'" . $array_dados['status_atividade'] . "',"
+                    . "'NE',"
                     . "'" . $array_dados['id_projeto'] . "',"
                     . "'" . $array_dados['data_inicio_atividade'] . "',"
                     . "'" . $array_dados['data_fim_atividade'] . "',"
-                    . "'" . $array_dados['data_validacao_atividade'] . "',"
                     . "'" . $array_dados['observacoes_atividade'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
@@ -96,7 +102,7 @@ class atividade extends model {
  * @param inteiro $id
  * @return null
  */
-    public function alterar_atividades($array_dados = array(), $id) {
+    public function alterar_atividades($id, $array_dados = array()) {
         $valor_atenrior = $this->getStringLog($id);                 
         if (count($array_dados) > 1) {
             $string = "update `atividade` "
@@ -115,6 +121,36 @@ class atividade extends model {
             return;
         }
     }
+    
+            public function executar_atividades($id) {
+        $valor_anterior = $this->getStringLog($id);
+        if (count($id) > 0) {
+          $string = "update `atividade` "
+                    . "set `status_atividade` = 'E' "
+                    . "where id_atividade = " . $id;
+          $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);
+            $log = $this->insere_log($sql,$string,tabela,$valor_anterior,$valor_atual);
+            return;
+        }
+    }
+    
+            public function validar_execucao($id) {
+        $valor_anterior = $this->getStringLog($id);
+        if (count($id) > 0) {
+          $string = "update `atividade` "
+                    . "set `data_validacao_atividade` = sysdate() "
+                    . "where id_atividade = " . $id;
+          $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);
+            $log = $this->insere_log($sql,$string,tabela,$valor_anterior,$valor_atual);
+            return;
+        }
+    }
+    
+    
 /**
  * @name Excluir atividade
  * @Funcionalidade Recebe o id da informação que será excluida do banco
@@ -145,13 +181,55 @@ class atividade extends model {
         }
         return $array;
     }
+    
+    
+     public function getUltimo() {
+        $array = array();
+        $sql = $this->db->prepare("SELECT max(id_atividade) id_atividade from atividade");
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
+    
+        public function getProjetoAtividade($id) {
+        $array = array();
+        $sql = $this->db->prepare("select id_projeto from atividade WHERE id_atividade = " . $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
 
     /**
      * @name Get Projeto
      * @Funcionalidade obtem todos projetos cadastrados no sistema
      * @return array
      */
-    public function getProjeto() {
+    public function getProjetoOrientando() {
+        $array = array();
+        $sql = $this->db->prepare("select * from projeto where id_orientando = ".$_SESSION['id_usuario']);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
+        public function getProjetoOrientador() {
+        $array = array();
+        $sql = $this->db->prepare("select * from projeto where id_orientador = ".$_SESSION['id_usuario']);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
+            public function getProjeto() {
         $array = array();
         $sql = $this->db->prepare("select * from projeto");
         $sql->execute();
