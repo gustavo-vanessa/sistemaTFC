@@ -2,6 +2,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style_template.css"/>
+        <link href="estilo1.css" type="text/css" rel="stylesheet">
         <title>Projeto</title>
     </head>
     <body>
