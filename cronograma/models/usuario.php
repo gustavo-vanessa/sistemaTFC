@@ -34,6 +34,7 @@ public function getLista() {
 public function add_usuario ($array_dados = array()){
     if(count($array_dados)>1){ 
         $string = "INSERT INTO `usuario`(`nome_usuario`, `login_usuario`, `senha_usuario`, `email_usuario`) VALUES ('".$array_dados['nome_usuario']."','".$array_dados['login_usuario']."','".$array_dados['Password_usuario']."','".$array_dados['Email_usuario']."')";
+        
         $sql = $this->db->prepare($string);
         $sql->execute();
         $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);

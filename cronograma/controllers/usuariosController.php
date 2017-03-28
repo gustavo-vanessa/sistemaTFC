@@ -80,10 +80,10 @@ class usuariosController extends controller {
             $perfil['Orientador'] = $Orientador;
             $perfil['Orientando'] = $Orientando;
             $perfil['Coordenador'] = $Coordenador;
-
             $usuarios->add_usuario($usuario);
 
             $id = $usuarios->ultimoId();
+
             extract($id[0]);
             $this->inserirPerfilUsuario($perfil, $id_usuario);
 

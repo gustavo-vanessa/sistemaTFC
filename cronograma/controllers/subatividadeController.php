@@ -25,7 +25,7 @@ class subatividadeController extends controller {
         } else {
             $subatividades = new subatividade();
             $subatividades->excluir($id);
-            header('Location: /cronograma/subatividade');
+            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
 
@@ -49,7 +49,7 @@ class subatividadeController extends controller {
             $subatividades = new subatividade();
             $subatividades->add_subatividades($_POST);
             $id = $subatividades->getUltimo();
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id[0]['id_subatividade']));
+            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
 
@@ -71,38 +71,30 @@ class subatividadeController extends controller {
         } else {
             $subatividades = new subatividade();
             $subatividades->alterar_subatividades($_POST, $id);
-            header('Location: /cronograma/subatividade');
+            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
-    
-    
-         public function executar($id) {
-         session_start();
+
+    public function executar($id) {
+        session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
             $subatividades->executar_subatividades($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
-    
-         public function validar($id) {
-         session_start();
+
+    public function validar($id) {
+        session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
             $subatividades->validar_execucao($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
-    
-        public function getProjeto($id) {
-             $subatividades = new subatividade();
-            $dados['subatividades'] = $subatividades->getProjetoSubatividade($id);
-            $id_projeto = $dados['subatividades'][0]['id_projeto'];
-            return $id_projeto;
-        }
 
 }

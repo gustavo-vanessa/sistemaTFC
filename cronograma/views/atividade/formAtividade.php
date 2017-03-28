@@ -1,6 +1,7 @@
 <form method="post" action="<?php echo BASE_URL ?>atividade/add">
 
 
+
     <div class="div_form" id="scroll">
         <label class="titulo">Atividades</label>
 
@@ -40,7 +41,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL;?>atividade">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

@@ -25,6 +25,7 @@ class atividadeController extends controller {
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
+            $_SESSION['id_projeto'] = $id;
             $atividades = new atividade();
             $subAtividade = new subatividade();
             $dados['atividades'] = $atividades->listaAtividadesProjeto($id);
@@ -42,7 +43,7 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $atividades->excluir($id);
-            header('Location: /cronograma/atividade');
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
 
@@ -80,7 +81,7 @@ class atividadeController extends controller {
             $atividades = new atividade();
             $atividades->add_atividades($_POST);
             $id = $atividades->getUltimo();
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id[0]['id_atividade']));
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
 
@@ -110,7 +111,7 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $atividades->alterar_atividades($_POST, $id);
-            header('Location: /cronograma/atividade');
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
     
@@ -121,7 +122,7 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $atividades->executar_atividades($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
     
@@ -132,16 +133,8 @@ class atividadeController extends controller {
         } else {
             $atividades = new atividade();
             $atividades->validar_execucao($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/'.$this->getProjeto($id));
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
-    
-    
-    public function getProjeto($id) {
-             $atividades = new atividade();
-            $dados['atividades'] = $atividades->getProjetoAtividade($id);
-            $id_projeto = $dados['atividades'][0]['id_projeto'];
-            return $id_projeto;
-        }
 
 }

@@ -27,10 +27,10 @@
                 echo "<td>" . $atividade['data_fim_atividade'] . "</td>";
                 echo "<td>" . $atividade['data_validacao_atividade'] . "</td>";
                 echo "<td>" . $atividade['observacoes_atividade'] . "</td>";
-                echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/executar/".$atividade['id_atividade']."'>Executar</a></td>";
-                if ($_SESSION['nome_perfil'] != 'Orientando') {
-                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/validar/".$atividade['id_atividade']."'>Validar</a></td>";
-                }                
+                if(!isset($atividade['data_validacao_atividade'])||$_SESSION['nome_perfil'] != 'Orientando'){
+                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/alterar/".$atividade['id_atividade']."'>Alterar</a></td>";
+                      echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/excluir/".$atividade['id_atividade']."'>Excluir</a></td>";
+                }
                 foreach ($subatividades as $subatividade) {
                     echo "<tr>";
                     echo "<td></td>";
@@ -41,6 +41,10 @@
                     echo "<td>" . $subatividade['data_fim_sub_atividade'] . "</td>";
                     echo "<td>" . $subatividade['data_validacao_sub_atividade'] . "</td>";
                     echo "<td>" . $subatividade['observacoes_sub_atividade'] . "</td>";
+                    if(!isset( $subatividade['data_validacao_sub_atividade'] )||$_SESSION['nome_perfil'] != 'Orientando'){
+                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/formAlterar/".$subatividade['id_sub_atividade']."'>Alterar</a></td>";
+                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/excluir/".$subatividade['id_sub_atividade']."'>Excluir</a></td>";
+                    }
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/executar/".$subatividade['id_sub_atividade']."'>Executar</a></td>";
                 if ($_SESSION['nome_perfil'] != 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/validar/".$subatividade['id_sub_atividade']."'>Validar</a></td>";
