@@ -29,9 +29,7 @@ class atividadeController extends controller {
             $atividades = new atividade();
             $subAtividade = new subatividade();
             $dados['atividades'] = $atividades->listaAtividadesProjeto($id);
-            foreach ($dados['atividades'] as $atividade) {
-                 $dados['subatividades'] = $subAtividade->listaAtividade($atividade['id_atividade']);
-            }           
+            $dados['subatividades'] = $subAtividade->getProjetoSubatividade();
             $this->loadTemplate('atividade/atividadeProjeto', $dados);
         }
     }

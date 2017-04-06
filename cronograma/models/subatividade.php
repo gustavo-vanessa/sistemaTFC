@@ -143,11 +143,24 @@ class subatividade extends model {
         }
     }
     
-    public function getProjetoSubatividade($id) {
+    public function getProjetoSubatividade() {
         $array = array();
-        $sql = $this->db->prepare("SELECT  obter_projeto_subatividade(sa.id_sub_atividade) id_projeto
-                                   FROM sub_atividade sa
-                                   where sa.id_sub_atividade = " . $id);
+        $sql = $this->db->prepare("select sa.id_sub_atividade, 
+                                          sa.nome_sub_atividade, 
+                                          case 
+                                            when sa.status_sub_atividade = 'NE' then 'Não Executada'
+                                            when sa.status_sub_atividade = 'E' then 'Executada'
+                                            else ''
+					  end as status_sub_atividade, 
+                                          sa.id_atividade, 
+                                          obter_nome_atividade(sa.id_atividade, sa.id_sub_atividade) as nome_atividade, 
+                                          DATE_FORMAT(sa.data_inicio_sub_atividade,'%d / %m / %Y')data_inicio_sub_atividade, 
+                                          DATE_FORMAT(sa.data_fim_sub_atividade,'%d / %m / %Y')data_fim_sub_atividade, 
+                                          DATE_FORMAT(sa.data_validacao_sub_atividade,'%d / %m / %Y')data_validacao_sub_atividade, 
+                                          sa.observacoes_sub_atividade 
+                                    from sub_atividade sa, atividade a
+                                    where sa.id_atividade = a.id_atividade
+                                    and a.id_projeto = " . $_SESSION['id_projeto']);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

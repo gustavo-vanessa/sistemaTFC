@@ -83,6 +83,7 @@ and open the template in the editor.
 .titulo {
     margin-left: 350px;
     margin-right: 350px;
+    margin-top: 35px;
     align:center;
     display: inline-block;
     max-width: 100%;
