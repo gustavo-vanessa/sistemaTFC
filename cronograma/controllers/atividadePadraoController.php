@@ -66,6 +66,32 @@ class atividadePadraoController extends controller {
             header('Location: /cronograma/atividadePadrao');
         }
     }
+    
+    public function addPadrao() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+          // print_r($_POST);
+           //print_r($_SESSION);
+          // exit;
+            $atividade = new atividadeController();
+            foreach ($_POST as $atividades) {
+                $array_dados['nome_atividade']=$atividades;
+                $array_dados['id_projeto']=$_SESSION['id_projeto'];
+                $array_dados['data_inicio_atividade']= date('Y/m/d');
+                $array_dados['data_fim_atividade']= date('Y/m/d');
+                $array_dados['observacoes_atividade']='';
+                $atividade->addPadrao($array_dados);
+            }
+            
+            
+            
+            //$atividadesPadroes = new atividadePadrao();
+            //$atividadesPadroes->add_atividades_padroes($_POST);
+            //header('Location: /cronograma/atividadePadrao');
+        }
+    }
 
     public function form_add() {
         session_start();

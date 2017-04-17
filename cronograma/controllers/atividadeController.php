@@ -57,17 +57,15 @@ class atividadeController extends controller {
         }
     }
     
-    public function addPadrao() {
+    public function addPadrao($dados = array()) {
         session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {            
             // tratando variavel post
-            
-            
             $atividades = new atividade();
-            $atividades->add_atividades($_POST);
-            header('Location: /cronograma/atividade');
+            $atividades->add_atividades($dados);
+            header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }
 
