@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require 'controllers/PDF.php';
 spl_autoload_register(function ($class){
     if(strpos($class, 'Controller') > -1) {
         if(file_exists('controllers/'.$class.'.php')) {

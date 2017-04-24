@@ -22,8 +22,8 @@ if (ENVIRONMENT == "development"){
     $config['dbuser'] = 'root';
     $config['dbpass'] = '';
 } else {
-    $config['dbname'] = 'cronograma_tfc';
-    $config['host'] = 'localhost';
-    $config['dbuser'] = 'root';
-    $config['dbpass'] = '';
+    $config['dbname'] = 'u986137012_crono';
+    $config['host'] = 'mysql.hostinger.com.br';
+    $config['dbuser'] = 'u986137012_root ';
+    $config['dbpass'] = 'gust7590';
 }
