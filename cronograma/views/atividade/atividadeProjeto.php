@@ -30,8 +30,8 @@
                                     echo'<tbody>';
                                         echo '<tr>';
                                          if(!isset($atividade['data_validacao_atividade'])||$_SESSION['nome_perfil'] != 'Orientando'){
-                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/alterar/".$atividade['id_atividade']."'>Alterar</a></td>";
-                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/excluir/".$atividade['id_atividade']."'>Excluir</a></td>";
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."atividade/formAlterar/".$atividade['id_atividade']."'>Alterar</a></td>";
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/excluir/".$subatividade['id_sub_atividade']."'>Excluir</a></td>";
                                              }
                                             echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/executar/".$subatividade['id_sub_atividade']."'>Executar</a></td>";
                                             if ($_SESSION['nome_perfil'] != 'Orientando') {
@@ -60,7 +60,7 @@
 <br />
 <table>
     <tr>
-        <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/atividadesPadraoProjeto">Adicionar Atividades e Subatividades</a></td>
+        <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/atividadesPadraoProjeto">Importar Atividades</a></td>
         <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto' ?>">Voltar</a></td>
     </tr></table>
 <br />

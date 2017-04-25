@@ -42,7 +42,7 @@ class perfilController extends controller {
             $header = array('Codigo', 'Nome', 'Descricao');
             $pdf->SetFont('Arial', '', 14);
             $pdf->AddPage();
-            $pdf->ImprovedTable($header, $dados['perfis']);
+            $pdf->tabelaPerfil($header, $dados['perfis']);
             $pdf->Output();
         }
     }

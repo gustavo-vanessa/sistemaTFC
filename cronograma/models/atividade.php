@@ -107,11 +107,8 @@ class atividade extends model {
         if (count($array_dados) > 1) {
             $string = "update `atividade` "
                     . "set `nome_atividade` = '" . $array_dados['nome_atividade'] . "', "
-                    . "`status_atividade` = '" . $array_dados['status_atividade'] . "', "
-                    . "`id_projeto` = '" . $array_dados['id_projeto'] . "', "
                     . "`data_inicio_atividade` = '" . $array_dados['data_inicio_atividade'] . "', "
                     . "`data_fim_atividade` = '" . $array_dados['data_fim_atividade'] . "', "
-                    . "`data_validacao_atividade` = '" . $array_dados['data_validacao_atividade'] . "', "
                     . "`observacoes_atividade` = '" . $array_dados['observacoes_atividade'] . "' "
                     . "where id_atividade = " . $id;
             $sql = $this->db->prepare($string);

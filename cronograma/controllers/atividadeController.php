@@ -106,7 +106,7 @@ class atividadeController extends controller {
             header('Location: /cronograma');
         } else {
             $atividades = new atividade();
-            $atividades->alterar_atividades($_POST, $id);
+            $atividades->alterar_atividades($id,$_POST);
             header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
         }
     }

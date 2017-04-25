@@ -91,7 +91,7 @@ class projetoController extends controller {
             header('Location: /cronograma');
         } else {
             $projeto = new projeto();
-            $projeto->alterar_projeto($_POST, $id);
+            $projeto->alterar_projeto($id, $_POST);
             header('Location: /cronograma/projeto');
         }
     }
@@ -105,6 +105,25 @@ class projetoController extends controller {
             $projeto = new projeto();
             $projeto->validar_projeto($id);
             header('Location: /cronograma/projeto');
+        }
+    }
+    
+    public function relatorio() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+
+            header('Location: /cronograma');
+        } else {
+            $projeto = new projeto();
+            $dados = $projeto->getLista();     
+            print_r($dados['projeto']);
+            exit;
+            $pdf = new PDF('L');
+            $header = array('Codigo', 'Nome', 'Status', 'Data Validação', 'Orientador', 'Orientando');
+            $pdf->SetFont('Arial', '', 14);
+            $pdf->AddPage();
+            $pdf->tabelaProjeto($header, $dados['projeto']);
+            $pdf->Output();
         }
     }
 

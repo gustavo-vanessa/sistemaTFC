@@ -9,33 +9,6 @@
                 <br />
             </div>  
             <div>
-                <label class="control-label">Status Atividade: *</label><br />
-                <select  class="form-control" required disabled name="status_atividade">
-                    <option>Selecione</option>    
-                    <option value="E">Executada</option>
-                    <option value="NE">Não Executada</option>
-                </select>
-                <br />
-                <br />
-            </div>
-            <div>
-                <label class="control-label">Projeto: *</label><br />
-                <select  class="form-control" required name="id_projeto">
-                    <option>Selecione</option>    
-                    <?php foreach ($projetos as $projeto): ?>
-                        <?php
-                        if ($projeto['id_projeto'] == $atividade['id_projeto']) {
-                            echo '<option value=' . $projeto['id_projeto'] . ' selected>' . $projeto['nome_projeto'] . '</option>"';
-                        } else {
-                            echo "<option value=" . $projeto['id_projeto'] . " >" . $projeto['nome_projeto'] . "</option>";
-                        }
-                        ?>
-                    <?php endforeach; ?>
-                </select>
-                <br />
-                <br />
-            </div> 
-            <div>
                 <label class="control-label">Data de Inicio da Atividade: *</label><br />
                 <input class="form-control" required value="<?php echo $atividade['data_inicio_atividade'] ?>" name="data_inicio_atividade" placeholder="Nome da Atividade" type="date"><br />
                 <br />
@@ -50,7 +23,7 @@
                 <input class="form-control" value="<?php echo $atividade['observacoes_atividade'] ?>" name="observacoes_atividade" placeholder="Nome da Atividade" type="text"><br />
                 <br />
             </div>
-        <?php endforeach; ?>
+<?php endforeach; ?>
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
