@@ -167,6 +167,31 @@ class subatividade extends model {
         }
         return $array;
     }
+    
+    public function getProjetoSubatividadeGantt() {
+        $array = array();
+        $sql = $this->db->prepare("select sa.id_sub_atividade, 
+                                          sa.nome_sub_atividade, 
+                                          case 
+                                            when sa.status_sub_atividade = 'NE' then 'Não Executada'
+                                            when sa.status_sub_atividade = 'E' then 'Executada'
+                                            else ''
+					  end as status_sub_atividade, 
+                                          sa.id_atividade, 
+                                          obter_nome_atividade(sa.id_atividade, sa.id_sub_atividade) as nome_atividade, 
+                                          sa.data_inicio_sub_atividade data_inicio_sub_atividade, 
+                                          sa.data_fim_sub_atividade data_fim_sub_atividade, 
+                                          sa.data_validacao_sub_atividade data_validacao_sub_atividade, 
+                                          sa.observacoes_sub_atividade 
+                                    from sub_atividade sa, atividade a
+                                    where sa.id_atividade = a.id_atividade
+                                    and a.id_projeto = " . $_SESSION['id_projeto']);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
 
     public function getUnico($id) {
         $array = array();

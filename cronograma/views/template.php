@@ -2,7 +2,9 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style_template.css"/>
-         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/estilo.css"/>
+         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/estilo.css"/>         
+         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/styles/css/gantti.css"/>
+         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/styles/css/screen.css"/>;
         <title>Projeto</title>
     </head>
     <body>

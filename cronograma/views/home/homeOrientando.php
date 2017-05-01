@@ -8,7 +8,7 @@
         <tbody>
             <tr>
 
-                <?php session_start();
+                <?php
                 $_SESSION["nome_perfil"] = 'Orientando';
                 ?>
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>projeto">Projetos</a></td> 

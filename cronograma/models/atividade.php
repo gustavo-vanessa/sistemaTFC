@@ -69,6 +69,31 @@ class atividade extends model {
         return $array;
     }
     
+    public function listaAtividadesProjetoGantt($id_projeto) {
+        $array = array();
+        $sql = $this->db->prepare("select id_atividade, 
+                                          nome_atividade, 
+                                          case 
+                                            when status_atividade = 'NE' then 'Não Executada'
+                                            when status_atividade = 'E' then 'Executada'
+                                            else ''
+					  end as status_atividade, 
+                                          id_projeto, 
+                                          obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
+                                          data_inicio_atividade data_inicio_atividade, 
+                                          data_fim_atividade data_fim_atividade, 
+                                          data_validacao_atividade data_validacao_atividade, 
+                                          observacoes_atividade 
+                                   from atividade
+                                   where id_projeto = ".$id_projeto);
+        $sql->execute();
+
+        if ($sql) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
     /**
      * @name Adicionar Atividades
      * @param Array $array_dados
