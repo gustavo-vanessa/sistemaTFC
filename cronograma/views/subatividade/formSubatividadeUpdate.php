@@ -8,16 +8,7 @@
                 <input class="form-control" required value="<?php echo $subatividade['nome_sub_atividade'] ?>" name="nome_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
                 <br />
             </div>  
-            <div>
-                <label class="control-label">Status Atividade: *</label><br />
-                <select  class="form-control" required disabled name="status_sub_atividade">
-                    <option>Selecione</option>    
-                    <option value="E">Executada</option>
-                    <option value="NE">Não Executada</option>
-                </select>
-                <br />
-                <br />
-            </div>
+
             <div>
                 <label class="control-label">Atividade: *</label><br />
                 <select  class="form-control" required name="id_atividade">

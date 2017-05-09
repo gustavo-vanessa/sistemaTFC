@@ -86,7 +86,8 @@ class subatividade extends model {
     }
 
     public function alterar_subatividades($id, $array_dados = array()) {
-        $valor_anterior = $this->getStringLog($id);
+       // $valor_anterior = $this->getStringLog($id);
+       
         if (count($array_dados) > 1) {
           $string = "update `sub_atividade` "
                     . "set `nome_sub_atividade` = '" . $array_dados['nome_sub_atividade'] . "', "
@@ -99,8 +100,8 @@ class subatividade extends model {
                     . "where id_sub_atividade = " . $id;
           $sql = $this->db->prepare($string);
             $sql->execute();
-            $valor_atual = $this->getStringLog($id);
-            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            //$valor_atual = $this->getStringLog($id);
+            //$log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
             return;
         }
     }

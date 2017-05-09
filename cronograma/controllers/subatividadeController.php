@@ -70,7 +70,7 @@ class subatividadeController extends controller {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
-            $subatividades->alterar_subatividades($_POST, $id);
+            $subatividades->alterar_subatividades($id, $_POST);
             header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
         }
     }
