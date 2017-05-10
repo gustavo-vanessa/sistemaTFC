@@ -6,14 +6,17 @@
  * and open the template in the editor.
  */
 define("TABELA", "Subatividade");
+
 /**
  * Description of usuario
  *
  * @author Gustavo Martins
  */
 class subatividade extends model {
- public $valor_atenrior = null;
+
+    public $valor_atenrior = null;
     public $valor_atual = null;
+
     public function getLista() {
         $array = array();
         $sql = $this->db->prepare("select id_sub_atividade, 
@@ -36,7 +39,7 @@ class subatividade extends model {
         }
         return $array;
     }
-    
+
     public function listaAtividade($id_atividade) {
         $array = array();
         $sql = $this->db->prepare("select id_sub_atividade, 
@@ -52,84 +55,83 @@ class subatividade extends model {
                                           DATE_FORMAT(data_validacao_sub_atividade,'%d / %m / %Y')data_validacao_sub_atividade, 
                                           observacoes_sub_atividade 
                                    from sub_atividade
-                                   where id_atividade = ".$id_atividade);
+                                   where id_atividade = " . $id_atividade);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
         }
         return $array;
     }
-    
 
     public function add_subatividades($array_dados = array()) {
-        if (count($array_dados) > 1) { 
+        if (count($array_dados) > 1) {
             $string = "INSERT INTO `sub_atividade`"
-                                    . "(`nome_sub_atividade`, "
-                                    . "`status_sub_atividade`, "
-                                    . "`id_atividade`, "
-                                    . "`data_inicio_sub_atividade`, "
-                                    . "`data_fim_sub_atividade`, "
-                                    . "`data_validacao_sub_atividade`, "
-                                    . "`observacoes_sub_atividade`) "
-                                    . "VALUES ('" . $array_dados['nome_sub_atividade'] . "',"
-                                    . "'NE',"
-                                    . "'" . $array_dados['id_atividade'] . "',"
-                                    . "'" . $array_dados['data_inicio_sub_atividade'] . "',"
-                                    . "'" . $array_dados['data_fim_sub_atividade'] . "',"
-                                    . "'" . $array_dados['data_validacao_sub_atividade'] . "',"
-                                    . "'" . $array_dados['observacoes_sub_atividade'] . "')";
+                    . "(`nome_sub_atividade`, "
+                    . "`status_sub_atividade`, "
+                    . "`id_atividade`, "
+                    . "`data_inicio_sub_atividade`, "
+                    . "`data_fim_sub_atividade`, "
+                    . "`data_validacao_sub_atividade`, "
+                    . "`observacoes_sub_atividade`) "
+                    . "VALUES ('" . $array_dados['nome_sub_atividade'] . "',"
+                    . "'NE',"
+                    . "'" . $array_dados['id_atividade'] . "',"
+                    . "'" . $array_dados['data_inicio_sub_atividade'] . "',"
+                    . "'" . $array_dados['data_fim_sub_atividade'] . "',"
+                    . "'" . $array_dados['data_validacao_sub_atividade'] . "',"
+                    . "'" . $array_dados['observacoes_sub_atividade'] . "')";
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql, $string, TABELA, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
 
     public function alterar_subatividades($id, $array_dados = array()) {
-       // $valor_anterior = $this->getStringLog($id);
-       
+        $valor_anterior = $this->getStringLog($id);
+
         if (count($array_dados) > 1) {
-          $string = "update `sub_atividade` "
+            $string = "update `sub_atividade` "
                     . "set `nome_sub_atividade` = '" . $array_dados['nome_sub_atividade'] . "', "
                     . "`status_sub_atividade` = '" . $array_dados['status_sub_atividade'] . "', "
                     . "`id_atividade` = '" . $array_dados['id_atividade'] . "', "
-                     . "`data_inicio_sub_atividade` = '" . $array_dados['data_inicio_sub_atividade'] . "', "
-                     . "`data_fim_sub_atividade` = '" . $array_dados['data_fim_sub_atividade'] . "', "
-                     . "`data_validacao_sub_atividade` = '" . $array_dados['data_validacao_sub_atividade'] . "', "
+                    . "`data_inicio_sub_atividade` = '" . $array_dados['data_inicio_sub_atividade'] . "', "
+                    . "`data_fim_sub_atividade` = '" . $array_dados['data_fim_sub_atividade'] . "', "
+                    . "`data_validacao_sub_atividade` = '" . $array_dados['data_validacao_sub_atividade'] . "', "
                     . "`observacoes_sub_atividade` = '" . $array_dados['observacoes_sub_atividade'] . "' "
                     . "where id_sub_atividade = " . $id;
-          $sql = $this->db->prepare($string);
+            $sql = $this->db->prepare($string);
             $sql->execute();
-            //$valor_atual = $this->getStringLog($id);
-            //$log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            $valor_atual = $this->getStringLog($id);
+            $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
             return;
         }
     }
-    
-        public function executar_subatividades($id) {
+
+    public function executar_subatividades($id) {
         $valor_anterior = $this->getStringLog($id);
         if (count($id) > 0) {
-          $string = "update `sub_atividade` "
+            $string = "update `sub_atividade` "
                     . "set `status_sub_atividade` = 'E' "
                     . "where id_sub_atividade = " . $id;
-          $sql = $this->db->prepare($string);
+            $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
-            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            $log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
             return;
         }
     }
-    
-            public function validar_execucao($id) {
+
+    public function validar_execucao($id) {
         $valor_anterior = $this->getStringLog($id);
         if (count($id) > 0) {
-          $string = "update `sub_atividade` "
+            $string = "update `sub_atividade` "
                     . "set `data_validacao_sub_atividade` = sysdate() "
                     . "where id_sub_atividade = " . $id;
-          $sql = $this->db->prepare($string);
+            $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
-            $log = $this->insere_log($sql,$string,TABELA,$valor_anterior,$valor_atual);
+            $log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
             return;
         }
     }
@@ -139,11 +141,11 @@ class subatividade extends model {
             $string = "DELETE FROM `sub_atividade` WHERE id_sub_atividade = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
-            $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
+            $log = $this->insere_log($sql, $string, TABELA, $this->valor_atenrior, $this->valor_atual);
             return;
         }
     }
-    
+
     public function getProjetoSubatividade() {
         $array = array();
         $sql = $this->db->prepare("select sa.id_sub_atividade, 
@@ -168,7 +170,7 @@ class subatividade extends model {
         }
         return $array;
     }
-    
+
     public function getProjetoSubatividadeGantt() {
         $array = array();
         $sql = $this->db->prepare("select sa.id_sub_atividade, 
@@ -203,7 +205,7 @@ class subatividade extends model {
         }
         return $array;
     }
-    
+
     public function getUltimo() {
         $array = array();
         $sql = $this->db->prepare("select max(id_sub_atividade)  id_subatividade from sub_atividade ");
@@ -223,21 +225,18 @@ class subatividade extends model {
         }
         return $array;
     }
-    
-    
 
     public function getStringLog($id) {
         $resultado = $this->getUnico($id);
         extract($resultado['0']);
-        return $valor = 'id = '.$id_sub_atividade.
-                          ' nome = '.$nome_sub_atividade.
-                          ' status = '.$status_sub_atividade.
-                          ' id atividade = '.$id_atividade.
-                          ' data inicio = '.$data_inicio_sub_atividade.
-                          ' data fim = '.$data_fim_sub_atividade.
-                          ' data validacao = '.$data_validacao_sub_atividade.
-                          ' observacoes = '.$observacoes_sub_atividade;
-        
-        
+        return $valor = 'id = ' . $id_sub_atividade .
+                ' nome = ' . $nome_sub_atividade .
+                ' status = ' . $status_sub_atividade .
+                ' id atividade = ' . $id_atividade .
+                ' data inicio = ' . $data_inicio_sub_atividade .
+                ' data fim = ' . $data_fim_sub_atividade .
+                ' data validacao = ' . $data_validacao_sub_atividade .
+                ' observacoes = ' . $observacoes_sub_atividade;
     }
+
 }

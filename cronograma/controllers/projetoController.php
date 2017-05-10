@@ -101,13 +101,13 @@ class projetoController extends controller {
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
-           
+
             $projeto = new projeto();
             $projeto->validar_projeto($id);
             header('Location: /cronograma/projeto');
         }
     }
-    
+
     public function relatorio() {
         session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
@@ -115,14 +115,21 @@ class projetoController extends controller {
             header('Location: /cronograma');
         } else {
             $projeto = new projeto();
-            $dados = $projeto->getLista();     
-            print_r($dados['projeto']);
-            exit;
+            if ($_SESSION['nome_perfil'] === 'Coordenador') {
+                $dados['projetos'] = $projeto->getLista();
+            } else if ($_SESSION['nome_perfil'] === 'Orientador') {
+                $dados['projetos'] = $projeto->getListaOrientador();
+            } else {
+                $dados['projetos'] = $projeto->getListaOrientando();
+            }
+            
+            
             $pdf = new PDF('L');
             $header = array('Codigo', 'Nome', 'Status', 'Data Validação', 'Orientador', 'Orientando');
-            $pdf->SetFont('Arial', '', 14);
             $pdf->AddPage();
-            $pdf->tabelaProjeto($header, $dados['projeto']);
+            $pdf->AddFont('DejaVu', '', 'DejaVuSansCondensed.ttf', true);
+            $pdf->SetFont('DejaVu', '', 14);
+            $pdf->tabelaProjeto($header, $dados['projetos']);
             $pdf->Output();
         }
     }

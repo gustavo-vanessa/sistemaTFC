@@ -29,7 +29,10 @@
                 }
                 echo "</td>";
                 echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividadePadrao/formAlterar/" . $subatividadePadrao['id_sub_atividades_padroes'] . ">Alterar</td>";
-                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividadePadrao/excluir/" . $subatividadePadrao['id_sub_atividades_padroes'] . ">Excluir</td>";
+                echo "<td></td> ";
+                echo "<td></td> ";
+                echo "<td></td> ";
+                echo "<td><a class = 'btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "subatividadePadrao/excluir/" . $subatividadePadrao['id_sub_atividades_padroes'] . ">Excluir</td>";
                 echo "</tr> ";
             }
             ?>

@@ -79,6 +79,7 @@ and open the template in the editor.
     max-width: 100%;
     margin-bottom: 5px;
     font-weight: bold;
+    
 }
 
 .titulo {
@@ -133,6 +134,11 @@ and open the template in the editor.
 .btn-padrao {
     color: #fff;
     background-color: #015637;
+}
+
+.btn-excluir{
+    color: #fff;
+    background-color: #DC143C;
 }
 
 .btn-shadow {
@@ -388,6 +394,7 @@ table th[class*="col-"] {
     display: inline-block;
     width: 60px;
     height: 27px;
+    
 }
 
 
@@ -464,3 +471,5 @@ body{
 ::-webkit-scrollbar-thumb {
     background: #cccccc;
 }
+
+

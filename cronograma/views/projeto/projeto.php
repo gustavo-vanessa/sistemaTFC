@@ -28,17 +28,27 @@
                 echo "<td>" . $projeto['desc_pmbok'] . "</td>";
                 if ($_SESSION['nome_perfil'] != 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
-                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
                 } else if (!isset($projeto['data_validacao'])) {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
-                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
                 }
                 
                 echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                 if ($_SESSION['nome_perfil'] != 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/validarProjeto/" . $projeto['id_projeto'] . ">Validar Projeto</td>";
+                }
+                
+                if($_SESSION['nome_perfil'] != 'Orientando'){
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td></td>"; 
+                    echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
+                }
+                if (!isset($projeto['data_validacao'])){
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
                 }
 
 
