@@ -37,6 +37,7 @@
                 echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                 if ($_SESSION['nome_perfil'] != 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/validarProjeto/" . $projeto['id_projeto'] . ">Validar Projeto</td>";
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
                 }
                 
                 if($_SESSION['nome_perfil'] != 'Orientando'){
