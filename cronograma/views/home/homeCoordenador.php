@@ -1,5 +1,4 @@
 <div>
-    <h1 class="label">Eba estou no perfil de Coordenandor \o/</h1>
 </div>
 <div class="opcoes">
     <br />

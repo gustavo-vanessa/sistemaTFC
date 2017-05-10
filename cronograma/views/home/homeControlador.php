@@ -1,5 +1,5 @@
 <div>
-    <h1 class="label">Selecione o perfil desejado</h1>
+    
 </div>
 <div class="opcoes">
     <br />

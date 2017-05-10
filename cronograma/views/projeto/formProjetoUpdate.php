@@ -12,7 +12,8 @@
             <div>
                 <label class="control-label">Status do Projeto: *</label><br />
                 <select  class="form-control" required name="status_projeto">
-                    <option>Selecione</option>    
+                    <option>Selecione</option>
+                    <option value="AP">Aprovado TFC I</option>
                     <option value="A">Ativo</option>
                     <option value="I">Inativo</option>
                 </select>

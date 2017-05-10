@@ -114,5 +114,23 @@ class atividadePadraoController extends controller {
             header('Location: /cronograma/atividadePadrao');
         }
     }
+    
+        public function relatorio() {
+        session_start();
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+
+            header('Location: /cronograma');
+        } else {
+            $atividadesPadroes = new atividadePadrao();
+            $dados['atividadesPadroes'] = $atividadesPadroes->getLista();
+            $pdf = new PDF('L');
+            $header = array('Codigo', 'Nome', 'Descrição', 'PMBOK', 'Obrigatório');
+            $pdf->AddPage();
+            $pdf->AddFont('DejaVu', '', 'DejaVuSansCondensed.ttf', true);
+            $pdf->SetFont('DejaVu', '', 14);
+            $pdf->tabelaAtividadePadrao($header, $dados['atividadesPadroes']);
+            $pdf->Output();
+        }
+    }
 
 }
