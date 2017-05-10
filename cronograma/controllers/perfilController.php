@@ -39,9 +39,10 @@ class perfilController extends controller {
             $perfis = new perfil();
             $dados['perfis'] = $perfis->getLista();
             $pdf = new PDF();
-            $header = array('Codigo', 'Nome', 'Descricao');
-            $pdf->SetFont('Arial', '', 14);
+            $header = array('Código', 'Nome', 'Descrição');
             $pdf->AddPage();
+            $pdf->AddFont('DejaVu', '', 'DejaVuSansCondensed.ttf', true);
+            $pdf->SetFont('DejaVu', '', 14);
             $pdf->tabelaPerfil($header, $dados['perfis']);
             $pdf->Output();
         }
