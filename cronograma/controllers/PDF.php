@@ -93,7 +93,7 @@ class PDF extends tFPDF {
         $this->Cell(array_sum($w), 0, '', 'T');
     }
     
-    function tabelaProjeto($header, $data) {
+    function tabelaProjeto1($header, $data) {
        //print_r($data);
            
         $w = array(40, 45, 110);
