@@ -93,6 +93,35 @@ class PDF extends tFPDF {
         $this->Cell(array_sum($w), 0, '', 'T');
     }
     
+    function tabelaProjeto($header, $data) {
+       //print_r($data);
+           
+        $w = array(40, 45, 110);
+        for ($i = 0; $i < count($header); $i++) {
+            $this->Cell($w[1], 7, $header[$i], 1, 0, 'C');
+        }
+        $this->Ln();
+        
+        foreach ($data as $inf) {
+            print_r($inf);
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+            
+            for ($i = 0; $i < (count($inf) / 2); $i++) {
+                echo 'inf na posicao: '.$i. ' ------------------> ';
+                echo $inf[$i];
+                echo '<br>';
+                //$this->Cell($w[1], 6, $inf[$i], 'LR');
+            }
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+            $this->Ln();
+        }
+        $this->Cell(array_sum($w), 0, '', 'T');
+    }
+    
     function tabelaUsuario($header, $data) {
         $w = array(40, 45, 110);
         for ($i = 0; $i < count($header); $i++) {

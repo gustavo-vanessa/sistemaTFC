@@ -30,13 +30,15 @@
                                     echo'<tbody>';
                                         echo '<tr>';
                                          if(!isset($atividade['data_validacao_atividade'])||$_SESSION['nome_perfil'] != 'Orientando'){
-                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/formAlterar/".$subatividade['id_sub_atividade']."'>Alterar</a></td>";
-                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/excluir/".$subatividade['id_sub_atividade']."'>Excluir</a></td>";
-                                             }
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/formAlterar/".$subatividade['id_sub_atividade']."'>Alterar</a></td>";                                            
+                                            }
                                             echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/executar/".$subatividade['id_sub_atividade']."'>Executar</a></td>";
                                             if ($_SESSION['nome_perfil'] != 'Orientando') {
                                                 echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '".BASE_URL."subatividade/validar/".$subatividade['id_sub_atividade']."'>Validar</a></td>";
                                             }
+                                               if(!isset($atividade['data_validacao_atividade'])||$_SESSION['nome_perfil'] != 'Orientando'){                                            
+                                            echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = '".BASE_URL."subatividade/excluir/".$subatividade['id_sub_atividade']."'>Excluir</a></td>";
+                                             }
                                         echo '</tr>';
                                     echo'</tbody>';
                                 echo '</table>';

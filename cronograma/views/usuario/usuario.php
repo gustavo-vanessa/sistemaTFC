@@ -21,7 +21,10 @@
                         echo "<td>" . $usuario['login_usuario'] . "</td>";
                         echo "<td>" . $usuario['email_usuario'] . "</td>";
                         echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "usuarios/formAlterar/" . $usuario['id_usuario'] . ">Alterar</td>";
-                        echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "usuarios/excluir/" . $usuario['id_usuario'] . ">Excluir</td>";
+                        echo "<td></td> ";
+                        echo "<td></td> ";
+                        echo "<td></td> ";
+                        echo "<td><a class = 'btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "usuarios/excluir/" . $usuario['id_usuario'] . ">Excluir</td>";
                         echo "</tr> ";
                     }
                     ?>
