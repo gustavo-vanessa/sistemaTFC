@@ -18,7 +18,6 @@
                 echo "<td>" . $perfil['id_perfil'] . "</td>";
                 echo "<td>" . $perfil['nome_perfil'] . "</td>";
                 echo "<td>" . $perfil['descricao_perfil'] . "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "/perfil/formAlterar/" . $perfil['id_perfil'] . ">Visualizar</td>";
                 echo "</tr> ";
             }
             ?>
@@ -26,6 +25,7 @@
     </table>
     <br />
     <table><tr>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'perfil/relatorio' ?>" target="_blank">Relatório</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

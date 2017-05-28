@@ -16,7 +16,7 @@ class projetoController extends controller {
     //put your code here public function index() {
     public function index() {
         session_start();
-
+        
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {

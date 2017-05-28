@@ -35,7 +35,7 @@ class model {
                     $erroMsg = 'Mensagem retornada: Sucesso';
                     $erro = $erroCod . ' ' . $erroMsg;
                     $log = "INSERT INTO `log` (`data_log`, `id_usuario`, `comando_realizado_log`, `valor_anterior_log`, `valor_atual_log`, `tabela_alteracao_log`, `erro_log`) "
-                                    . "VALUES (LOCALTIME(), '".$_SESSION['nome_usuario']."','" . addslashes($string) . "','".$valor_anterior."','".$valor_atual."','".$tabela."','" . $erro . "')";
+                                    . "VALUES (LOCALTIME(), '".$_SESSION['id_usuario']."','" . addslashes($string) . "','".$valor_anterior."','".$valor_atual."','".$tabela."','" . $erro . "')";
                     $sqlLog = $this->db->prepare($log);
                     $sqlLog->execute();
                     return 1;

@@ -58,7 +58,7 @@ class atividadeController extends controller {
     }
     
     public function addPadrao($dados = array()) {
-        session_start();
+       // session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {            

@@ -46,6 +46,7 @@ class subatividadeController extends controller {
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
+           
             $subatividades = new subatividade();
             $subatividades->add_subatividades($_POST);
             $id = $subatividades->getUltimo();
@@ -53,13 +54,14 @@ class subatividadeController extends controller {
         }
     }
 
-    public function form_add() {
+    public function form_add($id_atividade) {
         session_start();
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
-            $dados['atividades'] = $subatividades->getAtividade();
+            $dados['atividades'] = $subatividades->getAtividadeUnica($id_atividade);
+           
             $this->loadTemplate('subatividade/formSubatividade', $dados);
         }
     }

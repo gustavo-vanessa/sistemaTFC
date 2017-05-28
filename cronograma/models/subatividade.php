@@ -70,16 +70,13 @@ class subatividade extends model {
                     . "`status_sub_atividade`, "
                     . "`id_atividade`, "
                     . "`data_inicio_sub_atividade`, "
-                    . "`data_fim_sub_atividade`, "
-                    . "`data_validacao_sub_atividade`, "
-                    . "`observacoes_sub_atividade`) "
+                    . "`data_fim_sub_atividade` ) "
                     . "VALUES ('" . $array_dados['nome_sub_atividade'] . "',"
                     . "'NE',"
                     . "'" . $array_dados['id_atividade'] . "',"
                     . "'" . $array_dados['data_inicio_sub_atividade'] . "',"
-                    . "'" . $array_dados['data_fim_sub_atividade'] . "',"
-                    . "'" . $array_dados['data_validacao_sub_atividade'] . "',"
-                    . "'" . $array_dados['observacoes_sub_atividade'] . "')";
+                    . "'" . $array_dados['data_fim_sub_atividade'] . "')";
+           
             $sql = $this->db->prepare($string);
             $sql->execute();
             $log = $this->insere_log($sql, $string, TABELA, $this->valor_atenrior, $this->valor_atual);
@@ -216,9 +213,9 @@ class subatividade extends model {
         return $array;
     }
 
-    public function getAtividade() {
+    public function getAtividadeUnica($id) {
         $array = array();
-        $sql = $this->db->prepare("select id_atividade, nome_atividade from atividade");
+        $sql = $this->db->prepare("select id_atividade, nome_atividade from atividade where id_atividade = ".$id);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();

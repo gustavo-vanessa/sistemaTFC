@@ -13,9 +13,11 @@
                 <label class="control-label">Status do Projeto: *</label><br />
                 <select  class="form-control" required name="status_projeto">
                     <option>Selecione</option>
+                    <option value="IN" selected="">Iniciado</option>
+                    <option value="EP" selected="">Em Progresso</option>
                     <option value="AP">Aprovado TFC I</option>
-                    <option value="A">Ativo</option>
-                    <option value="I">Inativo</option>
+                    <option value="A">Atrasado</option>
+                    <option value="F">Finalizado</option>
                 </select>
                 <br />
                 <br />

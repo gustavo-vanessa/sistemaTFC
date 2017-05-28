@@ -26,7 +26,7 @@
                 echo "<td>" . $log['comando_realizado_log'] . "</td>";
                 echo "<td>" . $log['tabela_alteracao_log'] . "</td>";
                 echo "<td>" . $log['erro_log'] . "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "log/formAlterar/" . $log['id_log'] . ">Visualizar</td>";
+                
                 echo "</tr> ";
             }
             ?>

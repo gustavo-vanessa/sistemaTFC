@@ -19,40 +19,43 @@
             <?php
             foreach ($projetos as $projeto) {
                 echo "<tr>";
-                echo "<td>".$projeto['id_projeto']."</td>";
+                echo "<td>" . $projeto['id_projeto'] . "</td>";
                 echo "<td>" . $projeto['nome_projeto'] . "</td>";
-                echo "<td>" . $projeto['status_projeto'] . "</td>";
+                switch ($projeto['status_projeto']) {
+                    case ("IN"):
+                        echo "<td>Iniciado</td>";
+                    case ("EP"):
+                        echo "<td>Em Progresso</td>";
+                    case ("AP"):
+                        echo "<td>Aprovado TFC I</td>";
+                    case ("A"):
+                        echo "<td>Atrasado</td>";
+                    case ("F"):
+                        echo "<td>Finalizado</td>";
+                }
                 echo "<td>" . $projeto['data_validacao'] . "</td>";
                 echo "<td>" . $projeto['nome_orientador'] . "</td>";
                 echo "<td>" . $projeto['nome_orientando'] . "</td>";
                 echo "<td>" . $projeto['desc_pmbok'] . "</td>";
-                if ($_SESSION['nome_perfil'] != 'Orientando') {
-                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
+                if (!isset($projeto['data_validacao']) && $_SESSION['nome_perfil'] == 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                } else if (!isset($projeto['data_validacao'])) {
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
-                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                }
-                
-                echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
-                if ($_SESSION['nome_perfil'] != 'Orientando') {
+                    echo "<td></td>";
+                    echo "<td></td>";
+                    echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
+                } else if ($_SESSION['nome_perfil'] != 'Orientando') {
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/validarProjeto/" . $projeto['id_projeto'] . ">Validar Projeto</td>";
                     echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                }
-                
-                if($_SESSION['nome_perfil'] != 'Orientando'){
-                    echo "<td></td>";
-                    echo "<td></td>";
-                    echo "<td></td>"; 
-                    echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
-                }
-                if (!isset($projeto['data_validacao'])){
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
+                } else {
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
+                    echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                 }
-
-
                 echo "</tr> ";
             }
             ?>
@@ -61,6 +64,7 @@
     <br />
     <table><tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>projeto/form_add">Adicionar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto/relatorio' ?>" target="_blank">Relatório</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

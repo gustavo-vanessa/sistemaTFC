@@ -9,10 +9,9 @@
         <div>
             <label class="control-label">Atividade: *</label><br />
             <select  class="form-control" required name="id_atividade">
-                <option>Selecione</option>    
                 <?php
                 foreach ($atividades as $atividade):
-                    echo "<option value=" . $atividade['id_atividade'] . " >" . $atividade['nome_atividade'] . "</option>";
+                    echo "<option value=" . $atividade['id_atividade'] . " selected>" . $atividade['nome_atividade'] . "</option>";
                 endforeach;
                 ?>
             </select>
@@ -29,17 +28,7 @@
             <input class="form-control" name="data_fim_sub_atividade" required type="date"><br />
             <br />
         </div>
-        <div>
-            <label class="control-label">Data de Validação da Subatividade:</label><br />
-            <input class="form-control" name="data_validacao_sub_atividade"  type="date"><br />
-            <br />
-        </div>
-        <div>
-            <label class="control-label">Observação:</label><br />
-            <input class="form-control" name="observacoes_sub_atividade" placeholder="Observação" type="text"><br />
-            <br />
-        </div>
-        <table>
+       <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
                 <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>

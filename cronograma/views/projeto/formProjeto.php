@@ -9,9 +9,7 @@
         <div>
             <label class="control-label">Status do Projeto: *</label><br />
             <select  class="form-control" required name="status_projeto">
-                <option>Selecione</option>    
-                <option value="A">Ativo</option>
-                <option value="I">Inativo</option>
+                <option value="IN" selected="">Iniciado</option>
             </select>
             <br />
             <br />
@@ -28,12 +26,19 @@
             <br />
         </div> 
         <div>
+           
             <label class="control-label">Orientando: *</label><br />
-            <select  class="form-control" required name="id_orientando">
-                <option>Selecione</option>    
-                <?php foreach ($orientandos as $orientando): ?>
-                    <?php echo "<option value=" . $orientando['id_usuario'] . " >" . $orientando['nome_usuario'] . "</option>"; ?>
-                <?php endforeach; ?>
+            <select  class="form-control" required name="id_orientando">   
+                <?php 
+                if ($_SESSION['nome_perfil'] != 'Orientando'){
+                foreach ($orientandos as $orientando):
+                     echo "<option value=" . $orientando['id_usuario'] . " >" . $orientando['nome_usuario'] . "</option>"; 
+                endforeach; 
+                }
+                else{
+                    echo "<option value=" . $_SESSION['id_usuario'] . " selected>" . $_SESSION['nome_usuario'] . "</option>"; 
+                }
+                ?>
             </select>
             <br />
             <br />

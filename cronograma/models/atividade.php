@@ -46,21 +46,23 @@ class atividade extends model {
     
     public function listaAtividadesProjeto($id_projeto) {
         $array = array();
-        $sql = $this->db->prepare("select id_atividade, 
-                                          nome_atividade, 
+        $sql = $this->db->prepare("select a.id_atividade, 
+                                          a.nome_atividade, 
                                           case 
-                                            when status_atividade = 'NE' then 'Não Executada'
-                                            when status_atividade = 'E' then 'Executada'
+                                            when a.status_atividade = 'NE' then 'Não Executada'
+                                            when a.status_atividade = 'E' then 'Executada'
                                             else ''
 					  end as status_atividade, 
-                                          id_projeto, 
-                                          obter_nome_projeto(id_projeto, id_atividade) as nome_projeto, 
-                                          DATE_FORMAT(data_inicio_atividade,'%d / %m / %Y')data_inicio_atividade, 
-                                          DATE_FORMAT(data_fim_atividade,'%d / %m / %Y')data_fim_atividade, 
-                                          DATE_FORMAT(data_validacao_atividade,'%d / %m / %Y')data_validacao_atividade, 
-                                          observacoes_atividade 
-                                   from atividade
-                                   where id_projeto = ".$id_projeto);
+                                          a.id_projeto,
+                                          p.data_validacao,
+                                          obter_nome_projeto(a.id_projeto, a.id_atividade) as nome_projeto, 
+                                          DATE_FORMAT(a.data_inicio_atividade,'%d / %m / %Y')data_inicio_atividade, 
+                                          DATE_FORMAT(a.data_fim_atividade,'%d / %m / %Y')data_fim_atividade, 
+                                          DATE_FORMAT(a.data_validacao_atividade,'%d / %m / %Y')data_validacao_atividade, 
+                                          a.observacoes_atividade 
+                                   from atividade a, projeto p
+                                   where a.id_projeto = p.id_projeto
+                                   and a.id_projeto = ".$id_projeto);
         $sql->execute();
 
         if ($sql) {

@@ -1,18 +1,22 @@
 <div class="div_form" id="scroll">
-    <label class="titulo">Atividades e Subatividades Padrões</label>
+    <label class="titulo">Atividades e Subatividades </label>
+    
+    
     <form name="formT">
-
+        
+        
+        
         <td width="10%">
             <table width="10%" align="center" cellpadding="5" cellspacing="0">
                 <thead>
-                <td>Atividades Disponiveis</td>
+                <td>Atividades Disponíveis</td>
                 <td></td>
                 <td></td>
                 <td>Atividades Selecionadas</td>
                 </thead>
                 <tbody>
-                <td rowspan="2" style="WIDTH:150px; HEIGHT:30px;">
-                    <select name="ati_disp" id="ati_disp" size=4 class="xT" multiple > 
+                <td rowspan="2" style="WIDTH:200px; HEIGHT:30px;">
+                    <select name="ati_disp" id="ati_disp" size=15 class="xT" multiple style="width: 300"> 
                         <?php
                         foreach ($atividades as $atividade) {
                             echo " <option value='" . $atividade['nome_atividades_padroes'] . "'>" . $atividade['nome_atividades_padroes'] . "</option>";
@@ -24,7 +28,7 @@
                 <td><input name="vai" type="button" class="btns" onClick="adicionaItem(formT.ati_disp, formT.ati_sel);" value="=>"></td>
                 <td rowspan="2" style="WIDTH: 150px; HEIGHT: 30px">
 
-                    <select name="ati_sel" id="ati_sel" size=4 class="xT" multiple> 
+                    <select name="ati_sel" id="ati_sel" size=15 class="xT" multiple style="width: 300"> 
 
                     </select>
                 </td>
