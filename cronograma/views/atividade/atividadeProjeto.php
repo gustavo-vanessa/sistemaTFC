@@ -35,7 +35,7 @@
                                     if (!isset($atividade['data_validacao_atividade']) || $_SESSION['nome_perfil'] != 'Orientando') {
                                         echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Alterar</a></td>";
                                     }
-                                    if (!isset($atividade['data_validacao'])) {
+                                    if (isset($atividade['data_validacao'])) {
                                         echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/executar/" . $subatividade['id_sub_atividade'] . "'>Executar</a></td>";
                                     }
                                     if ($_SESSION['nome_perfil'] != 'Orientando') {
@@ -64,7 +64,7 @@
                     ?>
                 </ul>
                  <li class="file">
-                              <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "subatividade/form_add/". $atividade['id_atividade']."'>incluir subatividade</a></td>";?>
+                              <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "subatividade/form_add/". $atividade['id_atividade']."'>Incluir subatividade</a></td>";?>
                      <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "atividade/formAlterar/". $atividade['id_atividade']."'>Alterar atividade</a></td>";?>
                      <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-excluir' href = '" . BASE_URL . "atividade/excluir/". $atividade['id_atividade']."'>Excluir atividade</a></td>";?>
                             </li>

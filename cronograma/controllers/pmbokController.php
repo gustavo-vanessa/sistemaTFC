@@ -8,7 +8,7 @@
 class pmbokController extends controller {
 
     public function index() {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -19,7 +19,7 @@ class pmbokController extends controller {
     }
 
     public function excluir($id) {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -30,7 +30,7 @@ class pmbokController extends controller {
     }
 
     public function formAlterar($id) {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -41,7 +41,7 @@ class pmbokController extends controller {
     }
 
     public function add() {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -52,7 +52,7 @@ class pmbokController extends controller {
     }
 
     public function form_add() {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -62,7 +62,7 @@ class pmbokController extends controller {
     }
 
     public function alterar($id) {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {

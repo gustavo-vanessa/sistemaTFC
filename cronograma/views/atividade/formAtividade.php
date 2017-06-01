@@ -41,7 +41,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL;?>atividade">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

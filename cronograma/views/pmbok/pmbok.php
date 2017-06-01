@@ -1,4 +1,4 @@
- <div class="div_form" id="scroll">
+<div class="div_form" id="scroll">
     <label class="titulo">PMBOK</label>
     <table class="table th td" >
         <thead>
@@ -25,8 +25,9 @@
     <br />
     <br />
     <br />
-    <table><tr>
+    <table id="el"><tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>pmbok/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

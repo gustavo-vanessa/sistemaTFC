@@ -8,7 +8,7 @@
 class subatividadeController extends controller {
 
     public function index() {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -19,7 +19,7 @@ class subatividadeController extends controller {
     }
 
     public function excluir($id) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -30,19 +30,20 @@ class subatividadeController extends controller {
     }
 
     public function formAlterar($id) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
             $dados['subatividades'] = $subatividades->getUnico($id);
-            $dados['atividades'] = $subatividades->getAtividade();
+            $dados['atividades'] = $subatividades->getAtividadeUnica($dados['subatividades'][0]['id_atividade']);
+            
             $this->loadTemplate('subatividade/formSubatividadeUpdate', $dados);
         }
     }
 
     public function add() {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -55,7 +56,7 @@ class subatividadeController extends controller {
     }
 
     public function form_add($id_atividade) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -67,7 +68,7 @@ class subatividadeController extends controller {
     }
 
     public function alterar($id) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -78,7 +79,7 @@ class subatividadeController extends controller {
     }
 
     public function executar($id) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -89,7 +90,7 @@ class subatividadeController extends controller {
     }
 
     public function validar($id) {
-        session_start();
+        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {

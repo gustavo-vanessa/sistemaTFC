@@ -79,7 +79,7 @@ class Gantti {
     $wrapstyle  = 'style="width: ' . $this->options['cellwidth'] . 'px"';
     $totalstyle = 'style="width: ' . (count($this->days)*$this->options['cellwidth']) . 'px"';
     // start the diagram    
-    $html[] = '<figure class="gantt">';    
+    $html[] = '<figure class="gantt" id="tabela">';    
 
     // set a title if available
     if($this->options['title']) {

@@ -5,8 +5,12 @@
     <br />
     <table  >
         <tbody>
-            <?php session_start();
-            $_SESSION["nome_perfil"] = 'Coordenador';?>
+            <?php  if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    }
+    $_SESSION["nome_perfil"] = 'Coordenador';
+    ?>
             <tr>
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>projeto">Projetos</a></td> 
                 <td><a class="btn btn-padrao btn-shadow btn-rc btn_menu" href="<?php echo BASE_URL ?>atividadePadrao">Atividades Padrões</a></td> 

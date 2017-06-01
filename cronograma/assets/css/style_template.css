@@ -15,7 +15,7 @@ and open the template in the editor.
 .div_cabecalho{
     width: 100%;
     height: 180px;
-    position: fixed;
+    position: absolute;
     top: 0px; 
     background: #015637;
     text-align: center;
@@ -147,7 +147,7 @@ and open the template in the editor.
     text-decoration: none;
     box-sizing: border-box;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 9px;
+    font-size: 13px;
     border: 0px;
 }
 

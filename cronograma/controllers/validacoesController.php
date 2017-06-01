@@ -19,6 +19,7 @@
 class validacoesController extends controller {
 
     public function index() {
+        if(!isset($_SESSION))     {         session_start();     }
         $dados = array();
         $login = new login();
         $login_usuario = null;
@@ -34,6 +35,8 @@ class validacoesController extends controller {
                 $sessao['id_usuario'] =  $dados['usuarios'][0]['id_usuario'];
                 $this->verificaPerfil($sessao['nome_perfil'],$sessao);
             } else if (count($dados['usuarios']) > 1) {
+               $_SESSION['nome_usuario'] = $dados['usuarios'][0]['nome_usuario'];
+               $_SESSION['id_usuario'] =  $dados['usuarios'][0]['id_usuario'];
                 $this->loadTemplate('home/homeControlador', $dados);
             } else {
                 $dados['mensagem'] = "Usuario ou senha invalida";
@@ -49,6 +52,8 @@ class validacoesController extends controller {
         } else if ($nome_perfil == "Orientador") {
             $home->orientador($dados);
         } else {
+            
+
             $home->orientando($dados);
         }
         exit;

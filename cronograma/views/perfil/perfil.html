@@ -6,15 +6,13 @@
             <tr>
                 <th>Cód</th>
                 <th>Nome</th>
-                <th>Descrição</th>                  
+                <th>Descrição</th>
+                <th>Ações</th>                    
             </tr>
         </thead>
         <tbody>
             <?php
-             if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    }
+            //session_start();
             foreach ($perfis as $perfil) {
                 echo "<tr>";
                 echo "<td>" . $perfil['id_perfil'] . "</td>";
@@ -26,8 +24,9 @@
         </tbody>
     </table>
     <br />
-    <table id="el"><tr>
-            <td><a  class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
-            <td><a  class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+    <table><tr>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'perfil/relatorio' ?>" target="_blank">Relatório</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'perfil/relatorio' ?>" target="_blank">Relatório 2</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

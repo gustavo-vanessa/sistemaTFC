@@ -31,9 +31,10 @@
                 </tbody>
             </table>
             <br />
-            <table>
+            <table id="el">
                 <tr>
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>usuarios/form_add">Adicionar</a></td>
+                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
                     <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
                 </tr></table>
         </div>

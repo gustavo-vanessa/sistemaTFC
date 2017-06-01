@@ -42,9 +42,7 @@ class ganttController extends controller {
             'class' => 'urgent',
         );
 
-        print_r($data);
-//exit;
-
+       
         $gantti = new Gantti($data, array(
             'title' => 'Demo',
             'cellwidth' => 25,
@@ -57,7 +55,7 @@ class ganttController extends controller {
     }
 
     public function ganttProjeto($id) {
-        session_start();
+       if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -88,8 +86,6 @@ class ganttController extends controller {
             }
 
 
-            // print_r($data);
-            //  exit;
 
             $gantti = new Gantti($data, array(
                 'title' => $titulo,

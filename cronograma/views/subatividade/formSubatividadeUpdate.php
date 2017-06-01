@@ -12,14 +12,11 @@
             <div>
                 <label class="control-label">Atividade: *</label><br />
                 <select  class="form-control" required name="id_atividade">
-                    <option>Selecione</option>    
                     <?php foreach ($atividades as $atividade): ?>
                         <?php
                         if ($atividade['id_atividade'] == $subatividade['id_atividade']) {
                             echo '<option value=' . $atividade['id_atividade'] . ' selected>' . $atividade['nome_atividade'] . '</option>"';
-                        } else {
-                            echo "<option value=" . $atividade['id_atividade'] . " >" . $atividade['nome_atividade'] . "</option>";
-                        }
+                        } 
                         ?>
                     <?php endforeach; ?>
                 </select>
@@ -37,11 +34,6 @@
                 <br />
             </div>
             <div>
-                <label class="control-label">Data de Validação da Atividade:</label><br />
-                <input class="form-control" value="<?php echo $subatividade['data_validacao_sub_atividade'] ?>" name="data_validacao_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
-                <br />
-            </div>
-            <div>
                 <label class="control-label">Observação:</label><br />
                 <input class="form-control" value="<?php echo $subatividade['observacoes_sub_atividade'] ?>" name="observacoes_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
                 <br />
@@ -50,7 +42,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

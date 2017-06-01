@@ -18,6 +18,7 @@ class controller {
     }
     
     public function loadTemplate($viewName, $viewData = array()) {
+        
         include 'views/template.php';
     }
     

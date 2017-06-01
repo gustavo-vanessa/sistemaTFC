@@ -10,24 +10,24 @@
             </div>  
             <div>
                 <label class="control-label">Data de Inicio da Atividade: *</label><br />
-                <input class="form-control" required value="<?php echo $atividade['data_inicio_atividade'] ?>" name="data_inicio_atividade" placeholder="Nome da Atividade" type="date"><br />
+                <input class="form-control" required value="<?php echo $atividade['data_inicio_atividade'] ?>" name="data_inicio_atividade"  type="date"><br />
                 <br />
             </div>
             <div>
                 <label class="control-label">Data de Fim da Atividade: *</label><br />
-                <input class="form-control" required value="<?php echo $atividade['data_fim_atividade'] ?>" name="data_fim_atividade" placeholder="Nome da Atividade" type="date"><br />
+                <input class="form-control" required value="<?php echo $atividade['data_fim_atividade'] ?>" name="data_fim_atividade" type="date"><br />
                 <br />
             </div>
             <div>
                 <label class="control-label">Observação:</label><br />
-                <input class="form-control" value="<?php echo $atividade['observacoes_atividade'] ?>" name="observacoes_atividade" placeholder="Nome da Atividade" type="text"><br />
+                <input class="form-control" value="<?php echo $atividade['observacoes_atividade'] ?>" name="observacoes_atividade" placeholder="Observações" type="text"><br />
                 <br />
             </div>
 <?php endforeach; ?>
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>
