@@ -15,8 +15,10 @@ class projetoController extends controller {
 
     //put your code here public function index() {
     public function index() {
-        if(!isset($_SESSION))     {         session_start();     }
-        
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -26,7 +28,34 @@ class projetoController extends controller {
                 $this->loadTemplate('projeto/projeto', $dados);
             } else if ($_SESSION['nome_perfil'] === 'Orientador') {
                 $dados['projetos'] = $projeto->getListaOrientador();
-                
+                $this->loadTemplate('projeto/projeto', $dados);
+            } else {
+                $dados['projetos'] = $projeto->getListaOrientando();
+                $this->loadTemplate('projeto/projeto', $dados);
+            }
+        }
+    }
+
+    public function filtro() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $id_orientador = $_POST['id_orientador'];
+            $id_orientando = $_POST['id_orientando'];
+            $projeto = new projeto();
+            if ($_SESSION['nome_perfil'] === 'Coordenador') {
+                $dados['orientadores'] = $projeto->getOrientador();
+                $dados['orientandos'] = $projeto->getOrientando();
+                $dados['projetos'] = $projeto->getListaCoordenadorFiltro($id_orientador, $id_orientando);
+                $this->loadTemplate('projeto/projeto', $dados);
+            } else if ($_SESSION['nome_perfil'] === 'Orientador') {
+                $dados['orientandos'] = $projeto->getOrientando();
+                $dados['projetos'] = $projeto->getListaOrientador();
+
                 $this->loadTemplate('projeto/projeto', $dados);
             } else {
                 $dados['projetos'] = $projeto->getListaOrientando();
@@ -36,7 +65,9 @@ class projetoController extends controller {
     }
 
     public function excluir($id) {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -47,7 +78,9 @@ class projetoController extends controller {
     }
 
     public function formAlterar($id) {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
 
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
@@ -62,7 +95,9 @@ class projetoController extends controller {
     }
 
     public function form_add() {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -76,7 +111,9 @@ class projetoController extends controller {
     }
 
     public function add() {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -87,7 +124,9 @@ class projetoController extends controller {
     }
 
     public function alterar($id) {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -98,7 +137,9 @@ class projetoController extends controller {
     }
 
     public function validarProjeto($id) {
-        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {

@@ -33,11 +33,7 @@
                 <input class="form-control" required value="<?php echo $subatividade['data_fim_sub_atividade'] ?>" name="data_fim_sub_atividade"  type="date"><br />
                 <br />
             </div>
-            <div>
-                <label class="control-label">Observação:</label><br />
-                <input class="form-control" value="<?php echo $subatividade['observacoes_sub_atividade'] ?>" name="observacoes_sub_atividade" type="text"><br />
-                <br />
-            </div>
+           
         <?php endforeach; ?>
         <table>
             <tr>

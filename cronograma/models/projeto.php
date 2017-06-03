@@ -39,7 +39,74 @@ class projeto extends model {
                                           obter_nome_orientando (p.id_orientando) as nome_orientando,
                                           id_pmbok_versao,
                                           obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
-                                   FROM projeto p";
+                                   FROM projeto p
+                                   order by id_projeto desc";
+        $sql = $this->db->prepare($string);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
+    public function getListaCoordenadorFiltro($id_orientador= null ,$id_orientando = null) {
+        $array = array();
+        $string = "SELECT p.id_projeto,
+                                          p.nome_projeto,
+                                          case 
+                                            when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                            when p.status_projeto  = 'A' then 'Atrasado'
+                                            when p.status_projeto  = 'EP' then 'Em Progresso'
+                                            when p.status_projeto  = 'F' then 'Finalizado'
+                                            when p.status_projeto  = 'IN' then 'Iniciado'
+                                            else ''
+					  end as status_projeto, 
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
+                                          p.id_orientador,
+                                          obter_nome_orientador (p.id_orientador) as nome_orientador,
+                                          p.id_orientando,
+                                          obter_nome_orientando (p.id_orientando) as nome_orientando,
+                                          id_pmbok_versao,
+                                          obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
+                                   FROM projeto p
+                                   where 1=1
+                                   and id_orientador = ifnull(nullif(".$id_orientador.",0), id_orientador)
+                                   and id_orientando = ifnull(nullif(".$id_orientando.",0), id_orientando)
+                                   order by id_projeto desc";
+        
+        $sql = $this->db->prepare($string);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
+    
+        public function getListaOrientadorFiltro($id_orientando = null) {
+        $array = array();
+        $string = "SELECT p.id_projeto,
+                                          p.nome_projeto,
+                                          case 
+                                            when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                            when p.status_projeto  = 'A' then 'Atrasado'
+                                            when p.status_projeto  = 'EP' then 'Em Progresso'
+                                            when p.status_projeto  = 'F' then 'Finalizado'
+                                            when p.status_projeto  = 'IN' then 'Iniciado'
+                                            else ''
+					  end as status_projeto, 
+                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
+                                          p.id_orientador,
+                                          obter_nome_orientador (p.id_orientador) as nome_orientador,
+                                          p.id_orientando,
+                                          obter_nome_orientando (p.id_orientando) as nome_orientando,
+                                          id_pmbok_versao,
+                                          obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
+                                   FROM projeto p
+                                   where 1=1
+                                   and id_orientador = ifnull(".$_SESSION['id_usuario'].", id_orientador)
+                                   and id_orientando = ifnull(".$id_orientando.", id_orientando)
+                                   order by id_projeto desc";
         $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {

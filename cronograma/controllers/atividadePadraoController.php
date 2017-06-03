@@ -18,14 +18,14 @@ class atividadePadraoController extends controller {
         }
     }
     
-    public function atividadesPadraoProjeto() {
+    public function atividadesPadraoProjeto($id_pmbok_versao) {
        if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $atividadesPadrao = new atividadePadrao();
             $subAtividadePadrao = new subatividadePadrao();
-            $dados['atividades'] = $atividadesPadrao->getLista();
+            $dados['atividades'] = $atividadesPadrao->getListaPmbok($id_pmbok_versao);
             foreach ($dados['atividades'] as $atividade) {
                  $dados['subatividades'] = $subAtividadePadrao->listaAtividadePadrao($atividade['id_atividades_padroes']);
             } 

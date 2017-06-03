@@ -87,7 +87,7 @@ class subatividadeController extends controller {
         } else {
             $subatividades = new subatividade();
             $subatividades->executar_subatividades($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
+            header('Location: /cronograma/observacao/formAlterar/' . $id);
         }
     }
 
@@ -98,7 +98,17 @@ class subatividadeController extends controller {
         } else {
             $subatividades = new subatividade();
             $subatividades->validar_execucao($id);
-            header('Location: /cronograma/atividade/atividadesProjeto/' . $_SESSION['id_projeto']);
+            header('Location: /cronograma/observacao/formAlterar/' . $id);
+        }
+    }
+    public function recusar($id) {
+        if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
+            header('Location: /cronograma');
+        } else {
+            $subatividades = new subatividade();
+            $subatividades->recusar_execucao($id);
+            header('Location: /cronograma/observacao/formAlterar/' . $id);
         }
     }
 

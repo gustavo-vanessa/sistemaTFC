@@ -96,9 +96,24 @@ class subatividade extends model {
                     . "set `nome_sub_atividade` = '" . $array_dados['nome_sub_atividade'] . "', "
                     . "`id_atividade` = '" . $array_dados['id_atividade'] . "', "
                     . "`data_inicio_sub_atividade` = '" . $array_dados['data_inicio_sub_atividade'] . "', "
-                    . "`data_fim_sub_atividade` = '" . $array_dados['data_fim_sub_atividade'] . "', "
-                    . "`observacoes_sub_atividade` = '" . $array_dados['observacoes_sub_atividade'] . "' "
+                    . "`data_fim_sub_atividade` = '" . $array_dados['data_fim_sub_atividade'] . "' "
                     . "where id_sub_atividade = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);
+            $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
+            return;
+        }
+    }
+    
+    public function alterar_observacao($id, $array_dados = array()) {
+        $valor_anterior = $this->getStringLog($id);
+        $array_dados = str_replace("<br />","",$array_dados);
+        if (count($array_dados) >= 1) {
+            $string = "update `sub_atividade` "
+                    . "set `observacoes_sub_atividade` = '" . $array_dados . "' "
+                    . "where id_sub_atividade = " . $id;
+            
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
@@ -201,6 +216,21 @@ class subatividade extends model {
         if (count($id) > 0) {
             $string = "update `sub_atividade` "
                     . "set `data_validacao_sub_atividade` = sysdate() "
+                    . "where id_sub_atividade = " . $id;
+            $sql = $this->db->prepare($string);
+            $sql->execute();
+            $valor_atual = $this->getStringLog($id);
+            $log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
+            return;
+        }
+    }
+    
+        public function recusar_execucao($id) {
+        $valor_anterior = $this->getStringLog($id);
+        if (count($id) > 0) {
+            $string = "update `sub_atividade` "
+                    . "set `status_sub_atividade` = 'NE',"
+                    ."`data_validacao_sub_atividade` = null"
                     . "where id_sub_atividade = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();

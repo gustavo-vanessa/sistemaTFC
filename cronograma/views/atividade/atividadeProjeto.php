@@ -4,15 +4,15 @@
     </div>
     <ul class="table-tree" cellspacing="0">
         <?php
-        
         if (isset($retornos)) {
-            
+
             echo " <div class='msg'>";
-            echo "<label>".$retornos."</label>";
+            echo "<label>" . $retornos . "</label>";
             echo"</div>";
-        };
+        }
         $conta = 1;
         foreach ($atividades as $atividade) {
+            $id_pmbok = $atividade['id_pmbok_versao'];
             $conta++;
             ?>
             <li>
@@ -39,34 +39,23 @@
                                     echo'<tbody>';
                                     echo '<tr>';
                                     if ($_SESSION['nome_perfil'] === 'Orientando') {
+
                                         if (!isset($atividade['data_validacao'])) {
                                             echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Alterar</a></td>";
                                             echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . "'>Excluir</a></td>";
                                         } elseif (isset($atividade['data_validacao'])) {
-                                            if (!isset($subatividade['data_validacao_sub_atividade'])) {
-                                                switch ($subatividade['status_sub_atividade']) {
-                                                    case "Executada":
-                                                        break;
-                                                    case "Executada em Atraso":
-                                                        break;
-                                                    default :
-                                                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/executar/" . $subatividade['id_sub_atividade'] . "'>Executar</a></td>";
-                                                }
-                                            }
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "observacao/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Ações</a></td>";
                                         }
-//                                    } elseif ($_SESSION['nome_perfil'] === 'Orientador') {
-//                                        if (!isset($atividade['data_validacao'])) {
-//                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Alterar</a></td>";
-//                                            echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . "'>Excluir</a></td>";
-//                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/executar/" . $subatividade['id_sub_atividade'] . "'>Executar</a></td>";
-//                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/validar/" . $subatividade['id_sub_atividade'] . "'>Validar</a></td>";
-//                                        } elseif (!isset($subatividade['data_validacao_sub_atividade'])) {
-//                                            
-//                                        }
+                                    } elseif ($_SESSION['nome_perfil'] === 'Orientador') {
+                                       if (!isset($atividade['data_validacao'])) {
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Alterar</a></td>";
+                                            echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . "'>Excluir</a></td>";
+                                        } elseif (isset($atividade['data_validacao'])) {
+                                            echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "observacao/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Ações</a></td>";
+                                        }
                                     } else {
+                                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "observacao/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Ações</a></td>";
                                         echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . "'>Alterar</a></td>";
-                                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/executar/" . $subatividade['id_sub_atividade'] . "'>Executar</a></td>";
-                                        echo "<td><a class='btn btn-padrao btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/validar/" . $subatividade['id_sub_atividade'] . "'>Validar</a></td>";
                                         echo "<td><a class='btn btn-excluir btn-shadow btn-rc' href = '" . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . "'>Excluir</a></td>";
                                     }
                                     echo '</tr>';
@@ -78,26 +67,27 @@
                                 </ul>
                             </li>
                             <br />
-                            <?php
-                        }
-                    }
-                    ?>
+            <?php
+        }
+    }
+    ?>
                 </ul>
             <li class="file">
-                <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "subatividade/form_add/" . $atividade['id_atividade'] . "'>Incluir subatividade</a></td>"; ?>
+    <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "subatividade/form_add/" . $atividade['id_atividade'] . "'>Incluir subatividade</a></td>"; ?>
                 <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-incluir' href = '" . BASE_URL . "atividade/formAlterar/" . $atividade['id_atividade'] . "'>Alterar atividade</a></td>"; ?>
                 <?php echo "<td><a class='btn btn-padrao btn-shadow btn-rc btn-excluir' href = '" . BASE_URL . "atividade/excluir/" . $atividade['id_atividade'] . "'>Excluir atividade</a></td>"; ?>
             </li>
             </li>
-        <?php } ?>
+<?php }
+?>
 
     </ul>
 
     <br />
     <table>
         <tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/atividadesPadraoProjeto">Importar Atividades</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto' ?>">Voltar</a></td>
-        </tr></table>
-    <br />
-</div>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href='<?php echo BASE_URL . "atividadePadrao/atividadesPadraoProjeto/" . $id_pmbok . "'"; ?>>Importar Atividades</a></td>
+                   <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto' ?>">Voltar</a></td>
+                   </tr></table>
+                   <br />
+                   </div>

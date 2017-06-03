@@ -56,6 +56,7 @@ class atividade extends model {
                                             else ''
 					  end as status_atividade, 
                                           a.id_projeto,
+                                          p.id_pmbok_versao,
                                           p.data_validacao,
                                           obter_nome_projeto(a.id_projeto, a.id_atividade) as nome_projeto, 
                                           DATE_FORMAT(a.data_inicio_atividade,'%d / %m / %Y')data_inicio_atividade, 

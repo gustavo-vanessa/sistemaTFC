@@ -31,6 +31,25 @@ class atividadePadrao extends model {
         return $array;
     }
     
+    public function getListaPmbok($id_pmbok) {
+        $array = array();
+        $string = "select id_atividades_padroes, 
+                                      nome_atividades_padroes,
+                                      descricao_atividades_padroes,
+                                      ie_obrigatorio_atividades_padroes,
+                                      id_pmbok_versao,
+                                      obter_desc_pmbok(id_pmbok_versao) as desc_pmbok
+                               from atividades_padroes
+                               where id_pmbok_versao = ".$id_pmbok;
+        
+        $sql = $this->db->prepare($string);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            $array = $sql->fetchAll();
+        }
+        return $array;
+    }
+    
 
     public function add_atividades_padroes($array_dados = array()) {
         if (count($array_dados) > 1) {   

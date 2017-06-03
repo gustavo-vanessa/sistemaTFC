@@ -9,6 +9,7 @@
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/build/html2canvas.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/dist/jspdf.debug.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/dist/basic.js"></script>
+        
         <title>Projeto</title>
     </head>
     <body>
