@@ -5,7 +5,7 @@
             <tr>
                 <th>Cód</th>
                 <th>Descrição</th>
-                <th>Ações</th> 
+                <th id="el">Ações</th> 
                 <th></th>
             </tr>
         </thead>
@@ -25,7 +25,7 @@
     <br />
     <br />
     <br />
-    <table id="el"><tr>
+    <table><tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>pmbok/form_add">Adicionar</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>

@@ -8,11 +8,13 @@
 class subatividadeController extends controller {
 
     public function index() {
+        
         if(!isset($_SESSION))     {         session_start();     }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $subatividades = new subatividade();
+            $subatividades->verificaStatus();
             $dados['subatividades'] = $subatividades->getLista();
             $this->loadTemplate('subatividade/subatividade', $dados);
         }

@@ -9,7 +9,7 @@
                         <th>Nome</th>
                         <th>Login</th>
                         <th>Email</th>
-                        <th>Ações</th>
+                        <th id="el">Ações</th> 
                     </tr>
                 </thead>
                 <tbody>

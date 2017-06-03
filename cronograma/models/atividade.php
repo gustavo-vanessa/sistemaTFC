@@ -27,6 +27,7 @@ class atividade extends model {
                                           case 
                                             when status_atividade = 'NE' then 'Não Executada'
                                             when status_atividade = 'E' then 'Executada'
+                                            when status_atividade = 'EA' then 'Executada em Atraso'
                                             else ''
 					  end as status_atividade, 
                                           id_projeto, 
@@ -51,6 +52,7 @@ class atividade extends model {
                                           case 
                                             when a.status_atividade = 'NE' then 'Não Executada'
                                             when a.status_atividade = 'E' then 'Executada'
+                                            when a.status_atividade = 'EA' then 'Executada em Atraso'
                                             else ''
 					  end as status_atividade, 
                                           a.id_projeto,
@@ -78,6 +80,7 @@ class atividade extends model {
                                           case 
                                             when status_atividade = 'NE' then 'Não Executada'
                                             when status_atividade = 'E' then 'Executada'
+                                            when status_atividade = 'EA' then 'Executada em Atraso'
                                             else ''
 					  end as status_atividade, 
                                           id_projeto, 
@@ -183,11 +186,13 @@ class atividade extends model {
  */
     public function excluir($id) {
         if (isset($id)) {
+            
             $string = "DELETE FROM `atividade` WHERE id_atividade = " . $id;
             $sql = $this->db->prepare($string);
-            $sql->execute();          
+            $sql->execute();
             $log = $this->insere_log($sql,$string,tabela, $this->valor_atenrior, $this->valor_atual);
-            return;
+            
+            return $log;
         }
     }
 /**

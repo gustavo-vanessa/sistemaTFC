@@ -4,8 +4,8 @@
         <div class="div_form " id="scroll">
             <label class="titulo">Subatividades</label>
             <div>
-                <label class="control-label">Nome da Atividade: *</label><br />
-                <input class="form-control" required value="<?php echo $subatividade['nome_sub_atividade'] ?>" name="nome_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
+                <label class="control-label">Nome da Subatividade: *</label><br />
+                <input class="form-control" required value="<?php echo $subatividade['nome_sub_atividade'] ?>" name="nome_sub_atividade" placeholder="Nome da Subatividade" type="text"><br />
                 <br />
             </div>  
 
@@ -24,18 +24,18 @@
                 <br />
             </div> 
             <div>
-                <label class="control-label">Data de Inicio da Atividade: *</label><br />
-                <input class="form-control" required value="<?php echo $subatividade['data_inicio_sub_atividade'] ?>" name="data_inicio_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
+                <label class="control-label">Data de Inicio da Subatividade: *</label><br />
+                <input class="form-control" required value="<?php echo $subatividade['data_inicio_sub_atividade'] ?>" name="data_inicio_sub_atividade" type="date"><br />
                 <br />
             </div>
             <div>
-                <label class="control-label">Data de Fim da Atividade: *</label><br />
-                <input class="form-control" required value="<?php echo $subatividade['data_fim_sub_atividade'] ?>" name="data_fim_sub_atividade" placeholder="Nome da Atividade" type="date"><br />
+                <label class="control-label">Data de Fim da Subatividade: *</label><br />
+                <input class="form-control" required value="<?php echo $subatividade['data_fim_sub_atividade'] ?>" name="data_fim_sub_atividade"  type="date"><br />
                 <br />
             </div>
             <div>
                 <label class="control-label">Observação:</label><br />
-                <input class="form-control" value="<?php echo $subatividade['observacoes_sub_atividade'] ?>" name="observacoes_sub_atividade" placeholder="Nome da Atividade" type="text"><br />
+                <input class="form-control" value="<?php echo $subatividade['observacoes_sub_atividade'] ?>" name="observacoes_sub_atividade" type="text"><br />
                 <br />
             </div>
         <?php endforeach; ?>

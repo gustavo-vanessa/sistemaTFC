@@ -13,7 +13,7 @@
                 <th>Data Fim</th>
                 <th>Data Validação</th>
                 <th>Observações</th>
-                <th>Ações</th>
+                <th id="el">Ações</th> 
             </tr>
         </thead>
         <tbody>

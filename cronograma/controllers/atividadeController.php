@@ -7,6 +7,8 @@
  * @author Gustavo Martins
  */
 class atividadeController extends controller {
+    
+  
 
     public function index() {
  
@@ -32,9 +34,18 @@ class atividadeController extends controller {
             $subAtividade = new subatividade();
             $dados['atividades'] = $atividades->listaAtividadesProjeto($id);
             $dados['subatividades'] = $subAtividade->getProjetoSubatividade();
+             $dados['retornos'] = $this->nvl($_SESSION['retorno']);
+             unset($_SESSION['retorno']);
             $this->loadTemplate('atividade/atividadeProjeto', $dados);
         }
     }
+    function nvl(&$var, $default = "")
+{
+    return isset($var) ? $var
+                       : $default;
+}
+    
+    
     
     public function excluir($id) {
        if(!isset($_SESSION))     {         session_start();     }
@@ -42,8 +53,15 @@ class atividadeController extends controller {
             header('Location: /cronograma');
         } else {
             $atividades = new atividade();
-            $atividades->excluir($id);
+        $_SESSION['retorno'] = $atividades->excluir($id);
+            
+            if($_SESSION['retorno'] != 0){
+                
             header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
+            }
+            else{
+                header('Location: /cronograma/atividade/atividadesProjeto/'.$_SESSION['id_projeto']);
+            }
         }
     }
 

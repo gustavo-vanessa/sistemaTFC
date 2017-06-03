@@ -24,7 +24,14 @@ class projeto extends model {
         $array = array();
         $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
-                                          p.status_projeto,
+                                          case 
+                                            when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                            when p.status_projeto  = 'A' then 'Atrasado'
+                                            when p.status_projeto  = 'EP' then 'Em Progresso'
+                                            when p.status_projeto  = 'F' then 'Finalizado'
+                                            when p.status_projeto  = 'IN' then 'Iniciado'
+                                            else ''
+					  end as status_projeto, 
                                           DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
@@ -43,23 +50,33 @@ class projeto extends model {
     
         public function getListaOrientador() {
         $array = array();
-        $string = "SELECT p.id_projeto,
-                                          p.nome_projeto,
-                                          p.status_projeto,
-                                          DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
-                                          p.id_orientador,
-                                          obter_nome_orientador (p.id_orientador) as nome_orientador,
-                                          p.id_orientando,
-                                          obter_nome_orientando (p.id_orientando) as nome_orientando,
-                                          id_pmbok_versao,
-                                          obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
-                                   FROM projeto p
-                                   WHERE p.id_orientador = ".$_SESSION['id_usuario'];
+//        print_r($_SESSION);
+            $string = "SELECT p.id_projeto,
+                                              p.nome_projeto,
+                                              case 
+                                                when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                                when p.status_projeto  = 'A' then 'Atrasado'
+                                                when p.status_projeto  = 'EP' then 'Em Progresso'
+                                                when p.status_projeto  = 'F' then 'Finalizado'
+                                                when p.status_projeto  = 'IN' then 'Iniciado'
+                                                else ''
+                                              end as status_projeto,
+                                              DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
+                                              p.id_orientador,
+                                              obter_nome_orientador (p.id_orientador) as nome_orientador,
+                                              p.id_orientando,
+                                              obter_nome_orientando (p.id_orientando) as nome_orientando,
+                                              id_pmbok_versao,
+                                              obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
+                                       FROM projeto p
+                                       WHERE p.id_orientador = ".$_SESSION['id_usuario'];
         $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
         }
+//        print_r($array);
+//        exit;
         return $array;
     }
     
@@ -67,7 +84,14 @@ class projeto extends model {
         $array = array();
         $string = "SELECT p.id_projeto,
                                           p.nome_projeto,
-                                          p.status_projeto,
+                                          case 
+                                            when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                            when p.status_projeto  = 'A' then 'Atrasado'
+                                            when p.status_projeto  = 'EP' then 'Em Progresso'
+                                            when p.status_projeto  = 'F' then 'Finalizado'
+                                            when p.status_projeto  = 'IN' then 'Iniciado'
+                                            else ''
+					  end as status_projeto,
                                           DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
@@ -90,7 +114,14 @@ class projeto extends model {
         $array = array();
         $sql = $this->db->prepare("SELECT p.id_projeto,
                                           p.nome_projeto,
-                                          p.status_projeto,
+                                          case 
+                                            when p.status_projeto = 'AP' then 'Aprovado TFC I'
+                                            when p.status_projeto  = 'A' then 'Atrasado'
+                                            when p.status_projeto  = 'EP' then 'Em Progresso'
+                                            when p.status_projeto  = 'F' then 'Finalizado'
+                                            when p.status_projeto  = 'IN' then 'Iniciado'
+                                            else ''
+					  end as status_projeto,
                                           DATE_FORMAT(p.data_validacao,'%d / %m / %Y')data_validacao,
                                           p.id_orientador,
                                           obter_nome_orientador (p.id_orientador) as nome_orientador,
@@ -197,7 +228,7 @@ class projeto extends model {
     public function alterar_projeto($id, $array_dados = array()) {
         $valor_anterior = $this->getStringLog($id);
         if (count($array_dados) > 0) {
-            $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `data_validacao` = '" . $array_dados['data_validacao'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
+            $string = "update `projeto` set `nome_projeto` = '" . $array_dados['nome_projeto'] . "', `status_projeto` = '" . $array_dados['status_projeto'] . "', `id_orientador` = '" . $array_dados['id_orientador'] . "', `id_orientando` = '" . $array_dados['id_orientando']."' where id_projeto = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     

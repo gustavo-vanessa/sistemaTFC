@@ -26,6 +26,7 @@ class projetoController extends controller {
                 $this->loadTemplate('projeto/projeto', $dados);
             } else if ($_SESSION['nome_perfil'] === 'Orientador') {
                 $dados['projetos'] = $projeto->getListaOrientador();
+                
                 $this->loadTemplate('projeto/projeto', $dados);
             } else {
                 $dados['projetos'] = $projeto->getListaOrientando();

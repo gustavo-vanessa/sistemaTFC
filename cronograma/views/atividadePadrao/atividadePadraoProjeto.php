@@ -1,8 +1,8 @@
 <div class="div_form" id="scroll">
-    <label class="titulo">Atividades e Subatividades </label>
+    <label class="titulo">Importar Atividades</label>
     
     
-    <form name="formT">
+    <form name="formT" class="titulo2">
         
         
         

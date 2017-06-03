@@ -10,7 +10,7 @@
                 <th>Descrição</th>
                 <th>Atividade Principal</th>
                 <th>Obrigatório</th>
-                <th>Ações</th>
+                <th id="el">Ações</th> 
             </tr>
         </thead>
         <tbody>
