@@ -28,7 +28,8 @@ public function getLista() {
        l.comando_realizado_log,
        l.tabela_alteracao_log,
        l.erro_log
-FROM log l ");
+FROM log l 
+order by l.id_log desc");
     $sql->execute();
     
             

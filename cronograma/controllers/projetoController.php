@@ -25,15 +25,29 @@ class projetoController extends controller {
             $projeto = new projeto();
             if ($_SESSION['nome_perfil'] === 'Coordenador') {
                 $dados['projetos'] = $projeto->getLista();
+                $dados['orientadores'] = $projeto->getOrientador();
+                $dados['orientandos'] = $projeto->getOrientando();
+                $dados['retornos'] = $this->nvl($_SESSION['retorno']);
+                unset($_SESSION['retorno']);
                 $this->loadTemplate('projeto/projeto', $dados);
             } else if ($_SESSION['nome_perfil'] === 'Orientador') {
+                $dados['orientadores'] = $projeto->getOrientador();
+                $dados['orientandos'] = $projeto->getOrientando();
                 $dados['projetos'] = $projeto->getListaOrientador();
+                $dados['retornos'] = $this->nvl($_SESSION['retorno']);
+                unset($_SESSION['retorno']);
                 $this->loadTemplate('projeto/projeto', $dados);
             } else {
                 $dados['projetos'] = $projeto->getListaOrientando();
+                $dados['retornos'] = $this->nvl($_SESSION['retorno']);
+                unset($_SESSION['retorno']);
                 $this->loadTemplate('projeto/projeto', $dados);
             }
         }
+    }
+
+    function nvl(&$var, $default = "vazio") {
+        return isset($var) ? $var : $default;
     }
 
     public function filtro() {
@@ -44,8 +58,17 @@ class projetoController extends controller {
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
-            $id_orientador = $_POST['id_orientador'];
-            $id_orientando = $_POST['id_orientando'];
+            $id_orientador = 0;
+            $id_orientando = 0;
+            if (isset($_POST['id_orientador'])) {
+                $id_orientador = $_POST['id_orientador'];
+            }
+            if (isset($_POST['id_orientando'])) {
+                $id_orientando = $_POST['id_orientando'];
+            }
+
+
+
             $projeto = new projeto();
             if ($_SESSION['nome_perfil'] === 'Coordenador') {
                 $dados['orientadores'] = $projeto->getOrientador();
@@ -54,8 +77,7 @@ class projetoController extends controller {
                 $this->loadTemplate('projeto/projeto', $dados);
             } else if ($_SESSION['nome_perfil'] === 'Orientador') {
                 $dados['orientandos'] = $projeto->getOrientando();
-                $dados['projetos'] = $projeto->getListaOrientador();
-
+                $dados['projetos'] = $projeto->getListaOrientadorFiltro($id_orientando);
                 $this->loadTemplate('projeto/projeto', $dados);
             } else {
                 $dados['projetos'] = $projeto->getListaOrientando();
@@ -72,7 +94,7 @@ class projetoController extends controller {
             header('Location: /cronograma');
         } else {
             $projeto = new projeto();
-            $projeto->excluir($id);
+            $_SESSION['retorno'] = $projeto->excluir($id);
             header('Location: /cronograma/projeto');
         }
     }

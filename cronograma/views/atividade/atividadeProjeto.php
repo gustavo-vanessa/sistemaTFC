@@ -4,16 +4,24 @@
     </div>
     <ul class="table-tree" cellspacing="0">
         <?php
-        if (isset($retornos)) {
-
-            echo " <div class='msg'>";
-            echo "<label>" . $retornos . "</label>";
+        
+        if ($retornos !='vazio') {
+            if ($retornos['id']===0){
+            echo " <div class='success'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
             echo"</div>";
+            
+            header("refresh: 2;");
+            } else {
+                echo " <div class='warning'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
+            echo"</div>";
+            header("refresh: 2;");
+            }
         }
         $conta = 1;
         foreach ($atividades as $atividade) {
-            $id_pmbok = $atividade['id_pmbok_versao'];
-            $conta++;
+           $conta++;
             ?>
             <li>
                 <label class="negrito" for="folder<?php echo $conta; ?>"><?php echo $atividade['nome_atividade']; ?></label>
@@ -86,7 +94,7 @@
     <br />
     <table>
         <tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href='<?php echo BASE_URL . "atividadePadrao/atividadesPadraoProjeto/" . $id_pmbok . "'"; ?>>Importar Atividades</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href='<?php echo BASE_URL . "atividadePadrao/atividadesPadraoProjeto/" . $pmbok[0][0] . "'"; ?>'>Importar Atividades</a></td>
                    <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'projeto' ?>">Voltar</a></td>
                    </tr></table>
                    <br />

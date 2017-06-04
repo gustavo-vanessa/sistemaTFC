@@ -93,7 +93,7 @@ class atividadePadrao extends model {
             $sql = $this->db->prepare($string);
             $sql->execute();
             $log = $this->insere_log($sql,$string,TABELA, $this->valor_atenrior, $this->valor_atual);
-            return;
+            return $log;
         }
     }
 

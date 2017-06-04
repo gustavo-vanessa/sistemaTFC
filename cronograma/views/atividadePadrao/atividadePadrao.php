@@ -1,7 +1,22 @@
 
 <div class="div_form" id="scroll">
-     <label class="titulo">Atividades Padrões</label>
-     
+    <label class="titulo">Atividades Padrões</label>
+    <?php
+    if ($retornos != 'vazio') {
+        if ($retornos['id'] === 0) {
+            echo " <div class='success'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
+            echo"</div>";
+
+            header("refresh: 2;");
+        } else {
+            echo " <div class='warning'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
+            echo"</div>";
+            header("refresh: 2;");
+        }
+    }
+    ?>
     <table class="table th td" >
         <thead>
             <tr>
@@ -35,6 +50,6 @@
         <tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/form_add">Adicionar</a></td>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

@@ -40,8 +40,9 @@ class model {
                    
                     $sqlLog = $this->db->prepare($log);
                     $sqlLog->execute();
-                  
-                    return 'Excluido com sucesso';
+                    $ret['id'] = 0;
+                    $ret['msg'] = 'Excluido com sucesso';
+                    return $ret;
                
                     
                 } else {
@@ -51,8 +52,9 @@ class model {
                    
                     $sqlLog = $this->db->prepare($log);
                     $sqlLog->execute();
-                   
-                    return 'Não foi possivel realizar a exclusão, há outro registros que dependem deste.';
+                    $ret['id'] = 1;
+                   $ret['msg'] = 'Não foi possivel realizar a exclusão, há outro registros que dependem deste.';
+                    return $ret;
                 }
             }
     }

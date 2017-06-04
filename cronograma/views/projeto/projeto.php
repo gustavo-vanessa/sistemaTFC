@@ -2,43 +2,69 @@
 if (!isset($_SESSION)) {
     session_start();
 }
+
+
 ?>
 <div class="div_form" id="scroll">
     <label class="titulo">Projetos</label>
     <?php
-    echo "<div class='filtro'>";
-    echo "<label class='textofiltro'>Filtro</label>";
-    echo "<form method='post' action=" . BASE_URL . "projeto/filtro>";
-    echo " <div>";
-    echo "     <label class='control-label'>Orientador: </label><br />";
-    echo "     <select  class='form-control' name='id_orientador'>";
-    echo "<option value='0' selected>Selecione</option>";
-    foreach ($orientadores as $orientador) {
-        echo "<option value=" . $orientador['id_usuario'] . ">" . $orientador['nome_usuario'] . "</option>";
-    }
-    echo "     </select>";
-    echo "     <br />";
-    echo "     <br />";
-    echo " </div> ";
-    echo " <div>";
-    echo "     <label class='control-label'>Orientando:</label><br />";
-    echo "     <select  class='form-control' name='id_orientando'>";
-    echo "<option value='0' selected>Selecione</option>";
-    foreach ($orientandos as $orientando) {
-        echo "<option value=" . $orientando['id_usuario'] . ">" . $orientando['nome_usuario'] . "</option>";
-    }
-    echo "     </select>";
-    echo "     <br />";
-    echo "     <br />";
-    echo " </div>  ";
+    
+    if ($_SESSION['nome_perfil'] != 'Orientando') {
+        echo "<div class='filtro' id='filtro'>";
+        echo "<label class='textofiltro'>Filtro</label>";
+        echo "<form method='post' action=" . BASE_URL . "projeto/filtro>";
+        
+        if ($_SESSION['nome_perfil'] == 'Coordenador') {
+            echo " <div>";
+            echo "     <label class='control-label'>Orientador: </label><br />";
+            echo "     <select  class='form-control' name='id_orientador'>";
+            echo "<option value='0' selected>Selecione</option>";
+            foreach ($orientadores as $orientador) {
+                echo "<option value=" . $orientador['id_usuario'] . ">" . $orientador['nome_usuario'] . "</option>";
+            }
+            echo "     </select>";
+            echo "     <br />";
+            echo "     <br />";
+            echo " </div> ";
+        }
+        echo " <div>";
+        echo "     <label class='control-label'>Orientando:</label><br />";
+        echo "     <select  class='form-control' name='id_orientando'>";
+        echo "<option value='0' selected>Selecione</option>";
+        foreach ($orientandos as $orientando) {
+            echo "<option value=" . $orientando['id_usuario'] . ">" . $orientando['nome_usuario'] . "</option>";
+        }
+        echo "     </select>";
+        echo "     <br />";
+        echo "     <br />";
+        echo " </div>  ";
 
-    echo "            <table> ";
-    echo "                <tr> ";
-    echo "                    <td><input type='submit' name='submit' value='Filtrar' class='btn btn-padrao btn-shadow btn-rc'/></td> ";
-    echo "                </tr> ";
-    echo "            </table> ";
-    echo "    </div> ";
+        echo "            <table> ";
+        echo "                <tr> ";
+        echo "                    <td><input type='submit' name='submit' value='Filtrar' class='btn btn-padrao btn-shadow btn-rc'/></td> ";
+        echo "                </tr> ";
+        echo "            </table> ";
+        echo "    </div> ";
+    }
+    
+    
+
+    if ($retornos != 'vazio') {
+        if ($retornos['id'] === 0) {
+            echo " <div class='success'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
+            echo"</div>";
+
+            header("refresh: 2;");
+        } else {
+            echo " <div class='warning'>";
+            echo "<label>" . $retornos['msg'] . "</label>";
+            echo"</div>";
+            header("refresh: 2;");
+        }
+    }
     ?>
+    
     <table class="table th td" >
         <thead>
             <tr>

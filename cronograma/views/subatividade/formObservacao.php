@@ -9,7 +9,7 @@ $string = $subatividades[0]['observacoes_sub_atividade'];
             <br />
         </div>
         <div>
-            <label class="control-label">Inseria sua Observação: *</label><br />
+            <label class="control-label">Insira sua Observação: *</label><br />
             <textarea rows="10" cols="40" class="form-obs" name="obs_incluir" required></textarea>
             <br />
         </div>  

@@ -104,9 +104,10 @@ class projeto extends model {
                                           obter_desc_pmbok (p.id_pmbok_versao) as desc_pmbok
                                    FROM projeto p
                                    where 1=1
-                                   and id_orientador = ifnull(".$_SESSION['id_usuario'].", id_orientador)
-                                   and id_orientando = ifnull(".$id_orientando.", id_orientando)
+                                   and id_orientador = ifnull(nullif(".$_SESSION['id_usuario'].",0), id_orientador)
+                                   and id_orientando = ifnull(nullif(".$id_orientando.",0), id_orientando)
                                    order by id_projeto desc";
+       
         $sql = $this->db->prepare($string);
         $sql->execute();
         if ($sql->rowCount() > 0) {
@@ -330,7 +331,7 @@ class projeto extends model {
             $sql = $this->db->prepare($string);
             $sql->execute();
             $log = $this->insere_log($sql,$string,LOG_PROJETO, $this->valor_atenrior, $this->valor_atual);
-            return;
+            return $log;
         }
     }
 

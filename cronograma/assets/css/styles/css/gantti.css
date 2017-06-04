@@ -20,7 +20,7 @@
   position: absolute;
   top: 25px;
   left: 20px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bolder;
   color: black;
   text-transform: uppercase;
@@ -145,11 +145,14 @@
 .gantt-block {
   background: #268bd2; }
 
-.gantt-block.important {
-  background: #b58900; }
+.gantt-block.atrasada {
+  background: red; }
 
-.gantt-block.urgent {
-  background: #d33682; }
+.gantt-block.validada {
+  background: green; }
+
+.gantt-block.executada {
+  background: orange; }
 
 /* today sign */
 .gantt time {

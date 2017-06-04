@@ -26,6 +26,8 @@ class subatividade extends model {
                                             when status_sub_atividade = 'E' then 'Executada'
                                             when status_sub_atividade = 'EA' then 'Executada em Atraso'
                                             when status_sub_atividade = 'A' then 'Atraso'
+                                            when status_sub_atividade = 'F' then 'Validada'
+                                            when status_sub_atividade = 'FA' then 'Validada em Atraso'
                                             else ''
 					  end as status_sub_atividade,
                                           id_atividade, 
@@ -50,6 +52,8 @@ class subatividade extends model {
                                             when status_sub_atividade = 'E' then 'Executada'
                                             when status_sub_atividade = 'EA' then 'Executada em Atraso'
                                             when status_sub_atividade = 'A' then 'Atraso'
+                                            when status_sub_atividade = 'F' then 'Validada'
+                                            when status_sub_atividade = 'FA' then 'Validada em Atraso'
                                             else ''
 					  end as status_sub_atividade,
                                           id_atividade, 
@@ -105,15 +109,15 @@ class subatividade extends model {
             return;
         }
     }
-    
+
     public function alterar_observacao($id, $array_dados = array()) {
         $valor_anterior = $this->getStringLog($id);
-        $array_dados = str_replace("<br />","",$array_dados);
+        $array_dados = str_replace("<br />", "", $array_dados);
         if (count($array_dados) >= 1) {
             $string = "update `sub_atividade` "
                     . "set `observacoes_sub_atividade` = '" . $array_dados . "' "
                     . "where id_sub_atividade = " . $id;
-            
+
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
@@ -177,24 +181,25 @@ class subatividade extends model {
             } elseif ($sub['status_sub_atividade'] === 'E') {
                 
             } else {
+                if (!isset($Emdia[0]['data_validacao_sub_atividade'])) {
+                    if (strtotime(date('Y-m-d')) < strtotime($Emdia[0]['data_fim_sub_atividade'])) {
 
-                if (strtotime(date('Y-m-d')) < strtotime($Emdia[0]['data_fim_sub_atividade'])) {
-
-                    $string = "update `sub_atividade` "
-                            . "set `status_sub_atividade` = 'NE' "
-                            . "where id_sub_atividade = " . $sub['id_sub_atividade'];
-                    $sql = $this->db->prepare($string);
-                    $sql->execute();
-                    //    $valor_atual = $this->getStringLog($id);
-                    //  $log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
-                } else {
-                    $string = "update `sub_atividade` "
-                            . "set `status_sub_atividade` = 'A' "
-                            . "where id_sub_atividade = " . $sub['id_sub_atividade'];
-                    $sql = $this->db->prepare($string);
-                    $sql->execute();
-                    //$valor_atual = $this->getStringLog($id);
-                    //$log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
+                        $string = "update `sub_atividade` "
+                                . "set `status_sub_atividade` = 'NE' "
+                                . "where id_sub_atividade = " . $sub['id_sub_atividade'];
+                        $sql = $this->db->prepare($string);
+                        $sql->execute();
+                        //    $valor_atual = $this->getStringLog($id);
+                        //  $log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
+                    } else {
+                        $string = "update `sub_atividade` "
+                                . "set `status_sub_atividade` = 'A' "
+                                . "where id_sub_atividade = " . $sub['id_sub_atividade'];
+                        $sql = $this->db->prepare($string);
+                        $sql->execute();
+                        //$valor_atual = $this->getStringLog($id);
+                        //$log = $this->insere_log($sql, $string, TABELA, $valor_anterior, $valor_atual);
+                    }
                 }
             }
         }
@@ -203,7 +208,7 @@ class subatividade extends model {
 
     public function getEmDias($id) {
         $array = array();
-        $sql = $this->db->prepare("select data_inicio_sub_atividade, data_fim_sub_atividade from sub_atividade WHERE id_sub_atividade = " . $id);
+        $sql = $this->db->prepare("select data_inicio_sub_atividade, data_fim_sub_atividade, data_validacao_sub_atividade from sub_atividade WHERE id_sub_atividade = " . $id);
         $sql->execute();
         if ($sql->rowCount() > 0) {
             $array = $sql->fetchAll();
@@ -213,10 +218,23 @@ class subatividade extends model {
 
     public function validar_execucao($id) {
         $valor_anterior = $this->getStringLog($id);
+        $verDtAnterior = $this->getEmDias($id);
+        
         if (count($id) > 0) {
-            $string = "update `sub_atividade` "
-                    . "set `data_validacao_sub_atividade` = sysdate() "
+            if ($verDtAnterior[0]['data_fim_sub_atividade']>date('Y-m-d')){
+                $string = "update `sub_atividade` "
+                    . "set `data_validacao_sub_atividade` = sysdate() ,"
+                    . "`data_fim_sub_atividade` = sysdate() ,"
+                    . "`status_sub_atividade` = 'F' "
                     . "where id_sub_atividade = " . $id;
+            }
+            else{
+            $string = "update `sub_atividade` "
+                    . "set `data_validacao_sub_atividade` = sysdate() ,"
+                    . "`status_sub_atividade` = 'FA' "
+                    . "where id_sub_atividade = " . $id;
+            }
+        
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
@@ -224,13 +242,13 @@ class subatividade extends model {
             return;
         }
     }
-    
-        public function recusar_execucao($id) {
+
+    public function recusar_execucao($id) {
         $valor_anterior = $this->getStringLog($id);
         if (count($id) > 0) {
             $string = "update `sub_atividade` "
                     . "set `status_sub_atividade` = 'NE',"
-                    ."`data_validacao_sub_atividade` = null"
+                    . "`data_validacao_sub_atividade` = null"
                     . "where id_sub_atividade = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();
@@ -260,6 +278,8 @@ class subatividade extends model {
                                             when sa.status_sub_atividade = 'E' then 'Executada'
                                             when sa.status_sub_atividade = 'EA' then 'Executada em Atraso'
                                             when sa.status_sub_atividade = 'A' then 'Atraso'
+                                            when sa.status_sub_atividade = 'F' then 'Validada'
+                                            when status_sub_atividade = 'FA' then 'Validada em Atraso'
                                             else ''
 					  end as status_sub_atividade, 
                                           sa.id_atividade, 
@@ -282,11 +302,7 @@ class subatividade extends model {
         $array = array();
         $sql = $this->db->prepare("select sa.id_sub_atividade, 
                                           sa.nome_sub_atividade, 
-                                          case 
-                                            when sa.status_sub_atividade = 'NE' then 'Não Executada'
-                                            when sa.status_sub_atividade = 'E' then 'Executada'
-                                            else ''
-					  end as status_sub_atividade, 
+                                          status_sub_atividade, 
                                           sa.id_atividade, 
                                           obter_nome_atividade(sa.id_atividade, sa.id_sub_atividade) as nome_atividade, 
                                           sa.data_inicio_sub_atividade data_inicio_sub_atividade, 

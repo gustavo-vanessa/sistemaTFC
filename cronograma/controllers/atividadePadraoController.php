@@ -8,18 +8,30 @@
 class atividadePadraoController extends controller {
 
     public function index() {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $atividadesPadroes = new atividadePadrao();
             $dados['atividadesPadroes'] = $atividadesPadroes->getLista();
+            $dados['retornos'] = $this->nvl($_SESSION['retorno']);
+            unset($_SESSION['retorno']);
             $this->loadTemplate('atividadePadrao/atividadePadrao', $dados);
         }
     }
     
+    
+    function nvl(&$var, $default = "vazio") {
+        return isset($var) ? $var : $default;
+    }
+
+
     public function atividadesPadraoProjeto($id_pmbok_versao) {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -27,25 +39,29 @@ class atividadePadraoController extends controller {
             $subAtividadePadrao = new subatividadePadrao();
             $dados['atividades'] = $atividadesPadrao->getListaPmbok($id_pmbok_versao);
             foreach ($dados['atividades'] as $atividade) {
-                 $dados['subatividades'] = $subAtividadePadrao->listaAtividadePadrao($atividade['id_atividades_padroes']);
-            } 
+                $dados['subatividades'] = $subAtividadePadrao->listaAtividadePadrao($atividade['id_atividades_padroes']);
+            }
             $this->loadTemplate('atividadePadrao/atividadePadraoProjeto', $dados);
         }
     }
 
     public function excluir($id) {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
             $atividadesPadroes = new atividadePadrao();
-            $atividadesPadroes->excluir($id);
+            $_SESSION['retorno'] = $atividadesPadroes->excluir($id);
             header('Location: /cronograma/atividadePadrao');
         }
     }
 
     public function formAlterar($id) {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -57,7 +73,9 @@ class atividadePadraoController extends controller {
     }
 
     public function add() {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -66,25 +84,27 @@ class atividadePadraoController extends controller {
             header('Location: /cronograma/atividadePadrao');
         }
     }
-    
+
     public function addPadrao() {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
-         
+
             $atividade = new atividadeController();
             foreach ($_POST as $atividades) {
-                $array_dados['nome_atividade']=$atividades;
-                $array_dados['id_projeto']=$_SESSION['id_projeto'];
-                $array_dados['data_inicio_atividade']= date('Y/m/d');
-                $array_dados['data_fim_atividade']= date('Y/m/d');
-                $array_dados['observacoes_atividade']='';
+                $array_dados['nome_atividade'] = $atividades;
+                $array_dados['id_projeto'] = $_SESSION['id_projeto'];
+                $array_dados['data_inicio_atividade'] = date('Y/m/d');
+                $array_dados['data_fim_atividade'] = date('Y/m/d');
+                $array_dados['observacoes_atividade'] = '';
                 $atividade->addPadrao($array_dados);
             }
-            
-            
-            
+
+
+
             //$atividadesPadroes = new atividadePadrao();
             //$atividadesPadroes->add_atividades_padroes($_POST);
             //header('Location: /cronograma/atividadePadrao');
@@ -92,7 +112,9 @@ class atividadePadraoController extends controller {
     }
 
     public function form_add() {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -103,7 +125,9 @@ class atividadePadraoController extends controller {
     }
 
     public function alterar($id) {
-       if(!isset($_SESSION))     {         session_start();     }
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
@@ -112,6 +136,5 @@ class atividadePadraoController extends controller {
             header('Location: /cronograma/atividadePadrao');
         }
     }
-    
-     
+
 }
