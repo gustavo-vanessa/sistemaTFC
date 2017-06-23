@@ -1,6 +1,8 @@
 <form method="post" action="<?php echo BASE_URL ?>subatividade/add">
     <div class="div_form " id="scroll">
-        <label class="titulo">Subatividades</label>
+        <div class="div_form" id="scroll">
+            
+        <label class="titulo">Incluir Subatividade</label>
         <div>
             <label class="control-label">Nome da Subatividade: *</label><br />
             <input class="form-control" name="nome_sub_atividade" required placeholder="Nome da Subatividade" type="text"><br />
@@ -31,7 +33,7 @@
        <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

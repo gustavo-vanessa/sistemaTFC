@@ -28,8 +28,8 @@
                 echo "<td><input class='table_input' type='text' value='" . $subatividade['data_fim_sub_atividade'] . "'></td>";
                 echo "<td><input class='table_input' type='text' value='" . $subatividade['data_validacao_sub_atividade'] . "'></td>";
                 echo "<td><input class='table_input' type='text' value='" . $subatividade['observacoes_sub_atividade'] . "'></td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . ">Alterar</td>";
-                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . ">Excluir</td>";
+                echo "<td ><a class = 'btn btn-alterar btn-shadow btn-rc' href = " . BASE_URL . "subatividade/formAlterar/" . $subatividade['id_sub_atividade'] . ">Alterar</td>";
+                echo "<td><a class = 'btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "subatividade/excluir/" . $subatividade['id_sub_atividade'] . ">Excluir</td>";
                 echo "</tr> ";
             }
             ?>
@@ -39,6 +39,6 @@
     <table>
         <tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>subatividade/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
+            <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

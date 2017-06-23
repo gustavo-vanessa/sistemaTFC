@@ -28,7 +28,7 @@
                     echo "<label class='switch'>  <input type='checkbox' disabled> <div class='slider round'></div> </label>";
                 }
                 echo "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "subatividadePadrao/formAlterar/" . $subatividadePadrao['id_sub_atividades_padroes'] . ">Alterar</td>";
+                echo "<td ><a class = 'btn btn-alterar btn-shadow btn-rc' href = " . BASE_URL . "subatividadePadrao/formAlterar/" . $subatividadePadrao['id_sub_atividades_padroes'] . ">Alterar</td>";
                 echo "<td></td> ";
                 echo "<td></td> ";
                 echo "<td></td> ";
@@ -42,6 +42,6 @@
     <table>
         <tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>subatividadePadrao/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
+            <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
 </div>

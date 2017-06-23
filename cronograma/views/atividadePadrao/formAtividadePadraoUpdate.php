@@ -2,7 +2,8 @@
 
     <form method="post" action="<?php echo BASE_URL . "atividadePadrao/alterar/" . $atividadePadrao['id_atividades_padroes']; ?>">
         <div class="div_form " id="scroll">
-            <label class="titulo">Atividades Padrões</label>
+           
+            <label class="titulo">Alterar Atividade Padrão</label>
             <div>
                 <label class="control-label">Nome da Atividade Padrão: *</label><br />
                 <input class="form-control" required value="<?php echo $atividadePadrao['nome_atividades_padroes'] ?>" name="nome_atividade_padrao" placeholder="Nome da Atividade" type="text"><br />
@@ -42,7 +43,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>atividadePadrao">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL ?>atividadePadrao">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

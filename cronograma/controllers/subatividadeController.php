@@ -49,7 +49,6 @@ class subatividadeController extends controller {
         if (!isset($_SESSION['id_usuario']) || !isset($_SESSION['nome_usuario'])) {
             header('Location: /cronograma');
         } else {
-           
             $subatividades = new subatividade();
             $subatividades->add_subatividades($_POST);
             $id = $subatividades->getUltimo();

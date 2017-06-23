@@ -2,18 +2,18 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
-
 ?>
 <div class="div_form" id="scroll">
+   
     <label class="titulo">Projetos</label>
     <?php
-    
     if ($_SESSION['nome_perfil'] != 'Orientando') {
         echo "<div class='filtro' id='filtro'>";
+        echo "<a class='btn btn-padrao btn-shadow btn-rc' id='filtrando' style='display: inline-block;' href='javascript:apresentar()'>Filtros</a>";
+        echo "<div id='apresenta' style='display: none;'>";
         echo "<label class='textofiltro'>Filtro</label>";
         echo "<form method='post' action=" . BASE_URL . "projeto/filtro>";
-        
+
         if ($_SESSION['nome_perfil'] == 'Coordenador') {
             echo " <div>";
             echo "     <label class='control-label'>Orientador: </label><br />";
@@ -45,9 +45,10 @@ if (!isset($_SESSION)) {
         echo "                </tr> ";
         echo "            </table> ";
         echo "    </div> ";
+        echo "    </div> ";
     }
-    
-    
+
+
 
     if ($retornos != 'vazio') {
         if ($retornos['id'] === 0) {
@@ -60,11 +61,11 @@ if (!isset($_SESSION)) {
             echo " <div class='warning'>";
             echo "<label>" . $retornos['msg'] . "</label>";
             echo"</div>";
-            header("refresh: 2;");
+            header("refresh: 5;");
         }
     }
     ?>
-    
+
     <table class="table th td" >
         <thead>
             <tr>
@@ -92,25 +93,25 @@ if (!isset($_SESSION)) {
                 echo "<td>" . $projeto['desc_pmbok'] . "</td>";
                 echo "<div id='rel'>";
                 if (!isset($projeto['data_validacao']) && $_SESSION['nome_perfil'] == 'Orientando') {
-                    echo "<td id='rel2' ><a  class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                    echo "<td><a id='rel3' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
-                    echo "<td><a id='rel4' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
+                    echo "<td id='rel2' ><a  class='btn btn-relatorio btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Gráfico de Gantt</td>";
+                    echo "<td><a id='rel3' class='btn btn-atividades btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
+                    echo "<td><a id='rel4' class='btn btn-alterar btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td><a id='rel5' class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
                 } else if ($_SESSION['nome_perfil'] != 'Orientando') {
                     if (!isset($projeto['data_validacao'])) {
-                        echo "<td><a id='rel2' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/validarProjeto/" . $projeto['id_projeto'] . ">Validar Projeto</td>";
+                        echo "<td><a id='rel2' class='btn btn-validar btn-shadow btn-rc' href = " . BASE_URL . "projeto/validarProjeto/" . $projeto['id_projeto'] . ">Validar Projeto</td>";
                     }
-                    echo "<td><a id='rel3' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                    echo "<td><a id='rel4' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
-                    echo "<td><a id='rel5' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
+                    echo "<td><a id='rel3' class='btn btn-relatorio btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Gráfico de Gantt</td>";
+                    echo "<td><a id='rel4' class='btn btn-atividades btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
+                    echo "<td><a id='rel5' class='btn btn-alterar btn-shadow btn-rc' href = " . BASE_URL . "projeto/formAlterar/" . $projeto['id_projeto'] . ">Alterar</td>";
                     echo "<td></td>";
                     echo "<td></td>";
                     echo "<td><a  id='rel6' class='btn btn-excluir btn-shadow btn-rc' href = " . BASE_URL . "projeto/excluir/" . $projeto['id_projeto'] . ">Excluir</td>";
                 } else {
-                    echo "<td><a id='rel2' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Relatório Gantt</td>";
-                    echo "<td><a id='rel3' class='btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
+                    echo "<td><a id='rel2' class='btn btn-relatorio btn-shadow btn-rc' href = " . BASE_URL . "gantt/ganttProjeto/" . $projeto['id_projeto'] . ">Gráfico de Gantt</td>";
+                    echo "<td><a id='rel3' class='btn btn-atividades btn-shadow btn-rc' href = " . BASE_URL . "atividade/atividadesProjeto/" . $projeto['id_projeto'] . ">Atividades</td>";
                 }
                 echo "</div'>";
                 echo "</tr> ";
@@ -121,7 +122,7 @@ if (!isset($_SESSION)) {
     <br />
     <table id="el"><tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>projeto/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+            <td><a class="btn btn-relatorio btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
+            <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

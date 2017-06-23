@@ -219,22 +219,21 @@ class subatividade extends model {
     public function validar_execucao($id) {
         $valor_anterior = $this->getStringLog($id);
         $verDtAnterior = $this->getEmDias($id);
-        
+
         if (count($id) > 0) {
-            if ($verDtAnterior[0]['data_fim_sub_atividade']>date('Y-m-d')){
+            if ($verDtAnterior[0]['data_fim_sub_atividade'] > date('Y-m-d')) {
                 $string = "update `sub_atividade` "
-                    . "set `data_validacao_sub_atividade` = sysdate() ,"
-                    . "`data_fim_sub_atividade` = sysdate() ,"
-                    . "`status_sub_atividade` = 'F' "
-                    . "where id_sub_atividade = " . $id;
+                        . "set `data_validacao_sub_atividade` = sysdate() ,"
+                        . "`data_fim_sub_atividade` = sysdate() ,"
+                        . "`status_sub_atividade` = 'F' "
+                        . "where id_sub_atividade = " . $id;
+            } else {
+                $string = "update `sub_atividade` "
+                        . "set `data_validacao_sub_atividade` = sysdate() ,"
+                        . "`status_sub_atividade` = 'FA' "
+                        . "where id_sub_atividade = " . $id;
             }
-            else{
-            $string = "update `sub_atividade` "
-                    . "set `data_validacao_sub_atividade` = sysdate() ,"
-                    . "`status_sub_atividade` = 'FA' "
-                    . "where id_sub_atividade = " . $id;
-            }
-        
+
             $sql = $this->db->prepare($string);
             $sql->execute();
             $valor_atual = $this->getStringLog($id);
@@ -248,7 +247,7 @@ class subatividade extends model {
         if (count($id) > 0) {
             $string = "update `sub_atividade` "
                     . "set `status_sub_atividade` = 'NE',"
-                    . "`data_validacao_sub_atividade` = null"
+                    . "`data_validacao_sub_atividade` = null "
                     . "where id_sub_atividade = " . $id;
             $sql = $this->db->prepare($string);
             $sql->execute();

@@ -12,7 +12,7 @@ foreach ($perfis as $perfil) {
     echo '<input class="form-control" name="descricao_perfil" placeholder="Descrição Perfil" disabled type="text" value ="' . $perfil['descricao_perfil'] . '"><br />';
     echo '<br />';
     echo '<table><tr>';
-    echo '<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . 'perfil">Voltar</a></td>';
+    echo '<td><a class="btn btn-voltar btn-shadow btn-rc" href="' . BASE_URL . 'perfil">Voltar</a></td>';
     echo '</tr></table>';
     echo '</div>';
     echo '</div>';

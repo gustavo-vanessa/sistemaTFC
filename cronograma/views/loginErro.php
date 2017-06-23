@@ -1,3 +1,4 @@
+<?php if($_SESSION)     { header('Location: /cronograma');}?>
 <form method="post" action="<?php echo BASE_URL; ?>validacoes">
     <div class="div_form ">
         <br>

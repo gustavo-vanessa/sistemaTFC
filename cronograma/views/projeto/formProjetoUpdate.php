@@ -1,12 +1,12 @@
 <?php
-
 foreach ($projetos as $projeto):
     ?>
 
     <form method="post" action="<?php echo BASE_URL . "projeto/alterar/" . $projeto['id_projeto']; ?>">
 
         <div class="div_form " id="scroll">
-            <label class="titulo">Projetos</label>
+           
+            <label class="titulo">Alterar Projeto</label>
             <div>
                 <label class="control-label">Nome do Projeto: *</label><br />
                 <input class="form-control" required value="<?php echo $projeto['nome_projeto']; ?>" name="nome_projeto" placeholder="Nome da Atividade" type="text"><br />
@@ -70,10 +70,11 @@ foreach ($projetos as $projeto):
                 <select  class="form-control" required name="id_orientador">
 
                     <?php foreach ($orientadores as $orientador): ?>
-                        <?php if($orientador['id_usuario'] == $projeto['id_orientador'] ){
-                        echo "<option value=" . $orientador['id_usuario'] . " selected>" . $orientador['nome_usuario'] . "</option>";
+                        <?php
+                        if ($orientador['id_usuario'] == $projeto['id_orientador']) {
+                            echo "<option value='" . $orientador['id_usuario'] . "' selected>" . $orientador['nome_usuario'] . "</option>";
                         }
-                        echo "<option value=" . $orientador['id_usuario'] . ">" . $orientador['nome_usuario'] . "</option>";
+                        echo "<option value='" . $orientador['id_usuario'] . "'>" . $orientador['nome_usuario'] . "</option>";
                         ?>
                     <?php endforeach; ?>
                 </select>
@@ -84,21 +85,22 @@ foreach ($projetos as $projeto):
                 <label class="control-label">Orientando: *</label><br />
                 <select  class="form-control" required name="id_orientando">
                     <?php foreach ($orientandos as $orientando): ?>
-                        <?php if($orientando['id_usuario'] == $projeto['id_orientando'] ){
-                        echo "<option value=" . $orientando['id_usuario'] . "selected >" . $orientando['nome_usuario'] . "</option>";
+                        <?php
+                        if ($orientando['id_usuario'] == $projeto['id_orientando']) {
+                            echo "<option value='" . $orientando['id_usuario'] . "'selected >" . $orientando['nome_usuario'] . "</option>";
                         }
-                        echo "<option value=" . $orientando['id_usuario'] . ">" . $orientando['nome_usuario'] . "</option>";
+                        echo "<option value='" . $orientando['id_usuario'] . "'>" . $orientando['nome_usuario'] . "</option>";
                         ?>
-                    <?php endforeach; ?>
+    <?php endforeach; ?>
                 </select>
                 <br />
                 <br />
             </div>      
-        <?php endforeach; ?>
+<?php endforeach; ?>
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL ?>projeto">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

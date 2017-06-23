@@ -1,5 +1,22 @@
 <?php
+ $funcs  =  array("atividade",  
+                         "atividadePadrao", 
+                         "gantt", 
+                         "home", 
+                         "log", 
+                         "loginUsuario", 
+                         "observacao", 
+                         "perfil",
+                         "pmbok",
+                         "projeto",
+                         "subatividade",
+                         "subatividadePadrao",
+                         "usuarios",
+                         "validacoes"
+            ); 
+
 require 'config.php';
+
 spl_autoload_register(function ($class){
     if(strpos($class, 'Controller') > -1) {
         if(file_exists('controllers/'.$class.'.php')) {

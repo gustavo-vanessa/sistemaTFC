@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -301,7 +301,7 @@ class projeto extends model {
             $sql->execute();
             $valor_atual = $this->getStringLog($id);     
             $log = $this->insere_log($sql,$string,LOG_PROJETO,$valor_anterior,$valor_atual);
-            return;
+            return $log;
         }
     }
     

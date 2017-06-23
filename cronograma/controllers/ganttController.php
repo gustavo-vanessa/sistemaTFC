@@ -126,6 +126,11 @@ class ganttController extends controller {
                             );
                             break;
                         default:
+                            $data[] = array(
+                                'label' => $atividade['nome_atividade'],
+                                'start' => $atividade['data_inicio_atividade'],
+                                'end' => $atividade['data_fim_atividade'],
+                            );
                             break;
                     }
 
@@ -192,12 +197,13 @@ class ganttController extends controller {
 
 
                 $gantti = new Gantti($data, array(
-                    'title' => $titulo,
-                    'cellwidth' => 15,
-                    'cellheight' => 22
+                    'title' => '',//$titulo,
+                    'cellwidth' => 30,
+                    'cellheight' => 35
                 ));
 
                 $array['gantt'] = $gantti;
+                $array['projeto']=$titulo;
             } else {
                 $array['gantt'] = null;
             }

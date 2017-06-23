@@ -23,16 +23,16 @@ function genPDF() {
         document.getElementById("el").style.display = 'block';
 
     } else {
-        
-            document.getElementById("el").style.display = 'none';
-      
+
+        document.getElementById("el").style.display = 'none';
+
     }
     if (display2 === "none") {
         document.getElementById("filtro").style.display = 'block';
     } else {
         if (document.getElementById("filtro")) {
-        document.getElementById("filtro").style.display = 'none';
-          } 
+            document.getElementById("filtro").style.display = 'none';
+        }
     }
     var teste = document.body;
     html2canvas(teste, {
@@ -74,3 +74,33 @@ function genPDF() {
 
 }
 
+function apresentar() {
+    var display = document.getElementById("apresenta").style.display;
+    var display2 = document.getElementById("filtrando").style.display;
+    if (display === "none") {
+        document.getElementById("apresenta").style.display = 'block';
+    } else {
+        document.getElementById("apresenta").style.display = 'none';
+    }
+    
+    if (display2 === "none") {
+        document.getElementById("filtrando").style.display = 'inline-block';
+    } else {
+        document.getElementById("filtrando").style.display = 'none';
+    }
+
+}
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(e) {
+  if (!e.target.matches('.dropbtn')) {
+    var myDropdown = document.getElementById("myDropdown");
+      if (myDropdown.classList.contains('show')) {
+        myDropdown.classList.remove('show');
+      }
+  }
+}

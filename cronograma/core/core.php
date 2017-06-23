@@ -59,11 +59,33 @@ class Core {
             $currentAction = 'index';
         }
         
+        $funcs  =  array("atividadeController",  
+                         "atividadePadraoController", 
+                         "ganttController", 
+                         "homeController", 
+                         "logController", 
+                         "loginUsuario", 
+                         "observacaoController", 
+                         "perfilController",
+                         "pmbokController",
+                         "projetoController",
+                         "subatividadeController",
+                         "subatividadePadraoController",
+                         "usuariosController",
+                         "validacoesController"
+            );  
+        
+           
+        
         require_once 'core/controller.php';
         //após termos já definido que iremos executar, fazemos a chamada da função com o nome do controler
         // a função a ser executada e seus possiveis parametros.
         $c = new $currentController();
+        if(!in_array($c, $funcs)){
         call_user_func_array(array($c,$currentAction), $params);
+        }else{
+           header('Location: /cronograma'); 
+        }
     }
 
 }

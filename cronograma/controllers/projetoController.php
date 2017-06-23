@@ -71,15 +71,18 @@ class projetoController extends controller {
 
             $projeto = new projeto();
             if ($_SESSION['nome_perfil'] === 'Coordenador') {
+                $dados['retornos'] = 'vazio';
                 $dados['orientadores'] = $projeto->getOrientador();
                 $dados['orientandos'] = $projeto->getOrientando();
                 $dados['projetos'] = $projeto->getListaCoordenadorFiltro($id_orientador, $id_orientando);
                 $this->loadTemplate('projeto/projeto', $dados);
             } else if ($_SESSION['nome_perfil'] === 'Orientador') {
+                $dados['retornos'] = 'vazio';
                 $dados['orientandos'] = $projeto->getOrientando();
                 $dados['projetos'] = $projeto->getListaOrientadorFiltro($id_orientando);
                 $this->loadTemplate('projeto/projeto', $dados);
             } else {
+                $dados['retornos'] = 'vazio';
                 $dados['projetos'] = $projeto->getListaOrientando();
                 $this->loadTemplate('projeto/projeto', $dados);
             }
@@ -153,7 +156,7 @@ class projetoController extends controller {
             header('Location: /cronograma');
         } else {
             $projeto = new projeto();
-            $projeto->alterar_projeto($id, $_POST);
+            $_SESSION['retorno'] = $projeto->alterar_projeto($id, $_POST);
             header('Location: /cronograma/projeto');
         }
     }

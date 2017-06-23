@@ -1,5 +1,6 @@
 
 <div class="div_form" id="scroll">
+    
     <label class="titulo">Perfis</label>
     <table class="table th td" >
         <thead>
@@ -27,7 +28,7 @@
     </table>
     <br />
     <table id="el"><tr>
-            <td><a  class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
-            <td><a  class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+            <td><a  class="btn btn-relatorio btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
+            <td><a  class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

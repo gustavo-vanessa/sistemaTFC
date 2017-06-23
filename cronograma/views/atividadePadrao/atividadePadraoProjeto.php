@@ -1,11 +1,12 @@
 <div class="div_form" id="scroll">
+    
     <label class="titulo">Importar Atividades</label>
-    
-    
+
+
     <form name="formT" class="titulo2">
-        
-        
-        
+
+
+
         <td width="10%">
             <table width="10%" align="center" cellpadding="5" cellspacing="0">
                 <thead>
@@ -39,7 +40,7 @@
         <table>
             <tr>
                 <td><input type='button' id='importar' value='Importar!' class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
             </tr>
         </table>
         <br />
@@ -76,29 +77,29 @@
             }
         }
     }
-    
- function sendPost (url, obj){
-                //Define o formulário
-                var myForm = document.createElement("form");
-                myForm.action = url;
-                myForm.method = "post";
- 
-	        for(var key in obj) {
-		     var input = document.createElement("input");
-		     input.type = "text";
-		     input.value = obj[key];
-		     input.name = key;
-		     myForm.appendChild(input);			
-	        }
-                //Adiciona o form ao corpo do documento
-                document.body.appendChild(myForm);
-                //Envia o formulário
-                myForm.submit();
-            }    
-        
+
+    function sendPost(url, obj) {
+        //Define o formulário
+        var myForm = document.createElement("form");
+        myForm.action = url;
+        myForm.method = "post";
+
+        for (var key in obj) {
+            var input = document.createElement("input");
+            input.type = "text";
+            input.value = obj[key];
+            input.name = key;
+            myForm.appendChild(input);
+        }
+        //Adiciona o form ao corpo do documento
+        document.body.appendChild(myForm);
+        //Envia o formulário
+        myForm.submit();
+    }
+
     document.getElementById("importar").onclick = function () {
         var comboCidades = document.getElementById("ati_sel");
-        var ati=[];
+        var ati = [];
         for (i = 0; i < comboCidades.length; i = i + 1) {
             comboCidades.selectedIndex = i;
             //console.log("O indice é: " + comboCidades.selectedIndex);

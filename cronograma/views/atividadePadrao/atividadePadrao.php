@@ -1,5 +1,6 @@
 
 <div class="div_form" id="scroll">
+    
     <label class="titulo">Atividades Padrões</label>
     <?php
     if ($retornos != 'vazio') {
@@ -35,7 +36,7 @@
                 echo "<td>" . $atividadePadrao['nome_atividades_padroes'] . "</td>";
                 echo "<td>" . $atividadePadrao['descricao_atividades_padroes'] . "</td>";
                 echo "<td>" . $atividadePadrao['desc_pmbok'] . "</td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividadePadrao/formAlterar/" . $atividadePadrao['id_atividades_padroes'] . ">Alterar</td>";
+                echo "<td ><a class = 'btn btn-alterar btn-shadow btn-rc' href = " . BASE_URL . "atividadePadrao/formAlterar/" . $atividadePadrao['id_atividades_padroes'] . ">Alterar</td>";
                 echo "<td></td> ";
                 echo "<td></td> ";
                 echo "<td></td> ";
@@ -49,7 +50,7 @@
     <table id="el">
         <tr>
             <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividadePadrao/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
+            <td><a class="btn btn-relatorio btn-shadow btn-rc" href="javascript:genPDF()" target="_blank">Relatório</a></td>
+            <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'home/' . $_SESSION['nome_perfil'] ?>">Voltar</a></td>
         </tr></table>
 </div>

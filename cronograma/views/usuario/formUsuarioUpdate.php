@@ -3,7 +3,13 @@
 foreach ($usuarios as $usuario) {
     echo'<form method="post" action="' . BASE_URL . 'usuarios/alterar/' . $usuario['id_usuario'] . '">';
     echo'<div class="div_form" id="scroll">';
-    echo '<label class="titulo">Usuários</label>';
+    echo'<div class="div_menu">';
+    echo'       <a class="div_menu_a" href="'.BASE_URL . 'home/' . $_SESSION['nome_perfil'] .'">Inicio</a>';
+    echo'        <a class="div_menu_a" href="<?php echo BASE_URL ?>usuarios">/ Usuários</a>';
+    echo'        <a class="div_menu_a" href="#">/ Alterar Usuários</a>';
+    echo' <a class="div_menu_sair" href="<?php echo BASE_URL ?>">Sair</a>';
+    echo'    </div>';
+    echo '<label class="titulo">Alterar Usuários</label>';
     echo '<div>';
     echo'<label class="control-label">Nome: *</label><br />';
     echo'<input class="form-control" name="nome_usuario" required placeholder="Nome" type="text" value="' . $usuario['nome_usuario'] . '"><br /><br />';
@@ -31,7 +37,7 @@ echo '<table><tr>';
 
 
 echo'<td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>';
-echo'<td><a class="btn btn-padrao btn-shadow btn-rc" href="' . BASE_URL . 'usuarios">Voltar</a></td><br />';
+echo'<td><a class="btn btn-voltar btn-shadow btn-rc" href="' . BASE_URL . 'usuarios">Voltar</a></td><br />';
 echo '</tr></table>';
 echo'<br />';
 echo'</div>';

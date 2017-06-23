@@ -61,5 +61,11 @@ class homeController extends controller {
         }
         $this->loadTemplate('home/homeOrientando', $dados);
     }
+    
+    public function sair() {
+        session_destroy();
+        session_unset();
+        header('Location: /cronograma');
+    }
 
 }
