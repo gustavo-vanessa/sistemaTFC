@@ -54,11 +54,8 @@ class validacoesController extends controller {
         } else if ($nome_perfil == "Orientador") {
             $home->orientador($dados);
         } else {
-            
-
             $home->orientando($dados);
         }
-        exit;
     }
 
 }

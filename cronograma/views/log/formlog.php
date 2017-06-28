@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo BASE_URL; ?>perfil/add">
+<form method="post" action="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8"); ?>perfil/add">
     <div class="div_form">
         
         <label class="control-label">Nome do Perfil:</label><br />
@@ -9,7 +9,7 @@
         <br />
         <table><tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL ?>perfil">Voltar</a></td>
+                <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8") ?>perfil">Voltar</a></td>
             </tr></table>
     </div>
 </form>

@@ -50,8 +50,6 @@ public function alterar_pmbok ($array_dados = array(), $id){
         $sql = $this->db->prepare($string);
         $sql->execute();
         $valor_atual = $this->getStringLog($id);
-        echo '<br><br>'.$valor_atenrior.'<br><br>';
-        echo '<br><br>'.$valor_atual.'<br><br>';
         $log = $this->insere_log($sql,$string,TABELA,$valor_atenrior,$valor_atual);
         return;
     }

@@ -91,9 +91,9 @@ class ganttController extends controller {
              * 
              * 
              * print_r($dados['atividades']);
-            echo '<br><Br><Br><BR>';
+            
              print_r($dados['subatividades']);
-            echo '<br><Br><Br><BR>';
+            
             exit;
              * */
             

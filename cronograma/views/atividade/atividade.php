@@ -17,18 +17,23 @@
         </thead>
         <tbody>
             <?php
+            $id_atividade;
+            $nome_atividade;
+            $status_atividade;
+            $nome_projeto;
+            $data_inicio_atividade;
             foreach ($atividades as $atividade) {
                 echo "<tr>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['id_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['nome_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['status_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['nome_projeto'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['data_inicio_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['data_fim_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['data_validacao_atividade'] . "'></td>";
-                echo "<td><input class='table_input' type='text' value='" . $atividade['observacoes_atividade'] . "'></td>";
-                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/formAlterar/" . $atividade['id_atividade'] . ">Alterar</td>";
-                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " . BASE_URL . "atividade/excluir/" . $atividade['id_atividade'] . ">Excluir</td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['id_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                print "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['nome_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['status_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['nome_projeto'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['data_inicio_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['data_fim_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['data_validacao_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td><input class='table_input' type='text' value='" .  htmlentities($atividade['observacoes_atividade'],  ENT_QUOTES,  "utf-8") . "'></td>";
+                echo "<td ><a class = 'btn btn-padrao btn-shadow btn-rc' href = " .  htmlentities(BASE_URL,  ENT_QUOTES,  "utf-8") . "atividade/formAlterar/" .  htmlentities($atividade['id_atividade'],  ENT_QUOTES,  "utf-8") . ">Alterar</td>";
+                echo "<td><a class = 'btn btn-padrao btn-shadow btn-rc' href = " .  htmlentities(BASE_URL,  ENT_QUOTES,  "utf-8") . "atividade/excluir/" .  htmlentities($atividade['id_atividade'],  ENT_QUOTES,  "utf-8") . ">Excluir</td>";
                 echo "</tr> ";
             }
             ?>
@@ -37,8 +42,8 @@
     <br />
     <table>
         <tr>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL; ?>atividade/form_add">Adicionar</a></td>
-            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo BASE_URL.'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo  htmlentities(BASE_URL,  ENT_QUOTES,  "utf-8"); ?>atividade/form_add">Adicionar</a></td>
+            <td><a class="btn btn-padrao btn-shadow btn-rc" href="<?php echo  htmlentities(BASE_URL,  ENT_QUOTES,  "utf-8").'home/'.$_SESSION['nome_perfil']?>">Voltar</a></td>
         </tr></table>
     <br />
    

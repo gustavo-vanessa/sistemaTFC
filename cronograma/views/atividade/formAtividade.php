@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo BASE_URL ?>atividade/add">
+<form method="post" action="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8") ?>atividade/add">
     <div class="div_form" id="scroll">
         
         <label class="titulo">Incluir Atividade</label>
@@ -14,7 +14,7 @@
                 <option>Selecione</option>    
                 <?php
                 foreach ($projetos as $projeto):
-                    echo "<option value=" . $projeto['id_projeto'] . " >" . $projeto['nome_projeto'] . "</option>";
+                    echo "<option value=" . htmlentities($projeto['id_projeto'], ENT_QUOTES, "utf-8") . " >" . htmlentities($projeto['nome_projeto'], ENT_QUOTES, "utf-8") . "</option>";
                 endforeach;
                 ?>
             </select>
@@ -39,7 +39,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8") . 'atividade/atividadesProjeto/' . htmlentities($_SESSION['id_projeto'], ENT_QUOTES, "utf-8") ?>">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

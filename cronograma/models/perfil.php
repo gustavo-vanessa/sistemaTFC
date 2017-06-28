@@ -41,7 +41,6 @@ public function add_perfil ($array_dados = array()){
 }
 
 public function alterar_perfil ($array_dados = array(), $id){
-    echo 'entrei no model<br><br>';
     if(count($array_dados)>1){  
         $sql = $this->db->prepare("update `perfil` set `nome_perfil` = '".$array_dados['nome_perfil']."', `descricao_perfil` = '".$array_dados['descricao_perfil']."' where id_perfil = ".$id);
         $sql->execute();

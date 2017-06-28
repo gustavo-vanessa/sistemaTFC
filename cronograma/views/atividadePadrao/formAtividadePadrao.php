@@ -1,4 +1,4 @@
-<form method="post" action="<?php echo BASE_URL; ?>atividadePadrao/add">
+<form method="post" action="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8"); ?>atividadePadrao/add">
     <div class="div_form" id="scroll">
         
         <label class="titulo">Incluir Atividade Padrão</label>
@@ -17,7 +17,7 @@
             <select  class="form-control" required name="id_pmbok_versao">
                 <option>Selecione</option>    
                 <?php foreach ($pmboks as $pmbok): ?>
-                    <?php echo "<option value=" . $pmbok['id_pmbok_versao'] . " >" . $pmbok['descricao_pmbok_versao'] . "</option>"; ?>
+                    <?php echo "<option value=" . htmlentities($pmbok['id_pmbok_versao'], ENT_QUOTES, "utf-8") . " >" . htmlentities($pmbok['descricao_pmbok_versao'], ENT_QUOTES, "utf-8") . "</option>"; ?>
                 <?php endforeach; ?>
             </select><br /><br />
         </div> 
@@ -35,7 +35,7 @@
         <table>
             <tr>
                 <td><input type="submit" name="submit" value="Salvar" class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL ?>atividadePadrao">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8") ?>atividadePadrao">Voltar</a></td>
             </tr>
         </table>
         <label class="textorodape">* Campo Obrigatório</label>

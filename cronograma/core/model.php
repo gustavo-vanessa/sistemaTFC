@@ -18,12 +18,11 @@ class model {
     public function __construct() {
         try {
             global $config;
-            //echo "mysql:dbname=" . $config['dbname'] . ";host=" . $config['host'], $config['dbuser'], $config['dbpass']."</br></br></br></br></br>";
             $this->db = new PDO("mysql:dbname=" . $config['dbname'] . ";host=" . $config['host'], $config['dbuser'], $config['dbpass']);
 
             //    $this->db->setAttribute( PDO::ATTR_ERRMODE , PDO::ERRMODE_EXCEPTION );
         } catch (Exception $e) {
-            echo "Erro de conexão: " . $e->getMessage() . "<p>";
+            //echo "Erro de conexão: " . htmlentities($e->getMessage(),  ENT_QUOTES,  "utf-8") . "<p>";
         }
     }
 

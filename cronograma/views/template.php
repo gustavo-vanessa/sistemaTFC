@@ -1,9 +1,12 @@
 <?php if(!isset($_SESSION))     {         session_start();     }
+
 ?>
-<html>
+<!DOCTYPE html>
+<html> 
 
     <head>
-        <meta charset="utf-8"/>
+        <meta charset="utf-8" http-equiv="Content‑Security‑Policy: script‑src 'self' http://localhost/cronograma/*; media‑src 'none'; img‑src *; default‑src 'self' http://localhost/cronograma/*;	X-XSS-Protection: 1; mode=block"/>
+        
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style_template.css"/>
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/estilo.css"/>         
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/styles/css/gantti.css"/>
@@ -11,7 +14,7 @@
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/build/html2canvas.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/dist/jspdf.debug.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/dist/basic.js"></script>
-
+        
 
 
         <title>Projeto</title>

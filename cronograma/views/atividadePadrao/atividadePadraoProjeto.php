@@ -20,7 +20,7 @@
                     <select name="ati_disp" id="ati_disp" size=15 class="xT" multiple style="width: 300"> 
                         <?php
                         foreach ($atividades as $atividade) {
-                            echo " <option value='" . $atividade['nome_atividades_padroes'] . "'>" . $atividade['nome_atividades_padroes'] . "</option>";
+                            echo " <option value='" . htmlentities($atividade['nome_atividades_padroes'], ENT_QUOTES, "utf-8") . "'>" . htmlentities($atividade['nome_atividades_padroes'], ENT_QUOTES, "utf-8") . "</option>";
                         }
                         ?>
                     </select>
@@ -40,7 +40,7 @@
         <table>
             <tr>
                 <td><input type='button' id='importar' value='Importar!' class="btn btn-padrao btn-shadow btn-rc"/></td>
-                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo BASE_URL . 'atividade/atividadesProjeto/' . $_SESSION['id_projeto'] ?>">Voltar</a></td>
+                <td><a class="btn btn-voltar btn-shadow btn-rc" href="<?php echo htmlentities(BASE_URL, ENT_QUOTES, "utf-8") . 'atividade/atividadesProjeto/' . htmlentities($_SESSION['id_projeto'], ENT_QUOTES, "utf-8") ?>">Voltar</a></td>
             </tr>
         </table>
         <br />
